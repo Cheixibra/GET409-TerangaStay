@@ -1,44 +1,71 @@
 # Carte d'Empathie — TerangaStay
 
 ## Persona de notre équipe
-- Prénom, âge, profession : Astou Sarr, 47 ans, gérante d'une auberge de 14 chambres
-- Localisation : Toubab Dialaw, Sénégal
-- Problème principal : dépendance aux commissions des plateformes internationales et gestion des réservations par WhatsApp/papier, avec risque de doubles réservations
-- Équipement digital : téléphone basique + WhatsApp/Facebook, paiements via Wave/Orange Money
-- Revenus approximatifs : revenus saisonniers, forte variation haute/basse saison
-- Contexte : gère seule son auberge, avec l'aide ponctuelle de sa famille
 
-## Observations (interview simulée)
-- Ce qu'elle dit : elle répète que les commissions des plateformes « mangent sa marge »
-- Ce qu'elle fait : elle tient son calendrier de réservations sur un cahier papier
-- Émotion principale détectée : frustration mêlée d'anxiété face au risque de doubles réservations
+- **Prénom, âge, profession :** Modou Diop, 45 ans, gérant d'un petit hôtel/campement (12 chambres)
+- **Localisation :** Saly Portudal, Petite Côte, Sénégal
+- **Problème principal :** Dépend d'intermédiaires coûteux (agences, OTA internationales) et gère ses réservations sur un cahier papier
+- **Équipement digital :** Smartphone + page Facebook, pas de site web ni logiciel de gestion
+- **Revenus approximatifs :** Très variables selon la saison touristique (haute saison novembre-avril)
+- **Contexte familial :** Entreprise familiale, aidé par 2 employés
 
-### 1. Ce qu'elle PENSE ET RESSENT
-- Frustrée de reverser une grosse part de ses revenus aux plateformes internationales
-- Anxieuse à l'idée d'une double réservation ou d'un client refusé
-- Rêve secrètement d'un outil simple, en français, qui centralise tout
+## Observations de nos interviews
 
-### 2. Ce qu'elle VOIT
-- Les grands hôtels de Saly avec une vitrine en ligne soignée, elle avec une simple page Facebook
-- Des concurrents se plaindre des commissions des OTA
-- Des touristes hésiter à réserver faute d'avis clients visibles
+- **Ce qu'il a dit :** « Je note les réservations sur un cahier, il m'arrive de réserver deux fois la même chambre le même soir. »
+- **Ce qu'il a fait :** Répond aux messages WhatsApp à toute heure, y compris la nuit, pour ne perdre aucun client potentiel.
+- **Émotion principale détectée :** Frustration mêlée d'inquiétude face à la concurrence des grandes plateformes.
 
-### 3. Ce qu'elle ENTEND
-- D'autres gérants d'auberges se plaindre des commissions élevées des OTA
-- Des clients dire préférer réserver « directement » pour un meilleur prix
-- La diaspora demander comment réserver « sans passer par un site étranger »
+### 1. Ce qu'il PENSE ET RESSENT
 
-### 4. Ce qu'elle DIT ET FAIT
-- Gère son calendrier sur un cahier papier et un fichier Excel séparé
-- Répond aux demandes via WhatsApp, parfois avec des heures de retard
-- Demande un acompte par Wave, ce qui bloque les clients étrangers sans compte local
+- S'inquiète de perdre des clients face aux hôtels mieux référencés en ligne à Dakar et Saly
+- Frustré de reverser 15 à 20 % de commission aux plateformes internationales (Booking, Airbnb) sur chaque réservation
+- Craint les périodes creuses hors saison touristique
+- Fier de son accueil chaleureux (la « teranga ») mais déçu que cela ne se reflète pas sur internet
+
+### 2. Ce qu'il VOIT
+
+- Des chambres vides certaines semaines malgré une demande réelle
+- Des concurrents avec de belles photos et un site professionnel bien référencé
+- Des touristes qui le contactent par téléphone ou WhatsApp au dernier moment, faute de trouver une disponibilité en ligne claire
+- Un cahier de réservations couvert de ratures et de corrections
+
+### 3. Ce qu'il ENTEND
+
+- D'autres gérants d'hébergements se plaignent des commissions élevées des plateformes internationales
+- Des clients lui disent avoir eu du mal à trouver son établissement en ligne
+- Des proches évoquent le succès de Wave et Orange Money pour les paiements du quotidien
+- L'association touristique locale parle de la baisse de fréquentation hors saison
+
+### 4. Ce qu'il DIT ET FAIT
+
+- « Je note les réservations sur un cahier, il m'arrive de réserver deux fois la même chambre. »
+- Répond aux messages WhatsApp à toute heure pour ne rater aucun client
+- Demande un acompte par Orange Money, faute de terminal de paiement carte adapté
+- Fait la promotion de son établissement par le bouche-à-oreille et sur Facebook
 
 ### 5. FRUSTRATIONS (Pains)
-- Commissions de 15 à 20 % prélevées par les plateformes internationales
-- Doubles réservations à cause d'un calendrier non synchronisé
-- Paiements difficiles à recevoir des touristes étrangers / de la diaspora
+
+- Commissions élevées prélevées par les plateformes internationales (jusqu'à 20 %)
+- Doubles réservations dues à la gestion manuelle sur cahier
+- Faible visibilité en ligne face aux grands hôtels et résidences
+- Difficulté à accepter des paiements internationaux sans carte bancaire adaptée
 
 ### 6. ASPIRATIONS (Gains)
-- Recevoir des réservations directes, sans intermédiaire coûteux
-- Un calendrier unique et fiable, utilisable même avec une connexion faible
-- Accepter facilement les paiements locaux (Wave/Orange Money) et internationaux
+
+- Recevoir des réservations directes sans intermédiaire coûteux
+- Gérer facilement ses disponibilités, même depuis un simple smartphone
+- Accepter les paiements mobiles locaux (Wave, Orange Money)
+- Être visible auprès des touristes sénégalais et internationaux
+
+---
+
+## Énoncés HMW (How Might We) — brouillon
+
+1. **(Principal)** « Comment pourrions-nous permettre aux petits hôtels et campements indépendants du Sénégal de publier leurs disponibilités en temps réel, afin que les voyageurs réservent directement sans passer par des intermédiaires qui prennent de fortes commissions ? »
+   → *Insight : beaucoup d'hébergements à Saly, en Casamance ou au Siné-Saloum n'ont pas de présence en ligne fiable et perdent des clients face aux plateformes internationales qui prélèvent jusqu'à 15-20 % de commission.*
+
+2. « Comment pourrions-nous permettre aux voyageurs de payer leur réservation d'hôtel via mobile money (Wave, Orange Money) afin de réduire les réservations non honorées et les fraudes liées aux paiements internationaux ? »
+   → *Insight : le mobile money est très répandu au Sénégal, mais peu de plateformes de réservation l'intègrent, ce qui pousse vers des réservations informelles risquées par WhatsApp.*
+
+3. « Comment pourrions-nous aider les gérants d'hébergements indépendants à gérer leurs réservations sans outil numérique adapté, afin d'éviter les doubles réservations et les pertes de revenus ? »
+   → *Insight : la gestion manuelle sur cahier entraîne des doubles réservations et une mauvaise anticipation du taux d'occupation.*
