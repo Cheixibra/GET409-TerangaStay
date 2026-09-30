@@ -25,8 +25,7 @@ export function PresetLibrary({ canAdd, onAdd }: Props) {
   }, [query]);
 
   return (
-    <section className="panel" aria-labelledby="presets-title">
-      <h2 id="presets-title">Presets de cadrage</h2>
+    <div>
       <label className="search">
         <span className="visually-hidden">Rechercher un preset</span>
         <input
@@ -64,6 +63,6 @@ export function PresetLibrary({ canAdd, onAdd }: Props) {
           ))}
         </ul>
       )}
-    </section>
+    </div>
   );
 }

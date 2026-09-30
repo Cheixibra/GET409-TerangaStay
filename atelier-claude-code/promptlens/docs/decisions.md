@@ -41,3 +41,20 @@
 - **Verified**: `npm --prefix functions run build` passes; emulator test in
   `docs/emulator-test.md` (validation errors OK; AI calls reach Gemini, which rejects the dummy
   key — a real key is required for a JSON answer).
+
+## 2026-09-30 — Frontend AI flows
+- **What**: three tabs to add an entry: Presets (existing), Décrire (textarea →
+  `describeShotFromText`), Image (upload + preview → `describeShotFromImage`). The AI answer
+  opens an editable review card (`ShotReview`); nothing is saved until "Ajouter au journal".
+- **Client**: Firebase JS SDK 12, `httpsCallable` with 70 s timeout; `connectFunctionsEmulator`
+  in dev (default; `VITE_USE_EMULATOR=false` to disable). Without web config, a demo project
+  id is used, which only works against the emulator.
+- **Image**: resized client-side so the longest side is ≤ 1600 px and re-encoded as JPEG 0.85
+  (keeps payloads well under the 4 MB server limit).
+- **Errors**: callable error codes mapped to French messages (`aiErrorMessage`), spinner and
+  disabled button while a call runs.
+- **Security check**: `npm run build`, then `dist/` searched for `AIza`, `GEMINI_API_KEY` and
+  the Gemini endpoint: 0 matches. Entries still go through `JournalRepository`.
+- **Verified**: E2E (Playwright): real emulator call without key → French error; mocked
+  callable → review, edit focal length, save; 3000×2000 image → 1600×1067 JPEG upload;
+  entries persist after reload.
