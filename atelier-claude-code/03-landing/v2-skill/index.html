@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATA suarl — Des mondes réels et imaginaires, fabriqués à Dakar</title>
+<style>
+  /* Art direction: Dakar's hand-painted "car rapide" buses.
+     Painted stripe bands, sign-painter lettering with offset shadow, a route-map quiz. */
+  :root {
+    --route-blue: #15307A;
+    --ocean: #2C82C9;
+    --car-yellow: #F4C21B;
+    --signal-red: #CF3B2B;
+    --chalk: #F5F6F1;
+    --ink: #0F1A3D;
+    --ink-soft: #3E4868;
+    --display: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed", "Arial Narrow", Impact, sans-serif;
+    --body: "Gill Sans", "Gill Sans MT", "Seravek", "Trebuchet MS", sans-serif;
+    --measure: 62ch;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--chalk); color: var(--ink); font: 17px/1.6 var(--body); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--signal-red); outline-offset: 3px; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+  /* Painted stripe band: the signature element, reused as section dividers. */
+  .band { display: grid; grid-template-rows: 14px 10px 14px; }
+  .band i { display: block; transform-origin: left; }
+  .band i:nth-child(1) { background: var(--car-yellow); }
+  .band i:nth-child(2) { background: var(--signal-red); }
+  .band i:nth-child(3) { background: var(--ocean); }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero .band i { animation: paint .9s cubic-bezier(.2,.7,.2,1) both; }
+    .hero .band i:nth-child(2) { animation-delay: .15s; }
+    .hero .band i:nth-child(3) { animation-delay: .3s; }
+  }
+  @keyframes paint { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* Hero */
+  .hero { background: var(--route-blue); color: var(--chalk); padding: 28px 0 0; overflow: hidden; }
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .logo { font: 800 1.35rem/1 var(--display); letter-spacing: .02em; color: var(--car-yellow); text-decoration: none; }
+  .topbar nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: .95rem; }
+  .topbar nav a { text-decoration: none; color: var(--chalk); opacity: .85; }
+  .topbar nav a:hover { opacity: 1; text-decoration: underline; text-decoration-color: var(--car-yellow); text-underline-offset: 4px; }
+  .hero-body { padding: clamp(48px, 9vw, 110px) 0 clamp(40px, 7vw, 80px); }
+  .hero h1 {
+    margin: 0; max-width: 14ch;
+    font: 800 clamp(2.7rem, 9vw, 6.4rem)/.92 var(--display);
+    letter-spacing: -.005em; text-transform: uppercase; color: var(--car-yellow);
+    text-shadow: 4px 4px 0 var(--signal-red), 8px 8px 0 var(--ink);
+  }
+  .hero p { max-width: 46ch; margin: 28px 0 32px; font-size: 1.15rem; color: #DCE3F5; }
+  .cta {
+    display: inline-block; padding: 14px 26px; border-radius: 999px;
+    background: var(--car-yellow); color: var(--ink); font-weight: 700; text-decoration: none;
+    box-shadow: 4px 4px 0 var(--signal-red);
+  }
+  .cta:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--signal-red); }
+
+  section { padding: clamp(56px, 8vw, 96px) 0; }
+  h2 { font: 800 clamp(2rem, 5vw, 3.2rem)/1 var(--display); text-transform: uppercase; margin: 0 0 14px; color: var(--route-blue); }
+  .intro { max-width: var(--measure); margin: 0 0 40px; color: var(--ink-soft); }
+
+  /* Quiz as a bus route: three stops, then the destination. */
+  .route { display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
+  .stops { list-style: none; margin: 0; padding: 0 0 0 26px; position: relative; }
+  .stops::before { content: ""; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 4px; background: repeating-linear-gradient(var(--route-blue) 0 10px, transparent 10px 16px); }
+  .stops li { position: relative; padding: 0 0 26px 18px; color: var(--ink-soft); }
+  .stops li::before { content: ""; position: absolute; left: -24px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--chalk); border: 4px solid var(--route-blue); }
+  .stops li.done::before { background: var(--route-blue); }
+  .stops li.now { color: var(--ink); font-weight: 700; }
+  .stops li.now::before { background: var(--car-yellow); border-color: var(--signal-red); }
+  .stops small { display: block; font-weight: 400; color: var(--ink-soft); }
+  .panel { background: #fff; border: 3px solid var(--route-blue); border-radius: 18px; padding: clamp(20px, 4vw, 36px); box-shadow: 8px 8px 0 var(--car-yellow); }
+  .panel h3 { font: 800 1.9rem/1.05 var(--display); text-transform: uppercase; margin: 0 0 20px; }
+  .choices { display: flex; flex-wrap: wrap; gap: 10px; }
+  .choices button {
+    font: inherit; font-weight: 600; cursor: pointer; padding: 12px 18px; border-radius: 999px;
+    border: 2px solid var(--route-blue); background: var(--chalk); color: var(--ink);
+  }
+  .choices button:hover { background: var(--car-yellow); }
+  .back { margin-top: 20px; background: none; border: 0; padding: 0; font: inherit; color: var(--ink-soft); text-decoration: underline; cursor: pointer; }
+  .dest p { max-width: 52ch; }
+  .dest .offer { font: 800 2.2rem/1 var(--display); color: var(--signal-red); text-transform: uppercase; margin: 0 0 12px; }
+  .dest .actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 20px; }
+
+  /* Services as painted panels, each in one route colour. */
+  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; }
+  .svc { padding: 28px 24px 32px; min-height: 240px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .svc h3 { font: 800 1.7rem/1 var(--display); text-transform: uppercase; margin: 0 0 10px; }
+  .svc p { margin: 0; }
+  .svc:nth-child(1) { background: var(--car-yellow); color: var(--ink); }
+  .svc:nth-child(2) { background: var(--ocean); color: #fff; }
+  .svc:nth-child(3) { background: var(--signal-red); color: #fff; }
+  .svc:nth-child(4) { background: var(--route-blue); color: var(--chalk); }
+
+  .works { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .slot { aspect-ratio: 4 / 3; border: 3px dashed var(--ocean); border-radius: 14px; display: grid; place-items: center; text-align: center; padding: 12px; color: var(--ink-soft); background: #fff; }
+
+  .contact { background: var(--route-blue); color: var(--chalk); }
+  .contact h2 { color: var(--car-yellow); }
+  .contact .intro { color: #DCE3F5; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; max-width: 760px; }
+  label { display: grid; gap: 6px; font-weight: 600; }
+  label.full { grid-column: 1 / -1; }
+  input, textarea { font: inherit; padding: 12px 14px; border-radius: 10px; border: 2px solid transparent; background: var(--chalk); color: var(--ink); }
+  input:focus, textarea:focus { border-color: var(--car-yellow); outline: none; }
+  input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--signal-red); }
+  .err { min-height: 1.3em; font-weight: 400; font-size: .92rem; color: #FFD2CC; }
+  .submit { grid-column: 1 / -1; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .submit button { font: inherit; border: 0; cursor: pointer; }
+  .sent { margin: 0; color: var(--car-yellow); }
+  footer { background: var(--ink); color: #AEB6CF; padding: 22px 0; font-size: .92rem; }
+
+  @media (max-width: 860px) {
+    .route { grid-template-columns: 1fr; gap: 24px; }
+    .services { grid-template-columns: 1fr 1fr; }
+    .works { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .services, .works, form { grid-template-columns: 1fr; }
+    .svc { min-height: 170px; }
+    .hero h1 { text-shadow: 3px 3px 0 var(--signal-red), 6px 6px 0 var(--ink); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap topbar">
+    <a class="logo" href="#top" id="top">ATA suarl</a>
+    <nav aria-label="Navigation principale">
+      <a href="#trajet">Votre projet</a>
+      <a href="#services">Services</a>
+      <a href="#projets">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap hero-body">
+    <h1>Des mondes réels et imaginaires, fabriqués à Dakar</h1>
+    <p>Studio de technologies créatives : animation 3D, expériences XR, jeux vidéo et IA générative pour les marques et les institutions culturelles.</p>
+    <a class="cta" href="#trajet">Tracer mon projet</a>
+  </div>
+  <div class="band" aria-hidden="true"><i></i><i></i><i></i></div>
+</header>
+
+<main>
+<section id="trajet">
+  <div class="wrap">
+    <h2>Votre trajet</h2>
+    <p class="intro">Trois arrêts pour arriver à la bonne offre. Vous pouvez revenir en arrière à tout moment.</p>
+    <div class="route">
+      <ol class="stops" id="stops">
+        <li data-i="0">Secteur<small id="a0">à choisir</small></li>
+        <li data-i="1">Format<small id="a1">à choisir</small></li>
+        <li data-i="2">Budget<small id="a2">à choisir</small></li>
+        <li data-i="3">Arrivée<small>votre offre</small></li>
+      </ol>
+      <div class="panel" id="panel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<section id="services">
+  <div class="wrap">
+    <h2>Ce que nous fabriquons</h2>
+    <p class="intro">Quatre ateliers sous le même toit, qui travaillent souvent ensemble sur un même projet.</p>
+    <div class="services">
+      <article class="svc"><h3>Animation 3D</h3><p>Films, séquences et génériques animés, du storyboard au rendu final.</p></article>
+      <article class="svc"><h3>Expériences XR</h3><p>Réalité virtuelle, augmentée et installations immersives pour lieux culturels et événements.</p></article>
+      <article class="svc"><h3>Jeux vidéo</h3><p>Jeux de marque, jeux sérieux et prototypes jouables en temps réel.</p></article>
+      <article class="svc"><h3>IA générative</h3><p>Production d'images et de vidéos, outils créatifs et ateliers de prise en main.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="wrap">
+    <h2>Projets</h2>
+    <p class="intro">Le portfolio arrive. Ces emplacements accueilleront six projets réels du studio.</p>
+    <div class="works">
+      <div class="slot">[Projet à venir 1]</div>
+      <div class="slot">[Projet à venir 2]</div>
+      <div class="slot">[Projet à venir 3]</div>
+      <div class="slot">[Projet à venir 4]</div>
+      <div class="slot">[Projet à venir 5]</div>
+      <div class="slot">[Projet à venir 6]</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Parlons de votre projet</h2>
+    <p class="intro">Quelques lignes suffisent. Nous répondons avec des questions précises pour cadrer la suite.</p>
+    <form id="form" novalidate>
+      <label>Nom<input name="name" autocomplete="name" required><span class="err" id="e-name"></span></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required><span class="err" id="e-email"></span></label>
+      <label class="full">Organisation<input name="org" autocomplete="organization" required><span class="err" id="e-org"></span></label>
+      <label class="full">Message<textarea name="message" rows="5" required></textarea><span class="err" id="e-message"></span></label>
+      <div class="submit">
+        <button class="cta" type="submit">Envoyer le message</button>
+        <p class="sent" id="sent" hidden>Message prêt à partir. Cette page de démonstration n'envoie rien.</p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">ATA suarl, Dakar, Sénégal</div></footer>
+
+<script>
+  var STEPS = [
+    { q: "Dans quel secteur travaillez-vous ?", opts: ["Culture et patrimoine", "Marque ou entreprise", "Éducation", "Institution publique"] },
+    { q: "Quel format vous attire ?", opts: ["Animation", "XR", "Jeu", "IA"] },
+    { q: "Quel budget prévoyez-vous ?", opts: ["Moins de 5 M FCFA", "5 à 15 M FCFA", "Plus de 15 M FCFA"] }
+  ];
+  var OFFERS = {
+    Animation: { name: "Film d'animation 3D", what: "une séquence animée qui raconte votre sujet" },
+    XR: { name: "Expérience immersive", what: "une expérience XR à vivre sur place ou en casque" },
+    Jeu: { name: "Jeu sur mesure", what: "un jeu qui fait comprendre votre sujet en y jouant" },
+    IA: { name: "Production IA générative", what: "des images, vidéos ou outils créés avec l'IA générative" }
+  };
+  var TIERS = [
+    "Nous commençons par un prototype court, pour valider l'idée avant d'aller plus loin.",
+    "Nous cadrons le projet complet en atelier, puis nous le produisons par étapes.",
+    "Nous concevons un dispositif ambitieux et l'accompagnons jusqu'à sa diffusion."
+  ];
+  var answers = [], step = 0;
+  var panel = document.getElementById("panel");
+
+  function updateStops() {
+    document.querySelectorAll("#stops li").forEach(function (li) {
+      var n = +li.dataset.i;
+      li.className = n < step ? "done" : n === step ? "now" : "";
+      if (n < 3) document.getElementById("a" + n).textContent = answers[n] != null ? STEPS[n].opts[answers[n]] : "à choisir";
+    });
+  }
+  function render() {
+    updateStops();
+    if (step === 3) return renderDest();
+    var s = STEPS[step];
+    panel.innerHTML = "<h3>" + s.q + "</h3><div class='choices'></div>" + (step > 0 ? "<button class='back' type='button'>Revenir à l'arrêt précédent</button>" : "");
+    var box = panel.querySelector(".choices");
+    s.opts.forEach(function (label, idx) {
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = label;
+      b.setAttribute("aria-pressed", answers[step] === idx ? "true" : "false");
+      b.addEventListener("click", function () { answers[step] = idx; step++; render(); });
+      box.appendChild(b);
+    });
+    var back = panel.querySelector(".back");
+    if (back) back.addEventListener("click", function () { step--; render(); });
+  }
+  function renderDest() {
+    var offer = OFFERS[STEPS[1].opts[answers[1]]];
+    var sector = STEPS[0].opts[answers[0]].toLowerCase();
+    panel.innerHTML =
+      "<div class='dest'><p class='offer'></p><p></p><p></p>" +
+      "<div class='actions'><a class='cta' href='#contact'>Écrire au studio</a><button class='back' type='button'>Refaire le trajet</button></div></div>";
+    var ps = panel.querySelectorAll(".dest p");
+    ps[0].textContent = offer.name;
+    ps[1].textContent = "Pour votre projet dans le secteur " + sector + " : " + offer.what + ".";
+    ps[2].textContent = TIERS[answers[2]];
+    panel.querySelector(".back").addEventListener("click", function () { answers = []; step = 0; render(); });
+  }
+  render();
+
+  var RULES = {
+    name: function (v) { return v.length >= 2 || "Indiquez votre nom."; },
+    email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Cet email ne semble pas valide : vérifiez le @ et le domaine."; },
+    org: function (v) { return v.length >= 2 || "Indiquez le nom de votre organisation."; },
+    message: function (v) { return v.length >= 10 || "Ajoutez quelques mots sur votre projet (10 caractères minimum)."; }
+  };
+  document.getElementById("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target, valid = true, first = null;
+    Object.keys(RULES).forEach(function (k) {
+      var r = RULES[k](f[k].value.trim());
+      document.getElementById("e-" + k).textContent = r === true ? "" : r;
+      f[k].setAttribute("aria-invalid", r === true ? "false" : "true");
+      if (r !== true) { valid = false; first = first || f[k]; }
+    });
+    document.getElementById("sent").hidden = !valid;
+    if (valid) f.reset(); else first.focus();
+  });
+</script>
+</body>
+</html>
