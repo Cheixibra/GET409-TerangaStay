@@ -1,0 +1,29 @@
+# Dependencies & builds
+node_modules/
+dist/
+functions/lib/
+functions/node_modules/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+functions/.secret.local
+*serviceAccount*.json
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+
+# Logs & editors
+npm-debug.log*
+*.log
+.vscode/*
+!.vscode/extensions.json
+
+# OS
+.DS_Store
+Thumbs.db
