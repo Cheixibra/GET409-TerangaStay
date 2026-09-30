@@ -1,0 +1,11 @@
+# Personal data never goes to a public repository.
+# Only the scaffold (.gitkeep, templates, playbook, skills) is versioned.
+vault/sources/*
+vault/me/*
+vault/people/*
+vault/business/*
+vault/projects/*
+brand/images/*
+work/*/output/
+!**/.gitkeep
+.obsidian/
