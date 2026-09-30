@@ -13,6 +13,12 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'image', label: 'Image' },
 ];
 
+const TODAY_RAW = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(
+  new Date(),
+);
+/** French capitalises only the first word of a date ("Mercredi 30 septembre 2026"). */
+const TODAY = TODAY_RAW.charAt(0).toUpperCase() + TODAY_RAW.slice(1);
+
 export default function App() {
   const journal = useJournal();
   const [tab, setTab] = useState<Tab>('presets');
@@ -35,8 +41,14 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>PromptLens</h1>
-        <p>Références visuelles pour vos productions vidéo IA</p>
+        <div>
+          <h1>
+            <span className="logo" aria-hidden="true" />
+            PromptLens
+          </h1>
+          <p>Références visuelles pour vos productions vidéo IA</p>
+        </div>
+        <time dateTime={new Date().toISOString().slice(0, 10)}>{TODAY}</time>
       </header>
 
       {journal.error && (
@@ -49,7 +61,10 @@ export default function App() {
       )}
 
       {journal.loading ? (
-        <p className="empty">Chargement du journal…</p>
+        <main className="layout" aria-busy="true" aria-label="Chargement du journal">
+          <div className="panel skeleton" />
+          <div className="panel skeleton" />
+        </main>
       ) : (
         <main className="layout">
           <section className="panel" aria-labelledby="add-title">

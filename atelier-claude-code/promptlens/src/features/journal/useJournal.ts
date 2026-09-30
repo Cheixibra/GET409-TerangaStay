@@ -14,6 +14,9 @@ export interface JournalState {
   addEntry(entry: Omit<Entry, 'id' | 'createdAt' | 'production'>): Promise<void>;
   duplicateEntry(id: string): Promise<void>;
   removeEntry(id: string): Promise<void>;
+  lastRemoved: Entry | null;
+  undoRemove(): Promise<void>;
+  dismissUndo(): void;
   clearError(): void;
 }
 
@@ -29,6 +32,7 @@ export function useJournal(): JournalState {
   const [current, setCurrentState] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastRemoved, setLastRemoved] = useState<Entry | null>(null);
 
   const reload = useCallback(async () => {
     const [p, e] = await Promise.all([repository.listProductions(), repository.listEntries()]);
@@ -99,8 +103,17 @@ export function useJournal(): JournalState {
       await run(() => repository.duplicateEntry(id));
     },
     removeEntry: async (id) => {
-      await run(() => repository.removeEntry(id));
+      const removed = entries.find((e) => e.id === id) ?? null;
+      if (await run(() => repository.removeEntry(id))) setLastRemoved(removed);
     },
+    lastRemoved,
+    undoRemove: async () => {
+      if (!lastRemoved) return;
+      const entry = lastRemoved;
+      setLastRemoved(null);
+      await run(() => repository.restoreEntry(entry));
+    },
+    dismissUndo: () => setLastRemoved(null),
     clearError: () => setError(null),
   };
 }
