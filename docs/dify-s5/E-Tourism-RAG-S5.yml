@@ -18,7 +18,7 @@ workflow:
   conversation_variables: []
   environment_variables:
   - description: Requête fixe et courte pour remonter la base DISPONIBILITÉS en entier
-    id: 499a883b-5d27-40f3-bd89-88c0786db631
+    id: e7d22312-e908-4f9f-97e2-b49f6e381b85
     name: requete_dispo
     selector:
     - env
@@ -201,11 +201,12 @@ workflow:
       width: 242
       zIndex: 0
     - data:
-        dataset_ids: []
+        dataset_ids:
+        - 7ee714a4-245f-44da-ab46-165285bd2b95
         desc: ''
         multiple_retrieval_config:
           reranking_enable: false
-          top_k: 5
+          top_k: 6
           score_threshold: null
         query_variable_selector:
         - '1790195963789'
@@ -229,7 +230,8 @@ workflow:
       width: 242
       zIndex: 0
     - data:
-        dataset_ids: []
+        dataset_ids:
+        - 7099916a-38f2-4734-9826-31e83ad26ef9
         desc: ''
         multiple_retrieval_config:
           reranking_enable: false

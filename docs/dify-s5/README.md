@@ -12,7 +12,9 @@ Sert **US-03** (alerte de conflit + confirmation structurée) et le HMW définit
 | [`terangastay_dispo_decembre.md`](terangastay_dispo_decembre.md) | Base **fixe** DISPONIBILITÉS : chambres libres par nuit du 19 au 27 décembre, instantané daté, 1 ligne, 848 caractères | personnalisé : identifiant `\n\n`, longueur 1000 |
 | [`prompts-chercheur-redacteur.md`](prompts-chercheur-redacteur.md) | SYSTEM du Chercheur et du Rédacteur + 4 tests | — |
 
-Une ligne **par type** de chambre (et non par chambre) : avec Top K 5, Dify remonte tous les numéros du type demandé.
+Une ligne **par type** de chambre (et non par chambre). RECUP_CHAMBRES est en **Top K 6** : le catalogue entier (6 lignes) est toujours transmis, car la recherche par mots-clés du mode Économique renvoie 0 résultat pour `double climatisée` (testé le 30/09/2026 ; la question complète, elle, remonte la bonne ligne).
+
+**Déjà fait par API le 30/09/2026** : bases `TERANGASTAY_CHAMBRES` (6 segments, en-têtes conservés) et `TERANGASTAY_DISPO` (1 segment de 848 caractères) créées et indexées ; [`E-Tourism-RAG-S5.yml`](E-Tourism-RAG-S5.yml) contient le workflow complet avec ces deux bases déjà sélectionnées. Il reste : Studio → **Importer DSL** → ce fichier, puis l'étape F (tests).
 
 ---
 
@@ -25,7 +27,7 @@ Une ligne **par type** de chambre (et non par chambre) : avec Top K 5, Dify remo
 5. Attendre 🟢 **Disponible** sur les deux documents.
 
 ✅ Vérification A
-- `TERANGASTAY_CHAMBRES` → Test de Récupération `double climatisée` → la ligne « Double climatisée, C6 C7 C8 » remonte.
+- `TERANGASTAY_CHAMBRES` → Test de Récupération avec la question T1 complète → la ligne « Double climatisée, C6 C7 C8 » remonte (les 2 mots seuls ne suffisent pas en mode Économique).
 - `TERANGASTAY_DISPO` → le document affiche **1 seul segment** ; Test de Récupération `disponibilités chambres nuit décembre` le remonte.
 
 ## Étape B — Variable ENV (2 min)
@@ -40,7 +42,7 @@ Une ligne **par type** de chambre (et non par chambre) : avec Top K 5, Dify remo
 | Nom | `RECUP_CHAMBRES` | `RECUP_DISPO` |
 | Texte de la requête | `Début · query` | `ENV · requete_dispo` |
 | Connaissances | `TERANGASTAY_CHAMBRES` **seule** | `TERANGASTAY_DISPO` **seule** |
-| Paramètres | Top K **5** · seuil de score désactivé | Top K **3** · seuil de score désactivé |
+| Paramètres | Top K **6** (tout le catalogue) · seuil de score désactivé | Top K **3** · seuil de score désactivé |
 
 1. Si ton nœud Récupération actuel contient plusieurs bases : garder `TERANGASTAY_CHAMBRES` seule, le renommer `RECUP_CHAMBRES`.
 2. Cliquer le **+** du trait entre `RECUP_CHAMBRES` et `CHERCHEUR` → **Récupération de connaissances** → régler comme ci-dessus.
@@ -115,7 +117,7 @@ Puis **Publier → Publier une mise à jour**.
 - [ ] `TERANGASTAY_CHAMBRES` 🟢 Disponible · Test de Récupération conforme
 - [ ] `TERANGASTAY_DISPO` 🟢 Disponible · 1 seul segment
 - [ ] Variable ENV `requete_dispo` (String)
-- [ ] RECUP_CHAMBRES : requête = query · base CHAMBRES seule · Top K 5
+- [ ] RECUP_CHAMBRES : requête = query · base CHAMBRES seule · Top K 6
 - [ ] RECUP_DISPO : requête = ENV · base DISPO seule
 - [ ] MODELE_DISPO : `donnees` = RECUP_DISPO · result · `arg1` supprimé · code Jinja collé
 - [ ] CHERCHEUR : CONTEXTE = RECUP_CHAMBRES · result · badges Modèle et Contexte dans le SYSTEM · USER = query
