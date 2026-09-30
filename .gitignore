@@ -1,0 +1,7 @@
+# Claude Code local settings (per-machine plugin toggles)
+.claude/settings.local.json
+# Node / build
+node_modules/
+dist/
+# OS
+.DS_Store
