@@ -1,0 +1,548 @@
+app:
+  description: TerangaStay — RAG à deux recherches (chambres + disponibilités datées)
+  icon: alien
+  icon_background: '#E0EAFF'
+  icon_type: emoji
+  mode: workflow
+  name: E-Tourism RAG S5
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/groq:0.0.19@17734754952001d7c9aa0b733bff44a28e03311d1ce011a9888a7604a922cf36
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: Requête fixe et courte pour remonter la base DISPONIBILITÉS en entier
+    id: 499a883b-5d27-40f3-bd89-88c0786db631
+    name: requete_dispo
+    selector:
+    - env
+    - requete_dispo
+    value: disponibilités chambres nuit décembre
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1790195963789-source-1790700000001-target
+      source: '1790195963789'
+      sourceHandle: source
+      target: '1790700000001'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: knowledge-retrieval
+      id: 1790700000001-source-1790700000002-target
+      source: '1790700000001'
+      sourceHandle: source
+      target: '1790700000002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: template-transform
+      id: 1790700000002-source-1790700000003-target
+      source: '1790700000002'
+      sourceHandle: source
+      target: '1790700000003'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1790700000003-source-1790196003784-target
+      source: '1790700000003'
+      sourceHandle: source
+      target: '1790196003784'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: if-else
+      id: 1790196003784-source-1790196063285-target
+      source: '1790196003784'
+      sourceHandle: source
+      target: '1790196063285'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1790196063285-true-1790599250075-target
+      source: '1790196063285'
+      sourceHandle: 'true'
+      target: '1790599250075'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1790196063285-false-1790599280777-target
+      source: '1790196063285'
+      sourceHandle: 'false'
+      target: '1790599280777'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1790599280777-source-1790621450167-target
+      source: '1790599280777'
+      sourceHandle: source
+      target: '1790621450167'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: Query
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: query
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: query
+      height: 109
+      id: '1790195963789'
+      position:
+        x: -55.74838208591774
+        y: 468.7938399934207
+      positionAbsolute:
+        x: -55.74838208591774
+        y: 468.7938399934207
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        dataset_ids: []
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          top_k: 5
+          score_threshold: null
+        query_variable_selector:
+        - '1790195963789'
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: RECUP_CHAMBRES
+        type: knowledge-retrieval
+      height: 92
+      id: '1790700000001'
+      position:
+        x: 250
+        y: 470
+      positionAbsolute:
+        x: 250
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        dataset_ids: []
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          top_k: 3
+          score_threshold: null
+        query_variable_selector:
+        - env
+        - requete_dispo
+        retrieval_mode: multiple
+        selected: false
+        title: RECUP_DISPO
+        type: knowledge-retrieval
+      height: 92
+      id: '1790700000002'
+      position:
+        x: 550
+        y: 470
+      positionAbsolute:
+        x: 550
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        desc: ''
+        selected: false
+        template: '{% for item in donnees %}{{ item.content }}
+
+          {% endfor %}'
+        title: MODELE_DISPO
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1790700000002'
+          - result
+          variable: donnees
+      height: 92
+      id: '1790700000003'
+      position:
+        x: 850
+        y: 470
+      positionAbsolute:
+        x: 850
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1790700000001'
+          - result
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: llama-3.1-8b-instant
+          provider: langgenius/groq/groq
+        prompt_template:
+        - id: bf55b0fa-b299-4b47-b9ea-53a82c26c7e1
+          role: system
+          text: 'Tu es l''assistant de réservation de l''auberge TerangaStay à Toubab Dialaw (Sénégal).
+
+            Tu lis le message d''un voyageur (WhatsApp, Facebook ou lien direct) et tu en tires une fiche de demande structurée pour la gérante.
+
+
+            CONTEXTE PRODUIT :
+
+            - Persona prioritaire : Astou Sarr, gérante d''une auberge indépendante de 14 chambres à Toubab Dialaw.
+
+            - HMW : Comment pourrions-nous aider les petites structures d''hébergement touristique au Sénégal à centraliser et confirmer leurs réservations directes avec un calendrier fiable, afin d''éviter les doubles réservations et de préserver leur marge ?
+
+            - Tu ne confirmes jamais une réservation : seule la gérante confirme.
+
+            - Une demande, une disponibilité annoncée et une réservation confirmée sont trois statuts différents.
+
+
+            ÉTAPE 1 — EXTRAIRE du message du voyageur :
+
+            - Type de chambre souhaité (ou équipement demandé : climatisation, vue mer, lits séparés, famille)
+
+            - Date d''arrivée et date de départ
+
+            - Nombre de personnes
+
+            - Profil de paiement : au Sénégal (Wave / Orange Money possible) ou à l''étranger / diaspora, si le message l''indique
+
+
+            ÉTAPE 2 — VÉRIFIER si la demande est exploitable.
+
+            La demande est INSUFFISANTE si au moins un de ces éléments manque : date d''arrivée, date de départ, nombre de personnes.
+
+            Dans ce cas, réponds UNIQUEMENT :
+
+            INSUFFISANT : <liste des éléments manquants, séparés par des virgules>
+
+
+            ÉTAPE 3 — RECHERCHER (seulement si la demande est suffisante) :
+
+            - Chambre, capacité, équipements, prix par nuit et acompte par nuit : UNIQUEMENT dans le bloc CHAMBRES, sur la ligne dont le Type de chambre correspond à la demande.
+
+            - Si le type n''est pas précisé, choisir le type le moins cher dont la capacité couvre le nombre de personnes, et l''indiquer dans POINTS À CONFIRMER.
+
+            - Disponibilité : UNIQUEMENT dans le bloc DISPONIBILITÉS. Les nuits du séjour vont de la nuit de la date d''arrivée incluse à la nuit de la veille du départ incluse (départ le 22 = dernière nuit le 21). Pour chaque nuit, chercher la phrase « nuit du [jour] [mois] » (ignorer « le », « du », « au ») et recopier la liste des chambres libres.
+
+            - Une chambre est DISPONIBLE pour le séjour seulement si le même numéro de chambre du bon type figure dans la liste des chambres libres de CHAQUE nuit du séjour. Retenir le premier numéro qui remplit cette condition.
+
+            - Si aucun numéro du bon type n''est libre toutes les nuits : Disponibilité = CONFLIT, et indiquer pour chaque nuit « nuit du [jour] [mois] : <statut recopié> ».
+
+            - Les champs issus des blocs ne rendent JAMAIS la demande insuffisante : s''ils manquent, écrire « Non trouvé dans la base ».
+
+
+            ÉTAPE 4 — RÉPONDRE avec exactement ces lignes :
+
+            Type de chambre :
+
+            Chambre proposée : <numéro, ou « aucune »>
+
+            Capacité :
+
+            Arrivée :
+
+            Départ :
+
+            Nombre de nuits : <compter les nuits listées à l''étape 3>
+
+            Nombre de personnes :
+
+            Prix par nuit (FCFA) : <recopié du bloc CHAMBRES>
+
+            Acompte par nuit (FCFA) : <recopié du bloc CHAMBRES>
+
+            Disponibilité : <DISPONIBLE ou CONFLIT>
+
+            Détail des nuits : <une ligne par nuit>
+
+            Profil de paiement : <Sénégal, étranger / diaspora, ou « non précisé »>
+
+            Données mises à jour le : <date recopiée du bloc DISPONIBILITÉS>
+
+            POINTS À CONFIRMER : <ce que la gérante doit vérifier, ou « aucun »>
+
+
+            RÈGLES ABSOLUES :
+
+            - Recopier les valeurs des blocs telles quelles : ne jamais additionner, multiplier, soustraire ni estimer (pas de prix total, pas d''acompte total).
+
+            - Ne jamais écrire « confirmée » ni « réservée » : la demande reste en attente de validation par la gérante.
+
+            - Ne jamais inventer un prix, une disponibilité, une capacité ou un contact.
+
+            - Aucune donnée personnelle en dehors de ce que le voyageur a écrit.
+
+            - Le mot INSUFFISANT ne doit JAMAIS apparaître dans une réponse suffisante.
+
+            - Répondre en français clair. Ne rien ajouter avant ou après le format.
+
+
+            BLOC DISPONIBILITÉS — statut des chambres par nuit (instantané daté) :
+
+            {{#1790700000003.output#}}
+
+
+            BLOC CHAMBRES — types de chambres, prix et acomptes de l''auberge :
+
+            {{#context#}}
+
+            '
+        - edition_type: basic
+          id: 68ce8313-1dae-42b0-9119-cf83d7413428
+          role: user
+          text: '{{#1790195963789.query#}}'
+        selected: false
+        title: CHERCHEUR
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1790196003784'
+      position:
+        x: 1150
+        y: 540
+      positionAbsolute:
+        x: 1150
+        y: 540
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: bf35d491-8865-436e-af14-31421afc62fa
+            value: INSUFFISANT
+            varType: string
+            variable_selector:
+            - '1790196003784'
+            - text
+          logical_operator: and
+        selected: false
+        title: SI/SINON
+        type: if-else
+      height: 148
+      id: '1790196063285'
+      position:
+        x: 1450
+        y: 620
+      positionAbsolute:
+        x: 1450
+        y: 620
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1790196003784'
+          - text
+          value_type: string
+          variable: message_erreur
+        selected: false
+        title: Sortie
+        type: end
+      height: 88
+      id: '1790599250075'
+      position:
+        x: 1750
+        y: 540
+      positionAbsolute:
+        x: 1750
+        y: 540
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama-3.1-8b-instant
+          provider: langgenius/groq/groq
+        prompt_template:
+        - id: bd09c0ce-ac99-4ed5-9b09-4ea7ac82ac74
+          role: system
+          text: "Tu es le rédacteur de TerangaStay, une application qui aide les petites auberges indépendantes du Sénégal à recevoir des réservations directes avec un calendrier fiable, afin d'éviter les doubles réservations.\n\nTu rédiges, à partir de la fiche reçue du nœud CHERCHEUR, deux textes courts en français.\n\nSi les données reçues commencent par « INSUFFISANT : », transmettre exactement cette ligne, sans rapport ni reformulation.\n\n────────────────────────────────────────\n1) FICHE POUR LA GÉRANTE\n────────────────────────────────────────\n- Première ligne selon la Disponibilité :\n  - DISPONIBLE → « \U0001F7E1 DEMANDE REÇUE — en attente de votre validation »\n  - CONFLIT → « ⚠ CONFLIT DE CHAMBRE — ne pas confirmer sans vérifier le calendrier »\n- Puis, une ligne chacun : chambre proposée, type, arrivée, départ, nombre de nuits, nombre de personnes, prix par nuit, acompte par nuit, détail des nuits, profil de paiement, date de mise à jour des disponibilités, points à confirmer.\n- Recopier les valeurs de la fiche sans les recalculer. Ne jamais afficher de total.\n\n────────────────────────────────────────\n2) MESSAGE POUR LE VOYAGEUR (à envoyer par la gérante, 80 mots maximum, vouvoiement)\n────────────────────────────────────────\n- DISPONIBLE : remercier, rappeler chambre, dates, prix par nuit et acompte par nuit, et écrire : « Votre demande est bien reçue ; elle sera confirmée par l'auberge après réception de l'acompte. »\n- CONFLIT : remercier, dire que la chambre demandée n'est pas libre toutes les nuits, sans proposer d'autre chambre ni d'autres dates (la gérante décide), et annoncer une réponse de l'auberge.\n- Paiement de l'acompte :\n  - Sénégal → « Acompte possible par Wave ou Orange Money ; l'auberge vous envoie le numéro. »\n  - étranger / diaspora → « L'auberge vous indiquera une autre modalité de paiement de l'acompte. »\n  - non précisé → les deux phrases.\n\nRÈGLES :\n- Utiliser uniquement les données reçues du nœud CHERCHEUR. Si une donnée manque, écrire exactement : Non disponible.\n- Ne jamais écrire que la réservation est confirmée, ni que TerangaStay a effectué une réservation ou un paiement.\n- Ne jamais inventer un numéro de téléphone, un lien de paiement, un prix ou une disponibilité.\n- Pas de jargon technique.\n"
+        - id: 5fef9d80-c825-4990-93be-85d8e2c01a15
+          role: user
+          text: '{{#1790196003784.text#}}'
+        selected: false
+        title: Redacteur
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1790599280777'
+      position:
+        x: 1750
+        y: 800
+      positionAbsolute:
+        x: 1750
+        y: 800
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1790599280777'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: Sortie 2
+        type: end
+      height: 88
+      id: '1790621450167'
+      position:
+        x: 2050
+        y: 850
+      positionAbsolute:
+        x: 2050
+        y: 850
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    viewport:
+      x: 60
+      y: -40
+      zoom: 0.42
+  rag_pipeline_variables: []
