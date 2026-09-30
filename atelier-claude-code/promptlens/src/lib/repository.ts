@@ -13,6 +13,8 @@ export interface JournalRepository {
   addEntry(entry: Omit<Entry, 'id' | 'createdAt'>): Promise<Entry>;
   duplicateEntry(id: string): Promise<Entry>;
   removeEntry(id: string): Promise<void>;
+  /** Puts back an entry removed by mistake (undo), keeping its id and date. */
+  restoreEntry(entry: Entry): Promise<void>;
 }
 
 interface Snapshot {
@@ -111,6 +113,16 @@ export class LocalStorageJournalRepository implements JournalRepository {
   async removeEntry(id: string): Promise<void> {
     const snap = this.read();
     snap.entries = snap.entries.filter((e) => e.id !== id);
+    this.write(snap);
+  }
+
+  async restoreEntry(entry: Entry): Promise<void> {
+    const snap = this.read();
+    if (!snap.productions.includes(entry.production)) snap.productions.push(entry.production);
+    if (!snap.entries.some((e) => e.id === entry.id)) {
+      snap.entries.push(entry);
+      snap.entries.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    }
     this.write(snap);
   }
 }

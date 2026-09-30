@@ -15,6 +15,7 @@ function normalize(s: string): string {
 export function PresetLibrary({ canAdd, onAdd }: Props) {
   const [query, setQuery] = useState('');
   const [added, setAdded] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
 
   const results = useMemo(() => {
     const q = normalize(query.trim());
@@ -57,7 +58,8 @@ export function PresetLibrary({ canAdd, onAdd }: Props) {
           </button>
         </div>
       ) : (
-        <ul className="preset-list">
+        <>
+        <ul className={expanded || query ? 'preset-list' : 'preset-list collapsible'}>
           {results.map((p) => (
             <li key={p.id} className="preset">
               <PaletteStrip colours={p.palette} vertical />
@@ -83,6 +85,12 @@ export function PresetLibrary({ canAdd, onAdd }: Props) {
             </li>
           ))}
         </ul>
+        {!expanded && !query && (
+          <button type="button" className="show-all" onClick={() => setExpanded(true)}>
+            Afficher les {PRESETS.length} presets
+          </button>
+        )}
+        </>
       )}
     </div>
   );

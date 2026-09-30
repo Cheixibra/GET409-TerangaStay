@@ -14,6 +14,8 @@ export function Journal({ journal }: { journal: JournalState }) {
   const sizesPresent = SHOT_SIZES.filter((s) => inProduction.some((e) => e.shotSize === s));
   const activeFilter = filter !== 'all' && sizesPresent.includes(filter) ? filter : 'all';
   const visible = activeFilter === 'all' ? inProduction : inProduction.filter((e) => e.shotSize === activeFilter);
+  const coverage = Math.round((sizesPresent.length / SHOT_SIZES.length) * 100);
+  const missing = SHOT_SIZES.filter((s) => !sizesPresent.includes(s));
 
   async function create(e: FormEvent) {
     e.preventDefault();
@@ -67,6 +69,13 @@ export function Journal({ journal }: { journal: JournalState }) {
               }}
             >
               {p} <span className="count">{count(p)}</span>
+              <span className="mini-bar" aria-hidden="true">
+                <i
+                  style={{
+                    width: `${(SHOT_SIZES.filter((s) => entries.some((e) => e.production === p && e.shotSize === s)).length / SHOT_SIZES.length) * 100}%`,
+                  }}
+                />
+              </span>
             </button>
           ))}
         </div>
@@ -74,6 +83,41 @@ export function Journal({ journal }: { journal: JournalState }) {
 
       {current && (
         <>
+          <div className="progress">
+            <div className="progress-label">
+              <span>
+                Couverture des cadrages : <strong>{sizesPresent.length}/{SHOT_SIZES.length}</strong>
+              </span>
+              <span className="hint">
+                {missing.length === 0
+                  ? 'Tous les cadrages sont couverts'
+                  : `Manque : ${missing.slice(0, 3).map((s) => SHOT_SIZE_LABELS[s].toLowerCase()).join(', ')}${missing.length > 3 ? '…' : ''}`}
+              </span>
+            </div>
+            <div
+              className="bar"
+              role="progressbar"
+              aria-label={`Couverture des cadrages de ${current}`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={coverage}
+            >
+              <i style={{ width: `${coverage}%` }} />
+            </div>
+          </div>
+
+          {journal.lastRemoved && (
+            <div className="undo" role="status">
+              <span>« {journal.lastRemoved.title} » supprimé.</span>
+              <button type="button" className="link" onClick={() => void journal.undoRemove()}>
+                Annuler
+              </button>
+              <button type="button" className="link muted" onClick={journal.dismissUndo} aria-label="Masquer">
+                ✕
+              </button>
+            </div>
+          )}
+
           {sizesPresent.length > 1 && (
             <div className="filters" role="group" aria-label="Filtrer par cadrage">
               <button type="button" className={activeFilter === 'all' ? 'chip on' : 'chip'} onClick={() => setFilter('all')}>

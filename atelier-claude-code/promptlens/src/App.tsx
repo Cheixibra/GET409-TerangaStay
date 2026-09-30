@@ -13,9 +13,11 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'image', label: 'Image' },
 ];
 
-const TODAY = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(
+const TODAY_RAW = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(
   new Date(),
 );
+/** French capitalises only the first word of a date ("Mercredi 30 septembre 2026"). */
+const TODAY = TODAY_RAW.charAt(0).toUpperCase() + TODAY_RAW.slice(1);
 
 export default function App() {
   const journal = useJournal();
@@ -59,7 +61,10 @@ export default function App() {
       )}
 
       {journal.loading ? (
-        <p className="empty">Chargement du journal…</p>
+        <main className="layout" aria-busy="true" aria-label="Chargement du journal">
+          <div className="panel skeleton" />
+          <div className="panel skeleton" />
+        </main>
       ) : (
         <main className="layout">
           <section className="panel" aria-labelledby="add-title">

@@ -75,3 +75,21 @@ Ranked by impact/effort, fixed the top 3:
 Also fixed: an unreachable backend (SDK code `internal`, message `internal [0]`) was shown as
 "réponse inexploitable"; it now says the server cannot be reached.
 Build passes; E2E phase 1 and phase 2 pass.
+
+## 2026-09-30 — Ralph round 2: what changed
+Review with real data (2 productions, 8 shots): per-production progress still missing; on
+mobile the journal started after ~3 000 px of presets; deleting an entry was instant and
+irreversible; loading was plain text; the date was title-cased ("Septembre").
+Fixed the top 3:
+1. **Per-production progress**: shot-size coverage (n/7) with a progress bar and the missing
+   sizes; a mini bar in each production tab.
+2. **Mobile library**: shows 5 presets and "Afficher les 20 presets" below 860 px (search
+   always shows every match); journal now starts ~1 000 px down instead of ~5 000.
+3. **States**: undo banner after deleting an entry (`restoreEntry` in the repository keeps
+   id and date), skeleton panels while loading, French date casing.
+Quality bar check: header with name and date ✓, per-production progress ✓, filter by shot
+size ✓, card layout ✓, loading / empty / error states ✓, 360 px without horizontal scroll ✓,
+build passes ✓ → <promise>POLISHED</promise>
+Run note: both rounds were executed by Claude Code following `.claude/ralph-brief.md`
+step by step (review → rank → fix top 3 → build → log), with the ralph-loop plugin
+installed; `functions/`, `.env*` and Firebase rules untouched.
