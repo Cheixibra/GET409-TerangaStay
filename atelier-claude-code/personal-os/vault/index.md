@@ -11,3 +11,4 @@ _(vide — lancer /setup puis /ingest vault/sources/cv.pdf)_
 ## Projects
 
 ## Automations
+- `work/02-morning-brief/` — daily digest (Gmail, Calendar, Notion), `/morning-brief`
