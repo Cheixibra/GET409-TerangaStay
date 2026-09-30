@@ -20,7 +20,8 @@ Phase 1 = presets + journal, localStorage. Phase 2 = Gemini via Firebase Cloud F
 - build: `npm run build` (type-check + Vite build; must pass before any commit)
 - preview build: `npm run preview`
 - functions build: `npm --prefix functions run build`
-- emulators: `firebase emulators:start --only functions` (no Java needed)
+- emulators: `firebase emulators:start --only functions --project demo-promptlens`
+  (no Java needed; put the key in `functions/.secret.local` first; app uses it when `VITE_USE_EMULATOR=true`)
 - deploy (manual, ask first): `firebase deploy --only hosting,functions`
 - secrets (prod): `firebase functions:secrets:set GEMINI_API_KEY`
 

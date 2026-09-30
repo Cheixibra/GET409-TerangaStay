@@ -17,3 +17,27 @@
   Snapshot is versioned (`version: 1`) so a future migration can detect old data.
 - **Verified**: `npm run build` passes under `strict`; E2E (Playwright): 20 presets, add 3,
   reload keeps them, duplicate, delete, counter, no horizontal scroll at 360 px.
+
+## 2026-09-30 — AI backend
+- **What**: two callable Cloud Functions (2nd gen, TypeScript, `us-central1`) in `functions/`:
+  `describeShotFromText({ text })` and `describeShotFromImage({ imageBase64, mimeType })`.
+  Both return the same JSON: shotSize, cameraAngle, focalLengthMm, lighting, palette (hex[]),
+  mood, generationPrompt (English), confidence.
+- **SDK & model**: official Google Gen AI SDK `@google/genai` 2.24, model alias
+  `gemini-flash-latest` (the alias used throughout the SDK README, so it follows the current
+  Flash model without a code change). Docs checked in the installed SDK README and typings;
+  the Context7 plugin is installed for future sessions.
+- **Key handling**: `defineSecret("GEMINI_API_KEY")`; emulator reads `functions/.secret.local`
+  (git-ignored, Claude-denied, created empty for the owner to fill). Nothing in the client.
+- **Validation**: zod on input (text 3–2000 chars; jpeg/png/webp; ≤ 4 MB decoded) and on the
+  model output. The same zod schema is exported as `responseJsonSchema`, so Gemini is
+  constrained to the format we then validate.
+- **Errors**: `invalid-argument` for bad input, `failed-precondition` if the secret is empty,
+  `unavailable` if Gemini fails, `internal` if the answer is not valid JSON/schema. Logs never
+  include the key or the user payload.
+- **Trade-offs**: `maxInstances: 5` caps cost; no auth yet (callable is public: add App Check
+  or auth before deploy). `@google-cloud/firestore` added explicitly because the emulator
+  loads the whole v2 SDK and npm skipped firebase-admin's optional dependency.
+- **Verified**: `npm --prefix functions run build` passes; emulator test in
+  `docs/emulator-test.md` (validation errors OK; AI calls reach Gemini, which rejects the dummy
+  key — a real key is required for a JSON answer).
