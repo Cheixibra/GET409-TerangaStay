@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .t { font-size: 30px; font-weight: 700; fill: #0f172a; }
+      .st { font-size: 17px; fill: #475569; }
+      .h { font-size: 19px; font-weight: 700; fill: #0f172a; }
+      .s { font-size: 14.5px; fill: #334155; }
+      .xs { font-size: 13px; fill: #475569; }
+      .zone { font-size: 15px; font-weight: 700; letter-spacing: .5px; }
+      .num { font-size: 14px; font-weight: 700; fill: #ffffff; }
+      .flow { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#a); }
+      .data { stroke: #0f766e; stroke-width: 2; fill: none; stroke-dasharray: 6 5; marker-end: url(#b); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <text x="40" y="52" class="t">TerangaStay — Architecture V2 (S5)</text>
+  <text x="40" y="82" class="st">MVP Lovable → Webhook (Edge Function) → Agent Dify « E-Tourism RAG S5 » → RAG à deux recherches → Bases de connaissances</text>
+
+  <!-- Zones -->
+  <rect x="30" y="110" width="330" height="560" rx="14" fill="#f0f9ff" stroke="#bae6fd"/>
+  <text x="50" y="138" class="zone" fill="#0369a1">NAVIGATEUR · LOVABLE.APP</text>
+  <rect x="380" y="110" width="250" height="560" rx="14" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text x="398" y="138" class="zone" fill="#6d28d9">LOVABLE CLOUD</text>
+  <rect x="650" y="110" width="920" height="560" rx="14" fill="#f0fdfa" stroke="#99f6e4"/>
+  <text x="670" y="138" class="zone" fill="#0f766e">DIFY CLOUD · WORKFLOW « E-TOURISM RAG S5 »</text>
+
+  <!-- MVP -->
+  <rect x="55" y="165" width="280" height="190" rx="12" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="75" y="197" class="h">MVP Lovable</text>
+  <text x="75" y="222" class="s">Assistant de réservation</text>
+  <text x="75" y="248" class="xs">• champ « demande du voyageur »</text>
+  <text x="75" y="270" class="xs">• bouton « Analyser la demande »</text>
+  <text x="75" y="292" class="xs">• bandeaux : Demande reçue /</text>
+  <text x="75" y="312" class="xs">  Conflit / Informations manquantes</text>
+  <text x="75" y="334" class="xs">• spinner + erreurs en français</text>
+
+  <rect x="55" y="410" width="280" height="110" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-dasharray="5 4"/>
+  <text x="75" y="440" class="h">Voyageur / Astou</text>
+  <text x="75" y="465" class="xs">demande WhatsApp, Facebook</text>
+  <text x="75" y="485" class="xs">ou lien direct, collée dans le MVP</text>
+  <text x="75" y="505" class="xs">Astou valide seule la réservation</text>
+
+  <!-- Edge function -->
+  <rect x="400" y="165" width="210" height="190" rx="12" fill="#ffffff" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="418" y="197" class="h">Edge Function</text>
+  <text x="418" y="222" class="s">ask-dify (webhook)</text>
+  <text x="418" y="248" class="xs">• secret DIFY_API_KEY</text>
+  <text x="418" y="270" class="xs">  (jamais dans le navigateur)</text>
+  <text x="418" y="292" class="xs">• POST /v1/workflows/run</text>
+  <text x="418" y="314" class="xs">  inputs.query, blocking</text>
+  <text x="418" y="336" class="xs">• délai max 30 s</text>
+
+  <!-- Dify nodes -->
+  <rect x="675" y="165" width="160" height="96" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <text x="690" y="195" class="h">DÉBUT</text>
+  <text x="690" y="220" class="xs">query =</text>
+  <text x="690" y="240" class="xs">demande complète</text>
+
+  <rect x="860" y="165" width="190" height="96" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <text x="875" y="195" class="h" style="font-size:16px">RECUP_CHAMBRES</text>
+  <text x="875" y="220" class="xs">requête = query</text>
+  <text x="875" y="240" class="xs">Top K 6 · base recherchée</text>
+
+  <rect x="1075" y="165" width="190" height="96" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+  <text x="1090" y="195" class="h">RECUP_DISPO</text>
+  <text x="1090" y="220" class="xs">requête = ENV requete_dispo</text>
+  <text x="1090" y="240" class="xs">Top K 3 · base fixe</text>
+
+  <rect x="1290" y="165" width="255" height="96" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+  <text x="1305" y="195" class="h">MODELE_DISPO (Jinja2)</text>
+  <text x="1305" y="220" class="xs">liste Array[Object] → texte</text>
+  <text x="1305" y="240" class="xs">sortie : output</text>
+
+  <rect x="1060" y="330" width="485" height="120" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2.5"/>
+  <text x="1078" y="362" class="h">CHERCHEUR (LLM Groq llama-3.1-8b)</text>
+  <text x="1078" y="388" class="xs">USER = query · CONTEXTE = RECUP_CHAMBRES → bloc CHAMBRES</text>
+  <text x="1078" y="410" class="xs">SYSTEM ← MODELE_DISPO.output → bloc DISPONIBILITÉS</text>
+  <text x="1078" y="432" class="xs">règle : même chambre libre CHAQUE nuit · recopier sans calculer</text>
+
+  <rect x="675" y="330" width="330" height="120" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <text x="693" y="362" class="h">SI / SINON</text>
+  <text x="693" y="388" class="xs">CHERCHEUR.text contient INSUFFISANT ?</text>
+  <text x="693" y="410" class="xs">OUI → Sortie : message_erreur</text>
+  <text x="693" y="432" class="xs">NON → RÉDACTEUR</text>
+
+  <rect x="675" y="485" width="420" height="100" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <text x="693" y="517" class="h">RÉDACTEUR (LLM) → Sortie 2 : text</text>
+  <text x="693" y="542" class="xs">fiche gérante : 🟡 DEMANDE REÇUE ou ⚠ CONFLIT</text>
+  <text x="693" y="564" class="xs">+ message voyageur (jamais « confirmée »)</text>
+
+  <!-- Knowledge bases -->
+  <rect x="1130" y="495" width="200" height="150" rx="10" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
+  <text x="1145" y="523" class="h">TERANGASTAY_</text>
+  <text x="1145" y="545" class="h">CHAMBRES</text>
+  <text x="1145" y="570" class="xs">CSV · 6 types, 14 chambres</text>
+  <text x="1145" y="590" class="xs">prix + acompte / nuit</text>
+  <text x="1145" y="610" class="xs">6 segments · Économique</text>
+  <text x="1145" y="630" class="xs">index inversé</text>
+
+  <rect x="1350" y="495" width="200" height="150" rx="10" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
+  <text x="1365" y="523" class="h">TERANGASTAY_</text>
+  <text x="1365" y="545" class="h">DISPO</text>
+  <text x="1365" y="570" class="xs">.md 1 ligne · 848 car.</text>
+  <text x="1365" y="590" class="xs">chambres libres / nuit</text>
+  <text x="1365" y="610" class="xs">19–27 déc. · 1 segment</text>
+  <text x="1365" y="630" class="xs">mis à jour le 30/09/2026</text>
+
+  <!-- Flow arrows -->
+  <path class="flow" d="M335 260 L400 260"/>
+  <path class="flow" d="M610 213 L675 213"/>
+  <path class="flow" d="M835 213 L860 213"/>
+  <path class="flow" d="M1050 213 L1075 213"/>
+  <path class="flow" d="M1265 213 L1290 213"/>
+  <path class="flow" d="M1417 261 L1417 330"/>
+  <path class="flow" d="M1060 390 L1005 390"/>
+  <path class="flow" d="M840 450 L840 485"/>
+  <path class="flow" d="M675 560 C560 560 560 330 505 355"/>
+  <path class="flow" d="M400 330 C370 330 365 300 335 300"/>
+  <path class="flow" d="M195 410 L195 355"/>
+
+  <!-- data arrows -->
+  <path class="data" d="M1150 495 L1150 470 L1032 470 L1032 285 L955 285 L955 263"/>
+  <path class="data" d="M1550 570 L1562 570 L1562 300 L1170 300 L1170 263"/>
+
+  <!-- Numbered steps -->
+  <g>
+    <circle cx="367" cy="245" r="13" fill="#0369a1"/><text x="362" y="250" class="num">1</text>
+    <circle cx="642" cy="198" r="13" fill="#6d28d9"/><text x="637" y="203" class="num">2</text>
+    <circle cx="1045" cy="240" r="13" fill="#0f766e"/><text x="1040" y="245" class="num">3</text>
+    <circle cx="1432" cy="296" r="13" fill="#0f766e"/><text x="1427" y="301" class="num">4</text>
+    <circle cx="560" cy="470" r="13" fill="#0f766e"/><text x="555" y="475" class="num">5</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="30" y="690" width="1540" height="185" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="50" y="722" class="h">Parcours d'une demande</text>
+  <text x="50" y="750" class="s">1  Astou colle la demande du voyageur dans le MVP Lovable, qui appelle l'Edge Function ask-dify (pas de clé dans le navigateur).</text>
+  <text x="50" y="775" class="s">2  L'Edge Function ajoute le secret DIFY_API_KEY et appelle POST https://api.dify.ai/v1/workflows/run avec inputs.query.</text>
+  <text x="50" y="800" class="s">3  RECUP_CHAMBRES (base recherchée) et RECUP_DISPO (base fixe via requête ENV) récupèrent les données ; le Modèle Jinja2 convertit la base fixe en texte.</text>
+  <text x="50" y="825" class="s">4  Le CHERCHEUR croise chambre + nuits ; SI/SINON oriente vers INSUFFISANT ou vers le RÉDACTEUR (fiche + message, statut jamais « confirmée »).</text>
+  <text x="50" y="850" class="s">5  outputs.text ou outputs.message_erreur revient au MVP, qui affiche le bandeau Demande reçue / Conflit / Informations manquantes.</text>
+  <line x1="1180" y1="716" x2="1225" y2="716" class="flow"/>
+  <text x="1235" y="721" class="xs">flux d'exécution</text>
+  <line x1="1370" y1="716" x2="1415" y2="716" class="data"/>
+  <text x="1425" y="721" class="xs">lecture des bases</text>
+</svg>

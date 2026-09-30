@@ -41,6 +41,16 @@ Le HMW S2 affine celui de S1 autour du problème prioritaire identifié avec Ast
 - [x] Backlog S3 priorisé
 - [x] Brouillon de pitch de proposition de valeur
 
+## Livrables S5
+
+- [ ] L1 — MVP V2 Lovable connecté à l'agent Dify ([prompt d'intégration](./docs/s5/L1-prompt-lovable-webhook.md))
+- [x] L2 — Bases RAG indexées + workflow « RAG à deux recherches » ([kit Dify](./docs/dify-s5/README.md))
+- [x] L3 — [Schéma d'architecture V2](./docs/s5/L3-architecture-v2.png)
+- [x] L4 — [Journal de prompts S5](./docs/s5/L4-journal-prompts-s5.md)
+- [x] Plan B démo S6 ([réponses simulées](./docs/s5/plan-b-demo-s6.md))
+
+Détail et statut : [`docs/s5/`](./docs/s5/README.md).
+
 ## Dossier S2
 
 - [Value Proposition Canvas](./docs/vpc.md)
