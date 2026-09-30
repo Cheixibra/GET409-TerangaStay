@@ -56,3 +56,7 @@ Le HMW S2 affine celui de S1 autour du problème prioritaire identifié avec Ast
 ## Contexte projet
 
 TerangaStay est une plateforme visant à connecter directement les hébergements indépendants sénégalais (petits hôtels, campements, maisons d'hôtes hors Dakar) aux voyageurs, sans les commissions élevées des plateformes internationales, avec un paiement adapté au contexte local (Wave, Orange Money).
+
+## Atelier Claude Code
+
+Les livrables des 15 épisodes de l'atelier Claude Code (E00 à E14) sont dans [`atelier-claude-code/`](./atelier-claude-code/README.md) : tableau des livrables, preuves de vérification et étapes restantes.
