@@ -43,7 +43,9 @@ export function aiErrorMessage(err: unknown): string {
   const code = (err as { code?: string }).code ?? '';
   const detail = (err as { message?: string }).message ?? '';
   if (code === 'functions/invalid-argument') return `${MESSAGES[code]} : ${detail}`;
-  if (code === 'functions/internal' && /fetch|network/i.test(detail)) {
+  // The SDK reports an unreachable server (HTTP status 0) as code "internal" with the message
+  // "internal [0]"; our function's own internal errors always carry a sentence.
+  if (code === 'functions/internal' && /^internal( \[0\])?$|fetch|network/i.test(detail)) {
     return 'Impossible de joindre le serveur. Vérifiez votre connexion ou que l’émulateur tourne.';
   }
   return MESSAGES[code] ?? 'Une erreur inattendue est survenue pendant l’analyse.';

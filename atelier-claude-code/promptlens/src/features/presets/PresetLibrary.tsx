@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { PaletteStrip } from '../../components/PaletteStrip';
 import { PRESETS } from '../../data/presets';
 import { SHOT_SIZE_LABELS, type Preset } from '../../types';
 
@@ -13,6 +14,7 @@ function normalize(s: string): string {
 
 export function PresetLibrary({ canAdd, onAdd }: Props) {
   const [query, setQuery] = useState('');
+  const [added, setAdded] = useState<string | null>(null);
 
   const results = useMemo(() => {
     const q = normalize(query.trim());
@@ -24,8 +26,14 @@ export function PresetLibrary({ canAdd, onAdd }: Props) {
     );
   }, [query]);
 
+  function add(p: Preset) {
+    onAdd(p);
+    setAdded(p.id);
+    window.setTimeout(() => setAdded((id) => (id === p.id ? null : id)), 1400);
+  }
+
   return (
-    <div>
+    <div className="library">
       <label className="search">
         <span className="visually-hidden">Rechercher un preset</span>
         <input
@@ -36,28 +44,41 @@ export function PresetLibrary({ canAdd, onAdd }: Props) {
         />
       </label>
       <p className="hint">
-        {results.length} preset{results.length > 1 ? 's' : ''} sur {PRESETS.length}
+        {results.length === PRESETS.length
+          ? `${PRESETS.length} presets`
+          : `${results.length} sur ${PRESETS.length} presets`}
+        {!canAdd && ' · créez une production pour les ajouter'}
       </p>
       {results.length === 0 ? (
-        <p className="empty">Aucun preset ne correspond à « {query} ». Essayez un cadrage, une focale ou une lumière.</p>
+        <div className="empty-state">
+          <p>Aucun preset ne correspond à « {query} ».</p>
+          <button type="button" className="link" onClick={() => setQuery('')}>
+            Effacer la recherche
+          </button>
+        </div>
       ) : (
         <ul className="preset-list">
           {results.map((p) => (
             <li key={p.id} className="preset">
-              <div className="preset-head">
+              <PaletteStrip colours={p.palette} vertical />
+              <div className="preset-body">
                 <strong>{p.name}</strong>
-                <span className="swatches" aria-hidden="true">
-                  {p.palette.map((c) => (
-                    <i key={c} style={{ background: c }} />
-                  ))}
+                <span className="meta">
+                  {SHOT_SIZE_LABELS[p.shotSize]} · {p.focalLengthMm} mm · {p.lighting}
                 </span>
+                <details>
+                  <summary>Prompt</summary>
+                  <p className="prompt">{p.generationPrompt}</p>
+                </details>
               </div>
-              <p className="meta">
-                {SHOT_SIZE_LABELS[p.shotSize]}, {p.cameraAngle}, {p.focalLengthMm} mm, {p.lighting}
-              </p>
-              <p className="prompt">{p.generationPrompt}</p>
-              <button type="button" onClick={() => onAdd(p)} disabled={!canAdd}>
-                Ajouter au journal
+              <button
+                type="button"
+                className={added === p.id ? 'add done' : 'add'}
+                onClick={() => add(p)}
+                disabled={!canAdd}
+                aria-label={`Ajouter « ${p.name} » au journal`}
+              >
+                {added === p.id ? 'Ajouté' : 'Ajouter'}
               </button>
             </li>
           ))}

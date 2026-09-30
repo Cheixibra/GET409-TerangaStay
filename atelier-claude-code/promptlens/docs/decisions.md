@@ -58,3 +58,20 @@
 - **Verified**: E2E (Playwright): real emulator call without key → French error; mocked
   callable → review, edit focal length, save; 3000×2000 image → 1600×1067 JPEG upload;
   entries persist after reload.
+
+## 2026-09-30 — Ralph round 1: what changed
+Review (frontend-design): generic system look, no hierarchy; the 20 tall preset cards pushed
+the journal ~5 000 px down on mobile; entries were plain boxes; no shot-size filter.
+Ranked by impact/effort, fixed the top 3:
+1. **Visual system + header**: "light table" direction (cool neutral surfaces so each shot's
+   palette carries the colour), token scale for type, spacing and radii; header with app
+   name and today's date.
+2. **Card layout for entries**: responsive card grid; each card opens with a band of the
+   entry's own palette (`PaletteStrip`, the signature element), spec chips (size, focal,
+   angle), 3-line prompt clamp, actions pinned at the bottom.
+3. **Compact library + filter by shot size**: preset rows with vertical palette strip and
+   collapsible prompt (≈3× shorter), library scrolls inside its sticky panel on desktop;
+   journal filter chips per shot size with counts.
+Also fixed: an unreachable backend (SDK code `internal`, message `internal [0]`) was shown as
+"réponse inexploitable"; it now says the server cannot be reached.
+Build passes; E2E phase 1 and phase 2 pass.

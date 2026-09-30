@@ -13,6 +13,10 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'image', label: 'Image' },
 ];
 
+const TODAY = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(
+  new Date(),
+);
+
 export default function App() {
   const journal = useJournal();
   const [tab, setTab] = useState<Tab>('presets');
@@ -35,8 +39,14 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>PromptLens</h1>
-        <p>Références visuelles pour vos productions vidéo IA</p>
+        <div>
+          <h1>
+            <span className="logo" aria-hidden="true" />
+            PromptLens
+          </h1>
+          <p>Références visuelles pour vos productions vidéo IA</p>
+        </div>
+        <time dateTime={new Date().toISOString().slice(0, 10)}>{TODAY}</time>
       </header>
 
       {journal.error && (
