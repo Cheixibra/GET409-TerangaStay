@@ -5,7 +5,7 @@
 | Prénom Nom | Rôle | GitHub |
 | --- | --- | --- |
 | Cheikh Ibra | Chef de Produit (PM) & Master Prompt Engineer | sdiengdk@groupeisi.com |
-| Mame Fatou | Dev UI (No-Code) & Responsable Impact | @[username-a-completer] |
+| Mame Fatou | Dev UI (No-Code) & Responsable Impact | mbengue20072001@gmail.com |
 
 ## Notre défi
 
