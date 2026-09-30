@@ -1,0 +1,817 @@
+{
+  "c1-momentfactory": {
+    "url": "https://momentfactory.com/",
+    "visitedAt": "2026-09-30T07:25:17.712Z",
+    "cookies": "clicked: Decline",
+    "home": {
+      "title": "Moment Factory - Global Entertainment Studio",
+      "lang": "en",
+      "h1": [],
+      "h2": [
+        "Featured Projects",
+        "Moment Factory Originals",
+        "Custom Experiences",
+        "❝Moment Factory: For matching Phish’s improvisational energy with cutting-edge, Sphere-ready visuals.❞",
+        "❝The beautifully curated experience [...] is a masterful mix of music and lights.❞",
+        "❝We were promised innovation, and we can only applaud the success of these Abysses!❞",
+        "❝Step into your mind – literally.❞",
+        "❝Magical. Moving. Mesmerizing.❞"
+      ],
+      "nav": [
+        {
+          "t": "ABOUT",
+          "href": "https://momentfactory.com/pages/about"
+        },
+        {
+          "t": "WORK",
+          "href": "https://momentfactory.com/collections/all"
+        },
+        {
+          "t": "X-AGORA",
+          "href": "https://momentfactory.com/pages/x-agora"
+        },
+        {
+          "t": "CONTACT",
+          "href": "https://momentfactory.com/pages/contact"
+        },
+        {
+          "t": "NEWS",
+          "href": "https://momentfactory.com/blogs/news"
+        },
+        {
+          "t": "LAB",
+          "href": "https://momentfactory.com/blogs/lab"
+        },
+        {
+          "t": "CAREERS",
+          "href": "https://momentfactory.com/pages/careers"
+        },
+        {
+          "t": "Moment Factory Originals",
+          "href": "https://momentfactory.com/collections/originals"
+        },
+        {
+          "t": "Custom Experiences",
+          "href": "https://momentfactory.com/collections/custom"
+        },
+        {
+          "t": "All Projects",
+          "href": "https://momentfactory.com/collections/all"
+        },
+        {
+          "t": "About",
+          "href": "https://momentfactory.com/pages/about"
+        },
+        {
+          "t": "News",
+          "href": "https://momentfactory.com/blogs/news"
+        },
+        {
+          "t": "Careers",
+          "href": "https://momentfactory.com/pages/careers"
+        },
+        {
+          "t": "Contact us",
+          "href": "https://momentfactory.com/pages/contact"
+        },
+        {
+          "t": "Media Inquiries",
+          "href": "https://momentfactory.com/pages/contact"
+        }
+      ],
+      "ctasAboveFold": [
+        "ABOUT",
+        "WORK",
+        "X-AGORA",
+        "CONTACT",
+        "NEWS",
+        "LAB",
+        "CAREERS",
+        "EN",
+        "EXPLORE ALL PROJECTS",
+        "CLICK HERE FOR A SURPRISE",
+        "Custom Experiences",
+        "Moment Factory Originals"
+      ],
+      "topColors": [
+        "rgb(0, 0, 0)",
+        "rgb(255, 255, 255)",
+        "rgb(10, 10, 11)",
+        "rgb(110, 110, 108)",
+        "rgb(154, 154, 152)",
+        "rgba(16, 16, 16, 0.3)"
+      ],
+      "hreflang": [
+        "x-default",
+        "en",
+        "fr"
+      ],
+      "langSwitch": [
+        "En",
+        "English",
+        "Français",
+        "EN"
+      ],
+      "africaMentions": [],
+      "pricingMentions": [
+        "e KEEP READING Camping 2026: Celebrating \"La Meilleure Fête Ever\" KEEP READING 12 Times Moment Factory "
+      ],
+      "bodyExcerpt": "ABOUT WORK X-AGORA CONTACT NEWS LAB CAREERS EN EXPLORE ALL PROJECTS CLICK HERE FOR A SURPRISE At Moment Factory, we bring people together. Our Custom Experiences and Moment Factory Originals pioneer new forms of entertainment around the world. ORIGINALS TICKETED ATTRACTIONS CUSTOM SCALABLE SERVICES Featured Projects Wonders of Our World: Ocean, National Geographic Museum of Exploration CULTURAL & EDUCATIONAL Edge NYC at Hudson Yards HOSPITALITY & LEISURE La Serre des Mondes at Futuroscope THEMED ENTERTAINMENT Phish: The 2026 Sphere Residency CONCERTS & SHOWS AURA Église Saint-Roch HERITAGE SIT"
+    },
+    "homeScreenshot": "screenshots/c1-momentfactory-home.jpg",
+    "second": {
+      "label": "WORK",
+      "url": "https://momentfactory.com/collections/all",
+      "title": "All Projects – Moment Factory",
+      "lang": "en",
+      "h1": [
+        "ALL PROJECTS"
+      ],
+      "h2": [],
+      "nav": [
+        {
+          "t": "ABOUT",
+          "href": "https://momentfactory.com/pages/about"
+        },
+        {
+          "t": "WORK",
+          "href": "https://momentfactory.com/collections/all"
+        },
+        {
+          "t": "X-AGORA",
+          "href": "https://momentfactory.com/pages/x-agora"
+        },
+        {
+          "t": "CONTACT",
+          "href": "https://momentfactory.com/pages/contact"
+        },
+        {
+          "t": "NEWS",
+          "href": "https://momentfactory.com/blogs/news"
+        },
+        {
+          "t": "LAB",
+          "href": "https://momentfactory.com/blogs/lab"
+        },
+        {
+          "t": "CAREERS",
+          "href": "https://momentfactory.com/pages/careers"
+        },
+        {
+          "t": "Moment Factory Originals",
+          "href": "https://momentfactory.com/collections/originals"
+        },
+        {
+          "t": "Custom Experiences",
+          "href": "https://momentfactory.com/collections/custom"
+        },
+        {
+          "t": "All Projects",
+          "href": "https://momentfactory.com/collections/all"
+        },
+        {
+          "t": "About",
+          "href": "https://momentfactory.com/pages/about"
+        },
+        {
+          "t": "News",
+          "href": "https://momentfactory.com/blogs/news"
+        },
+        {
+          "t": "Careers",
+          "href": "https://momentfactory.com/pages/careers"
+        },
+        {
+          "t": "Contact us",
+          "href": "https://momentfactory.com/pages/contact"
+        },
+        {
+          "t": "Media Inquiries",
+          "href": "https://momentfactory.com/pages/contact"
+        }
+      ],
+      "ctasAboveFold": [
+        "ABOUT",
+        "WORK",
+        "X-AGORA",
+        "CONTACT",
+        "NEWS",
+        "LAB",
+        "CAREERS",
+        "EN",
+        "Edge NYC at Hudson Yards",
+        "HOSPITALITY & LEISURE",
+        "UNITED STATES",
+        "CULTURAL & EDUCATIONAL"
+      ],
+      "topColors": [
+        "rgb(0, 0, 0)",
+        "rgb(10, 10, 11)",
+        "rgb(255, 255, 255)",
+        "rgb(110, 110, 108)",
+        "rgb(154, 154, 152)",
+        "rgb(255, 234, 0)"
+      ],
+      "hreflang": [
+        "x-default",
+        "en",
+        "fr"
+      ],
+      "langSwitch": [
+        "En",
+        "English",
+        "Français",
+        "EN"
+      ],
+      "africaMentions": [],
+      "pricingMentions": [],
+      "bodyExcerpt": "ABOUT WORK X-AGORA CONTACT NEWS LAB CAREERS EN ALL PROJECTS TYPE INDUSTRIES REGION LOCATION SOLUTION 232 FOUND Edge NYC at Hudson Yards HOSPITALITY & LEISURE UNITED STATES Wonders of Our World: Ocean, National Geographic Museum of Exploration CULTURAL & EDUCATIONAL UNITED STATES Phish: The 2026 Sphere Residency CONCERTS & SHOWS UNITED STATES Space Center Houston Global Football Experience AUGMENTED GAMES, CULTURAL & EDUCATIONAL, SPORTS & ENTERTAINMENT, BRAND ACTIVATIONS & EVENTS UNITED STATES Småland at IKEA Montréal BRAND ACTIVATIONS & EVENTS, AUGMENTED GAMES CANADA Augmented Games at Illumin"
+    },
+    "secondScreenshot": "screenshots/c1-momentfactory-work.jpg"
+  },
+  "c2-superbien": {
+    "url": "https://www.superbien.studio/",
+    "visitedAt": "2026-09-30T07:25:52.479Z",
+    "cookies": "no essential-only button found",
+    "home": {
+      "title": "SUPERBIEN - Creative studio for extended experiences",
+      "lang": "en-US",
+      "h1": [
+        "(WELCOME) WE CRAFT MOVING IMAGES FOR UNFRAMED FORMATS"
+      ],
+      "h2": [
+        "WE ARE CREATORS AND INNOVATORS",
+        "(OUR SHOWREEL) FROM INTIMATE TO MONUMENTAL",
+        "(LATEST PROJECTS)",
+        "OUR LATEST ARTICLES",
+        "DISCOVER OUR SUPERLAB",
+        "DISCOVER OUR SUPER PLAYGROUND",
+        "LET’S HAVE A CUP OF CREATIVE COFFEE"
+      ],
+      "nav": [
+        {
+          "t": "EN ENGLISH",
+          "href": "https://www.superbien.studio/"
+        },
+        {
+          "t": "FR FRANÇAIS",
+          "href": "https://www.superbien.studio/fr/accueil"
+        },
+        {
+          "t": "Let’s talk",
+          "href": "https://www.superbien.studio/contact"
+        },
+        {
+          "t": "LEGAL NOTICE",
+          "href": "https://www.superbien.studio/legal-notice"
+        },
+        {
+          "t": "TERMS OF USE",
+          "href": "https://www.superbien.studio/terms-of-use"
+        },
+        {
+          "t": "PRIVACY POLICY",
+          "href": "https://www.superbien.studio/privacy-policy"
+        },
+        {
+          "t": "COOKIES",
+          "href": "https://www.superbien.studio/cookies-policy"
+        }
+      ],
+      "ctasAboveFold": [
+        "EN ENGLISH",
+        "FR FRANÇAIS",
+        "Search",
+        "Menu",
+        "Let’s talk",
+        "Play reel"
+      ],
+      "topColors": [
+        "rgb(253, 253, 253)",
+        "rgb(10, 10, 10)",
+        "rgb(108, 108, 108)",
+        "rgb(132, 132, 132)",
+        "rgb(83, 83, 83)"
+      ],
+      "hreflang": [
+        "en",
+        "fr"
+      ],
+      "langSwitch": [],
+      "africaMentions": [],
+      "pricingMentions": [],
+      "bodyExcerpt": "EN ENGLISH FR FRANÇAIS Search Menu Let’s talk New York, USA 3:26 AM Paris, France 09:26 (WELCOME) WE CRAFT MOVING IMAGES FOR UNFRAMED FORMATS Play reel WE ARE CREATORS AND INNOVATORS (ABOUT US) For over 14 years, we have been among the top players in innovatives multi media experience production in the world. We are a hybrid creative studio that develops artwork and commissioned projects for international brands, institutions and in collaboration with other artists. Explore our studio (OUR SHOWREEL) FROM INTIMATE TO MONUMENTAL EMPIRE STATE BUILDING STAR WARS TAKEOVER PEUGEOT E-5008 REVEAL HUBL"
+    },
+    "homeScreenshot": "screenshots/c2-superbien-home.jpg",
+    "second": {
+      "label": "case-studies",
+      "url": "https://www.superbien.studio/case-studies",
+      "title": "Case studies - Superbien",
+      "lang": "en-US",
+      "h1": [
+        "OUR WORK"
+      ],
+      "h2": [
+        "(WHAT WE DO)"
+      ],
+      "nav": [
+        {
+          "t": "EN ENGLISH",
+          "href": "https://www.superbien.studio/case-studies"
+        },
+        {
+          "t": "FR FRANÇAIS",
+          "href": "https://www.superbien.studio/fr/projets"
+        },
+        {
+          "t": "Let’s talk",
+          "href": "https://www.superbien.studio/contact"
+        },
+        {
+          "t": "LEGAL NOTICE",
+          "href": "https://www.superbien.studio/legal-notice"
+        },
+        {
+          "t": "TERMS OF USE",
+          "href": "https://www.superbien.studio/terms-of-use"
+        },
+        {
+          "t": "PRIVACY POLICY",
+          "href": "https://www.superbien.studio/privacy-policy"
+        },
+        {
+          "t": "COOKIES",
+          "href": "https://www.superbien.studio/cookies-policy"
+        }
+      ],
+      "ctasAboveFold": [
+        "EN ENGLISH",
+        "FR FRANÇAIS",
+        "Search",
+        "Menu",
+        "Let’s talk",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "topColors": [
+        "rgb(10, 10, 10)",
+        "rgb(253, 253, 253)",
+        "rgb(132, 132, 132)",
+        "rgb(83, 83, 83)"
+      ],
+      "hreflang": [
+        "en",
+        "fr"
+      ],
+      "langSwitch": [],
+      "africaMentions": [
+        "OMAPPING MICHELIN CROSS CLIMATE REVELATION LIVE SHOW VIDEOMAPPING CENTENNIAL OF NIGERIA'S UNIFICATION BRAND EXPERIENCE FILM / MOTION DESIGN VIDEOMAPPING SAMSUNG NEW ED",
+        " / MOTION DESIGN LIVE SHOW SCANIA DRIVING THE SHIFT LIVE SHOW VIDEOMAPPING 11TH AFRICAN GAMES OPENING CEREMONY FILM / MOTION DESIGN CERRONE SUPERNATURE LIVE SHOW CENTU"
+      ],
+      "pricingMentions": [
+        "XPERIENCE FILM / MOTION DESIGN CITROËN AMI ACROSS EUROPE IMMERSIVE EXHIBITION VIDEOMAPPING LE FIGARO EX"
+      ],
+      "bodyExcerpt": "EN ENGLISH FR FRANÇAIS Search Menu Let’s talk Paris, France 09:28 New York, USA 3:28 AM OUR WORK (WHAT WE DO) We design and produce motion-driven visual experiences where storytelling, design, and technology come together. Our craft lies in bringing ideas to life through animated, immersive, and memorable content. REOPENING OF NOTRE-DAME DE PARIS VIDEOMAPPING THE OLYMPIC GAMES L'ORÉAL GROUPE VIVATECH 2024 THE LAST OF US DOMINO SUGAR FACTORY EMPIRE STATE BUILDING STAR WARS TAKEOVER LOUBOUTIN RED BOTTOMS STRANGER THINGS EMPIRE STATE BUILDING DIOR DINNER HAUTE JOAILLERIE HIP HOP TIL INFINITY PEUG"
+    },
+    "extraPages": [
+      {
+        "label": "case-studies",
+        "url": "https://www.superbien.studio/case-studies",
+        "screenshot": "screenshots/c2-superbien-case-studies.jpg",
+        "title": "Case studies - Superbien",
+        "lang": "en-US",
+        "h1": [
+          "OUR WORK"
+        ],
+        "h2": [
+          "(WHAT WE DO)"
+        ],
+        "nav": [
+          {
+            "t": "EN ENGLISH",
+            "href": "https://www.superbien.studio/case-studies"
+          },
+          {
+            "t": "FR FRANÇAIS",
+            "href": "https://www.superbien.studio/fr/projets"
+          },
+          {
+            "t": "Let’s talk",
+            "href": "https://www.superbien.studio/contact"
+          },
+          {
+            "t": "LEGAL NOTICE",
+            "href": "https://www.superbien.studio/legal-notice"
+          },
+          {
+            "t": "TERMS OF USE",
+            "href": "https://www.superbien.studio/terms-of-use"
+          },
+          {
+            "t": "PRIVACY POLICY",
+            "href": "https://www.superbien.studio/privacy-policy"
+          },
+          {
+            "t": "COOKIES",
+            "href": "https://www.superbien.studio/cookies-policy"
+          }
+        ],
+        "ctasAboveFold": [
+          "EN ENGLISH",
+          "FR FRANÇAIS",
+          "Search",
+          "Menu",
+          "Let’s talk",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "topColors": [
+          "rgb(10, 10, 10)",
+          "rgb(253, 253, 253)",
+          "rgb(132, 132, 132)",
+          "rgb(83, 83, 83)"
+        ],
+        "hreflang": [
+          "en",
+          "fr"
+        ],
+        "langSwitch": [],
+        "africaMentions": [
+          "OMAPPING MICHELIN CROSS CLIMATE REVELATION LIVE SHOW VIDEOMAPPING CENTENNIAL OF NIGERIA'S UNIFICATION BRAND EXPERIENCE FILM / MOTION DESIGN VIDEOMAPPING SAMSUNG NEW ED",
+          " / MOTION DESIGN LIVE SHOW SCANIA DRIVING THE SHIFT LIVE SHOW VIDEOMAPPING 11TH AFRICAN GAMES OPENING CEREMONY FILM / MOTION DESIGN CERRONE SUPERNATURE LIVE SHOW CENTU"
+        ],
+        "pricingMentions": [
+          "XPERIENCE FILM / MOTION DESIGN CITROËN AMI ACROSS EUROPE IMMERSIVE EXHIBITION VIDEOMAPPING LE FIGARO EX"
+        ],
+        "bodyExcerpt": "EN ENGLISH FR FRANÇAIS Search Menu Let’s talk Paris, France 09:28 New York, USA 3:28 AM OUR WORK (WHAT WE DO) We design and produce motion-driven visual experiences where storytelling, design, and technology come together. Our craft lies in bringing ideas to life through animated, immersive, and memorable content. REOPENING OF NOTRE-DAME DE PARIS VIDEOMAPPING THE OLYMPIC GAMES L'ORÉAL GROUPE VIVATECH 2024 THE LAST OF US DOMINO SUGAR FACTORY EMPIRE STATE BUILDING STAR WARS TAKEOVER LOUBOUTIN RED BOTTOMS STRANGER THINGS EMPIRE STATE BUILDING DIOR DINNER HAUTE JOAILLERIE HIP HOP TIL INFINITY PEUG"
+      }
+    ],
+    "secondScreenshot": "screenshots/c2-superbien-case-studies.jpg"
+  },
+  "c3-triggerfish": {
+    "url": "https://www.triggerfish.com/",
+    "visitedAt": "2026-09-30T07:26:30.267Z",
+    "cookies": "no essential-only button found",
+    "home": {
+      "title": "Triggerfish | African animation | Animated TV, movies and games",
+      "lang": "en-US",
+      "h1": [],
+      "h2": [],
+      "nav": [
+        {
+          "t": "Triggerfish Animation",
+          "href": "https://www.triggerfish.com/"
+        },
+        {
+          "t": "TV",
+          "href": "https://www.triggerfish.com/animated-tv-south-africa/"
+        },
+        {
+          "t": "MOVIES",
+          "href": "http://www.triggerfish.com/animated-movies-south-africa/"
+        },
+        {
+          "t": "ORIGINALS",
+          "href": "https://www.triggerfish.com/originals/"
+        },
+        {
+          "t": "FOUNDATION",
+          "href": "https://www.triggerfish.com/foundation-2026/"
+        },
+        {
+          "t": "ACADEMY",
+          "href": "https://triggerfish.com/academy"
+        },
+        {
+          "t": "ABOUT",
+          "href": "https://www.triggerfish.com/about-us/"
+        },
+        {
+          "t": "CONTACT",
+          "href": "https://www.triggerfish.com/#collapseFooter"
+        },
+        {
+          "t": "JOBS",
+          "href": "https://www.triggerfish.com/jobs/"
+        }
+      ],
+      "ctasAboveFold": [
+        "Triggerfish Animation",
+        "TV",
+        "MOVIES",
+        "ORIGINALS",
+        "FOUNDATION",
+        "ACADEMY",
+        "ABOUT",
+        "CONTACT",
+        "JOBS"
+      ],
+      "topColors": [
+        "rgb(255, 255, 255)",
+        "rgb(221, 221, 221)",
+        "rgb(51, 51, 51)",
+        "rgb(19, 62, 101)",
+        "rgb(57, 80, 99)"
+      ],
+      "hreflang": [],
+      "langSwitch": [],
+      "africaMentions": [],
+      "pricingMentions": [],
+      "bodyExcerpt": "Triggerfish Animation TV MOVIES ORIGINALS FOUNDATION ACADEMY ABOUT CONTACT JOBS AAU'S SONG Animated short film that fe REVOLTING RHYMES Oscar nominee | BAFTA & iEm BESbswyBESbswy"
+    },
+    "homeScreenshot": "screenshots/c3-triggerfish-home.jpg",
+    "second": {
+      "label": "originals",
+      "url": "https://www.triggerfish.com/originals/",
+      "title": "Animated TV by Triggerfish Animation Studios in Cape Town, South Africa",
+      "lang": "en-US",
+      "h1": [],
+      "h2": [],
+      "nav": [
+        {
+          "t": "Triggerfish Animation",
+          "href": "https://www.triggerfish.com/"
+        },
+        {
+          "t": "TV",
+          "href": "https://www.triggerfish.com/animated-tv-south-africa/"
+        },
+        {
+          "t": "MOVIES",
+          "href": "http://www.triggerfish.com/animated-movies-south-africa/"
+        },
+        {
+          "t": "ORIGINALS",
+          "href": "https://www.triggerfish.com/originals/"
+        },
+        {
+          "t": "FOUNDATION",
+          "href": "https://www.triggerfish.com/foundation-2026/"
+        },
+        {
+          "t": "ACADEMY",
+          "href": "https://triggerfish.com/academy"
+        },
+        {
+          "t": "ABOUT",
+          "href": "https://www.triggerfish.com/about-us/"
+        },
+        {
+          "t": "CONTACT",
+          "href": "https://www.triggerfish.com/originals/#collapseFooter"
+        },
+        {
+          "t": "JOBS",
+          "href": "https://www.triggerfish.com/jobs/"
+        }
+      ],
+      "ctasAboveFold": [
+        "Triggerfish Animation",
+        "TV",
+        "MOVIES",
+        "ORIGINALS",
+        "FOUNDATION",
+        "ACADEMY",
+        "ABOUT",
+        "CONTACT",
+        "JOBS"
+      ],
+      "topColors": [
+        "rgb(255, 255, 255)",
+        "rgb(221, 221, 221)",
+        "rgb(51, 51, 51)",
+        "rgb(19, 62, 101)",
+        "rgb(57, 80, 99)"
+      ],
+      "hreflang": [],
+      "langSwitch": [],
+      "africaMentions": [],
+      "pricingMentions": [],
+      "bodyExcerpt": "Triggerfish Animation TV MOVIES ORIGINALS FOUNDATION ACADEMY ABOUT CONTACT JOBS DIVERSE STORIES, DISTINCT VOICES At Triggerfish, we work closely with writers, artist ROSY DAYS Life’s never grey when you have a Rosy day! A charm BESbswyBESbswy"
+    },
+    "extraPages": [
+      {
+        "label": "originals",
+        "url": "https://www.triggerfish.com/originals/",
+        "screenshot": "screenshots/c3-triggerfish-originals.jpg",
+        "title": "Animated TV by Triggerfish Animation Studios in Cape Town, South Africa",
+        "lang": "en-US",
+        "h1": [],
+        "h2": [],
+        "nav": [
+          {
+            "t": "Triggerfish Animation",
+            "href": "https://www.triggerfish.com/"
+          },
+          {
+            "t": "TV",
+            "href": "https://www.triggerfish.com/animated-tv-south-africa/"
+          },
+          {
+            "t": "MOVIES",
+            "href": "http://www.triggerfish.com/animated-movies-south-africa/"
+          },
+          {
+            "t": "ORIGINALS",
+            "href": "https://www.triggerfish.com/originals/"
+          },
+          {
+            "t": "FOUNDATION",
+            "href": "https://www.triggerfish.com/foundation-2026/"
+          },
+          {
+            "t": "ACADEMY",
+            "href": "https://triggerfish.com/academy"
+          },
+          {
+            "t": "ABOUT",
+            "href": "https://www.triggerfish.com/about-us/"
+          },
+          {
+            "t": "CONTACT",
+            "href": "https://www.triggerfish.com/originals/#collapseFooter"
+          },
+          {
+            "t": "JOBS",
+            "href": "https://www.triggerfish.com/jobs/"
+          }
+        ],
+        "ctasAboveFold": [
+          "Triggerfish Animation",
+          "TV",
+          "MOVIES",
+          "ORIGINALS",
+          "FOUNDATION",
+          "ACADEMY",
+          "ABOUT",
+          "CONTACT",
+          "JOBS"
+        ],
+        "topColors": [
+          "rgb(255, 255, 255)",
+          "rgb(221, 221, 221)",
+          "rgb(51, 51, 51)",
+          "rgb(19, 62, 101)",
+          "rgb(57, 80, 99)"
+        ],
+        "hreflang": [],
+        "langSwitch": [],
+        "africaMentions": [],
+        "pricingMentions": [],
+        "bodyExcerpt": "Triggerfish Animation TV MOVIES ORIGINALS FOUNDATION ACADEMY ABOUT CONTACT JOBS DIVERSE STORIES, DISTINCT VOICES At Triggerfish, we work closely with writers, artist ROSY DAYS Life’s never grey when you have a Rosy day! A charm BESbswyBESbswy"
+      },
+      {
+        "label": "about",
+        "url": "https://www.triggerfish.com/about-us/",
+        "screenshot": "screenshots/c3-triggerfish-about.jpg",
+        "title": "About Us - Triggerfish Animation",
+        "lang": "en-US",
+        "h1": [],
+        "h2": [
+          "ABOUT TRIGGERFISH"
+        ],
+        "nav": [
+          {
+            "t": "Triggerfish Animation",
+            "href": "https://www.triggerfish.com/"
+          },
+          {
+            "t": "TV",
+            "href": "https://www.triggerfish.com/animated-tv-south-africa/"
+          },
+          {
+            "t": "MOVIES",
+            "href": "http://www.triggerfish.com/animated-movies-south-africa/"
+          },
+          {
+            "t": "ORIGINALS",
+            "href": "https://www.triggerfish.com/originals/"
+          },
+          {
+            "t": "FOUNDATION",
+            "href": "https://www.triggerfish.com/foundation-2026/"
+          },
+          {
+            "t": "ACADEMY",
+            "href": "https://triggerfish.com/academy"
+          },
+          {
+            "t": "ABOUT",
+            "href": "https://www.triggerfish.com/about-us/"
+          },
+          {
+            "t": "CONTACT",
+            "href": "https://www.triggerfish.com/about-us/#collapseFooter"
+          },
+          {
+            "t": "JOBS",
+            "href": "https://www.triggerfish.com/jobs/"
+          }
+        ],
+        "ctasAboveFold": [
+          "Triggerfish Animation",
+          "TV",
+          "MOVIES",
+          "ORIGINALS",
+          "FOUNDATION",
+          "ACADEMY",
+          "ABOUT",
+          "CONTACT",
+          "JOBS"
+        ],
+        "topColors": [
+          "rgb(255, 255, 255)",
+          "rgb(51, 51, 51)",
+          "rgb(221, 221, 221)",
+          "rgb(19, 62, 101)",
+          "rgb(57, 80, 99)"
+        ],
+        "hreflang": [],
+        "langSwitch": [],
+        "africaMentions": [
+          "ion TV MOVIES ORIGINALS FOUNDATION ACADEMY ABOUT CONTACT JOBS ABOUT TRIGGERFISH Africa’s Leading Animation Studio… Now Conquering the Rest of the World! Triggerfish i",
+          " Founded in 1996, Triggerfish has an international footprint across Ireland, South Africa and the UK",
+          " Nurturing Emerging African Talent Our non-profit entity, Triggerfish Foundation partners with aligned orga",
+          "ur training platform which allows free access to masterclasses from experienced African animation professionals",
+          "ns or projects that authentically reflect and promote the animation industry in Africa, please email us at hello@triggerfish"
+        ],
+        "pricingMentions": [],
+        "bodyExcerpt": "Triggerfish Animation TV MOVIES ORIGINALS FOUNDATION ACADEMY ABOUT CONTACT JOBS ABOUT TRIGGERFISH Africa’s Leading Animation Studio… Now Conquering the Rest of the World! Triggerfish is a global leader in delivering award-winning, character-driven CG animation for film, TV series and shorts. Founded in 1996, Triggerfish has an international footprint across Ireland, South Africa and the UK. Trusted by the industry’s leading broadcasters, studios and independent producers, we have a proven track record in producing top-tier, end-to-end production services and original kids and family content. W"
+      },
+      {
+        "label": "academy",
+        "url": "https://www.triggerfish.com/academy/",
+        "screenshot": "screenshots/c3-triggerfish-academy.jpg",
+        "title": "Triggerfish Academy – triggerfish-academy",
+        "lang": "en-US",
+        "h1": [],
+        "h2": [
+          "JOIN US FOR OUR NEXT THE ART OF MAKING AN EXPLAINER VIDEO COURSE",
+          "LEARN FROM THE TOP ANIMATION STUDIO IN AFRICA"
+        ],
+        "nav": [
+          {
+            "t": "HOME",
+            "href": "https://www.triggerfish.com/academy/"
+          },
+          {
+            "t": "COURSES",
+            "href": "https://www.triggerfish.com/academy/courses/"
+          },
+          {
+            "t": "KEEP LEARNING",
+            "href": "https://www.triggerfish.com/academy/keep-learning/"
+          },
+          {
+            "t": "CONTACT US",
+            "href": "https://www.triggerfish.com/academy/contact-us/"
+          },
+          {
+            "t": "SIGN IN",
+            "href": "https://www.triggerfish.com/academy/wp-login.php"
+          },
+          {
+            "t": "SIGN UP",
+            "href": "https://www.triggerfish.com/academy/register/"
+          }
+        ],
+        "ctasAboveFold": [
+          "HOME",
+          "COURSES",
+          "KEEP LEARNING",
+          "CONTACT US",
+          "SIGN IN",
+          "SIGN UP",
+          "Cookie Settings",
+          "Accept All"
+        ],
+        "topColors": [
+          "rgb(37, 52, 82)",
+          "rgb(122, 122, 122)",
+          "rgb(3, 51, 73)",
+          "rgb(255, 255, 255)",
+          "rgb(90, 90, 90)",
+          "rgba(215, 117, 67, 0)"
+        ],
+        "hreflang": [],
+        "langSwitch": [],
+        "africaMentions": [
+          "AINER VIDEO COURSE SIGN UP WATCH TRAILER LEARN FROM THE TOP ANIMATION STUDIO IN AFRICA Animation and its related disciplines is one of the most challenging and reward"
+        ],
+        "pricingMentions": [],
+        "bodyExcerpt": "HOME COURSES KEEP LEARNING CONTACT US SIGN IN SIGN UP JOIN US FOR OUR NEXT THE ART OF MAKING AN EXPLAINER VIDEO COURSE SIGN UP WATCH TRAILER LEARN FROM THE TOP ANIMATION STUDIO IN AFRICA Animation and its related disciplines is one of the most challenging and rewarding careers in the world. It’s also highly competitive, and experience counts. That’s why we’ve packaged some of the experience from the best people we’ve worked with at Triggerfish—so that you can share in their learning. Most courses are free of charge to help you get ahead in your career. GET STARTED NEWSLETTER SIGNUP Stay up to "
+      }
+    ],
+    "secondScreenshot": "screenshots/c3-triggerfish-originals.jpg"
+  }
+}
