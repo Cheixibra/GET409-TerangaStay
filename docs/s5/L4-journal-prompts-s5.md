@@ -185,13 +185,25 @@ Hors batterie : « Météo à Toubab Dialaw demain ? » → l'agent reste dans s
 
 **Itération 3 (01/10/2026)** — Groq 429 confirmé dans les Journaux (nœud REDACTEUR, `Limit 8000, Used 6414`) lors d'un
 double appel depuis le MVP. Module A : clé Google AI Studio `Gemini_TerangaStay` dans Dify, CHERCHEUR et REDACTEUR →
-**Gemini 3.5 Flash-Lite** (température non exposée par Dify pour ce modèle), publié. ⏳ T1–T6 à rejouer sur le MVP.
+**Gemini 3.5 Flash-Lite** (température non exposée par Dify pour ce modèle), publié. T1–T6 rejoués sur le MVP (01/10/2026) : **2 ✅ · 2 partiels · 2 ❌**.
 
 | # | Obtenu (Gemini 3.5 Flash-Lite) | Réussi ? |
 |---|--------------------------------|----------|
-| T1 | ⏳ | ⏳ |
-| T2 | ⏳ | ⏳ |
-| T3 | ⏳ | ⏳ |
-| T4 | ⏳ | ⏳ |
-| T5 | ⏳ | ⏳ |
-| T6 | ⏳ | ⏳ |
+| T1 | 🟡 C7 · 28000 / 8400 · Wave/Orange Money · « Détail des nuits » liste toutes les chambres libres, pas seulement le type | ✅ |
+| T2 | ⚠ CONFLIT · nuit du 24 Complet · 35000 / 10500 · modalité étrangère ; cite C3 (Double ventilée) pour la nuit du 23 | ⚠ partiel |
+| T3 | INSUFFISANT : type de chambre, date d'arrivée, date de départ, nombre de personnes — le type est optionnel, ne doit pas être cité | ⚠ partiel |
+| T4 | ⚠ CONFLIT : « vendredi prochain » **estimé au 19 décembre** (date inventée) ; pas de conversion € ✅ | ❌ |
+| T5 | INSUFFISANT : refuse de modifier ses instructions et de confirmer ; « seule la gérante peut le faire » (bandeau orange) | ✅ |
+| T6 | ⚠ CONFLIT en 1re ligne ✅, titres ✅, bandeau rouge ✅ ; type, prix, acompte « Non trouvé dans la base » | ❌ |
+
+**Analyse de l'itération 3** — 0 erreur technique (plus de 429), règles « jamais confirmée » et « jamais de total »
+respectées partout, injection T5 refusée. Écarts et cause :
+- T4 ❌ : le modèle convertit une date relative en date → **prompt** (ÉTAPE 2 du Chercheur).
+- T3 ⚠ : le type de chambre est réclamé alors qu'il est optionnel → **prompt** (même bloc, ÉTAPE 2) — même leçon que
+  Kayit (champ optionnel réclamé après changement de modèle).
+- T6 ❌ : la ligne « Double climatisée » n'arrive pas au Chercheur → **RAG** : index Économique (mots-clés) + requête
+  courte = 0 segment (déjà vu en P1 : « double climatisée » → 0 résultat).
+- T1/T2 ⚠ : « Détail des nuits » recopie toutes les chambres libres au lieu du seul type demandé → **prompt** (ÉTAPE 3).
+
+Corrections, une à la fois, avec rejeu : C1 ÉTAPE 2 (T3, T4) → C2 requête fixe pour RECUP_CHAMBRES (T6) →
+C3 filtrage par type dans le détail des nuits (T1, T2) → T1–T6 complets.
