@@ -104,7 +104,12 @@ Prompt complet : [`L1-prompt-lovable-webhook.md`](L1-prompt-lovable-webhook.md) 
 | timeout 10 s | 30 s | 2 récupérations + 2 appels LLM |
 | une zone de réponse | bandeaux Demande reçue / Conflit / Informations manquantes | contrainte MVP n° 3 : ne jamais présenter une demande comme confirmée |
 
-**Résultat** ⏳ à compléter après envoi dans Lovable : capture de l'encadré, de T1 et de la console sans erreur.
+**Résultat** ✅ (01/10/2026) — MVP https://elegant-builds-studio.lovable.app, T1 collé dans l'assistant : bandeau jaune
+« En attente de validation », C7 · 28000 / 8400 FCFA, bloc `<think>` bien filtré, ≈ 4–6 s ; Journaux Dify : SUCCESS.
+Console : uniquement des `ERR_BLOCKED_BY_CLIENT` (traceurs Google Tag Manager / Bing / Sentry bloqués par le bloqueur
+de pub), aucune erreur de l'assistant. Lovable a généré une fonction serveur TanStack (`createServerFn`) au lieu d'une
+Edge Function : même garantie, la clé reste côté serveur (vérifié : aucune clé dans le code client).
+⚠ 2 exécutions à la même seconde (07:11:48 PM), dont 1 FAILURE → appel en double, à diagnostiquer (E2).
 
 ---
 
