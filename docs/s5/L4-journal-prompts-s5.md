@@ -93,7 +93,7 @@ variables référencées existent. ⏳ Résultats T1–T4 à reporter dans P4.
 ## P3 — Connecter le MVP Lovable au webhook Dify
 
 **Objectif** : afficher dans le MVP la fiche de demande produite par l'agent.
-Prompt complet et variante de secours : [`L1-prompt-lovable-webhook.md`](L1-prompt-lovable-webhook.md).
+Prompt complet : [`L1-prompt-lovable-webhook.md`](L1-prompt-lovable-webhook.md) (un seul prompt, Edge Function + interface).
 
 **Adaptations par rapport au prompt E3 de la bibliothèque**
 | Prompt E3 (GreenSprint) | TerangaStay | Pourquoi |
@@ -139,6 +139,10 @@ DIMENSION 4 — INTÉGRATION MVP /5 : temps de réponse [x s], bandeau affiché,
 
 RÉSULTAT : note globale /20 + 3 priorités d'amélioration avant S6, une correction à la fois.
 ```
+
+**Itération 1 (01/10/2026)** — premier lancement de T1–T4 via l'API du workflow publié : 4 × `status: failed`,
+`model_not_found` : Groq a retiré `llama-3.1-8b-instant` le 16/08/2026 (offre gratuite) ; remplaçant officiel
+`openai/gpt-oss-20b`. Correction : changer le modèle des nœuds CHERCHEUR et RÉDACTEUR dans Dify, republier, relancer.
 
 **Analyse** ⏳ note /20 et priorités à reporter ici. Point de vigilance connu : T4 (plusieurs nuits) avec
 `llama-3.1-8b-instant` ; si échec, tester le Chercheur sur un modèle Groq plus grand avant de modifier le prompt.
