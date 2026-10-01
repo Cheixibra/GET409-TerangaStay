@@ -7,9 +7,9 @@ Les résultats marqués ✅ ont été constatés ; ceux marqués ⏳ sont à com
 | # | Prompt | Outil | Technique (bibliothèque S5) | Statut |
 |---|--------|-------|-----------------------------|--------|
 | P1 | Préparer et indexer la base RAG (données TerangaStay) | Claude + Dify Knowledge | Prompt structuré (S1 + E1) | ✅ bases indexées |
-| P2 | Prompt SYSTEM du Chercheur (RAG à deux recherches) | Dify — nœud LLM | Prompt structuré + règles (Tutoriel RAG à deux recherches) | ✅ workflow généré · ⏳ T1–T4 |
+| P2 | Prompt SYSTEM du Chercheur (RAG à deux recherches) | Dify — nœud LLM | Prompt structuré + règles (Tutoriel RAG à deux recherches) | ✅ workflow publié · ✅ T1–T4 (4/4) |
 | P3 | Connecter le MVP Lovable au webhook Dify | Lovable | Prompt d'intégration (E3, adapté Lovable) | ⏳ à envoyer dans Lovable |
-| P4 | Test de cohérence du pipeline RAG | Dify « Exécuter test » + Claude | Zero-shot (S2) puis CoT (E5) | ✅ tests de récupération · ⏳ tests bout en bout |
+| P4 | Test de cohérence du pipeline RAG | Dify « Exécuter test » + Claude | Zero-shot (S2) puis CoT (E5) | ✅ récupération · ✅ bout en bout (API) |
 
 ---
 
@@ -86,7 +86,7 @@ Texte complet : [`../dify-s5/prompts-chercheur-redacteur.md`](../dify-s5/prompts
 
 **Résultat** ✅ workflow `E-Tourism RAG S5` généré ([`../dify-s5/E-Tourism-RAG-S5.yml`](../dify-s5/E-Tourism-RAG-S5.yml)),
 vérifié : 9 nœuds, chaîne DÉBUT → RECUP_CHAMBRES → RECUP_DISPO → MODELE_DISPO → CHERCHEUR → SI/SINON, toutes les
-variables référencées existent. ⏳ Résultats T1–T4 à reporter dans P4.
+variables référencées existent. Importé et publié dans Dify le 01/10/2026 ; résultats T1–T4 dans P4.
 
 ---
 
@@ -114,10 +114,10 @@ Prompt complet : [`L1-prompt-lovable-webhook.md`](L1-prompt-lovable-webhook.md) 
 
 | # | Question | Attendu | Obtenu |
 |---|----------|---------|--------|
-| T1 | Bonjour, je voudrais une chambre double climatisée pour 2 personnes, arrivée le 20 décembre et départ le 22 décembre. C'est combien la nuit ? Je paie par Wave. | C7 · 2 nuits · 28000 FCFA/nuit · acompte 8400 · 🟡 DEMANDE REÇUE | ⏳ |
-| T2 | Bonsoir, nous sommes deux et voudrions une case traditionnelle vue mer du 23 au 25 décembre. Nous habitons en France. | ⚠ CONFLIT (nuit du 24 Complet) · modalité étrangère | ⏳ |
-| T3 | Bonjour, vous avez de la place pour les fêtes ? | INSUFFISANT : date d'arrivée, date de départ, nombre de personnes | ⏳ |
-| T4 | Bonjour, une double climatisée pour 2 du 21 au 23 décembre svp. | ⚠ CONFLIT (C7 le 21, C8 le 22 : pas la même chambre) | ⏳ |
+| T1 | Bonjour, je voudrais une chambre double climatisée pour 2 personnes, arrivée le 20 décembre et départ le 22 décembre. C'est combien la nuit ? Je paie par Wave. | C7 · 2 nuits · 28000 FCFA/nuit · acompte 8400 · 🟡 DEMANDE REÇUE | ✅ C7 · 2 nuits · 28000 / 8400 · 🟡 DEMANDE REÇUE · message Wave/Orange Money (6,0 s) |
+| T2 | Bonsoir, nous sommes deux et voudrions une case traditionnelle vue mer du 23 au 25 décembre. Nous habitons en France. | ⚠ CONFLIT (nuit du 24 Complet) · modalité étrangère | ✅ CONFLIT · nuit du 24 Complet · 35000 / 10500 · modalité étrangère ; ⚠ cite « C3 » (pas vue mer) pour la nuit du 23 (7,3 s) |
+| T3 | Bonjour, vous avez de la place pour les fêtes ? | INSUFFISANT : date d'arrivée, date de départ, nombre de personnes | ✅ identique, branche SI → `message_erreur` (2,1 s) |
+| T4 | Bonjour, une double climatisée pour 2 du 21 au 23 décembre svp. | ⚠ CONFLIT (C7 le 21, C8 le 22 : pas la même chambre) | ✅ CONFLIT détecté ; ⚠ prix/acompte « Non trouvé dans la base », ligne ⚠ absente en tête de fiche (7,1 s) |
 
 **Étape 2 — audit CoT (E5 adapté), à coller dans Claude.ai avec les résultats**
 
@@ -144,5 +144,18 @@ RÉSULTAT : note globale /20 + 3 priorités d'amélioration avant S6, une correc
 `model_not_found` : Groq a retiré `llama-3.1-8b-instant` le 16/08/2026 (offre gratuite) ; remplaçant officiel
 `openai/gpt-oss-20b`. Correction : changer le modèle des nœuds CHERCHEUR et RÉDACTEUR dans Dify, republier, relancer.
 
-**Analyse** ⏳ note /20 et priorités à reporter ici. Point de vigilance connu : T4 (plusieurs nuits) avec
-`llama-3.1-8b-instant` ; si échec, tester le Chercheur sur un modèle Groq plus grand avant de modifier le prompt.
+**Itération 2 (01/10/2026)** — modèles changés dans Dify : CHERCHEUR → `openai/gpt-oss-120b`, RÉDACTEUR → `openai/gpt-oss-20b`, republié.
+- T1, T2 OK au 1er lancement ; T3, T4 en échec `429 rate_limit_exceeded` (Groq gratuit : 8 000 tokens/minute pour
+  gpt-oss-120b, un run ≈ 2 000–4 000 tokens). Relancés à 65 s d'intervalle → **4/4 statuts corrects**.
+- Défaut 1 : chaque sortie commence par un bloc `<think>…</think>` (raisonnement interne du modèle, en anglais).
+  Correction : l'Edge Function du MVP supprime ce bloc (ajouté au prompt L1).
+- Défaut 2 (T4) : prix et acompte « Non trouvé dans la base » alors que la ligne « Double climatisée » existe, et la
+  ligne ⚠ CONFLIT manque en tête → à corriger dans le prompt du Rédacteur : « même en CONFLIT, recopier prix et
+  acompte du type demandé et commencer par la ligne ⚠ ».
+- Défaut 3 (T2) : C3 (Double ventilée) cité dans la nuit du 23 pour une case vue mer → règle à renforcer dans le
+  Chercheur : « ne citer que les numéros du type demandé ».
+
+**Analyse** — Règles métier respectées sur les 4 tests : jamais « confirmée », aucun total calculé, aucune chambre
+de remplacement proposée, nuits du séjour bien bornées (départ exclu). Point de vigilance pour la démo S6 :
+limite de 8 000 tokens/minute ⇒ pas plus d'une demande par minute, sinon Plan B
+([`plan-b-demo-s6.md`](plan-b-demo-s6.md)). Note d'audit CoT /20 à reporter après passage dans Claude.ai.

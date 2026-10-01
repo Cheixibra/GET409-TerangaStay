@@ -15,7 +15,8 @@ Ajoute un « Assistant de réservation » sur la page de réservation de Teranga
 1. Crée une Edge Function Lovable Cloud "ask-dify" qui reçoit { question }, appelle
    POST https://api.dify.ai/v1/workflows/run avec le header Authorization: Bearer <secret DIFY_API_KEY>
    et le body { "inputs": { "query": question }, "response_mode": "blocking", "user": "terangastay" },
-   puis renvoie le texte de data.outputs.text, ou data.outputs.message_erreur s'il est vide.
+   puis renvoie le texte de data.outputs.text, ou data.outputs.message_erreur s'il est vide,
+   après avoir supprimé tout bloc <think>…</think> (raisonnement interne du modèle, jamais affiché).
    Demande-moi le secret DIFY_API_KEY via le formulaire de secrets ; ne l'écris jamais dans le code.
 
 2. Interface : un champ texte « Collez la demande du voyageur (chambre, dates, nombre de personnes)… »,
