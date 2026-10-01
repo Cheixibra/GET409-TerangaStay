@@ -331,6 +331,12 @@ workflow:
 
             La demande est INSUFFISANTE si au moins un de ces éléments manque : date d''arrivée, date de départ, nombre de personnes.
 
+            - Une date n''est valable que si le jour ET le mois sont écrits (ex. « 20 décembre », « 20/12 »). Une date relative ou vague (« vendredi prochain », « ce week-end », « demain », « pour les fêtes », « à Noël ») est MANQUANTE : ne jamais la convertir en date, car tu ne connais pas la date du jour et une date devinée fausserait la disponibilité.
+
+            - Le type de chambre et le profil de paiement sont OPTIONNELS : ne jamais les citer comme manquants. Seuls la date d''arrivée, la date de départ et le nombre de personnes peuvent rendre la demande insuffisante.
+
+            - Un prix cité dans une autre devise (euros, dollars) ne se convertit jamais : on recopie seulement le prix en FCFA du bloc CHAMBRES.
+
             Dans ce cas, réponds UNIQUEMENT :
 
             INSUFFISANT : <liste des éléments manquants, séparés par des virgules>

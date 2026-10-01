@@ -207,3 +207,7 @@ respectées partout, injection T5 refusée. Écarts et cause :
 
 Corrections, une à la fois, avec rejeu : C1 ÉTAPE 2 (T3, T4) → C2 requête fixe pour RECUP_CHAMBRES (T6) →
 C3 filtrage par type dans le détail des nuits (T1, T2) → T1–T6 complets.
+
+**C1 (01/10/2026)** — ÉTAPE 2 du Chercheur : dates relatives = MANQUANTES (avec la raison), type de chambre et profil
+de paiement OPTIONNELS, aucune conversion de devise. Rejeu : T4 ✅ `INSUFFISANT : date d'arrivée, date de départ` ·
+T3 ✅ `INSUFFISANT : date d'arrivée, date de départ, nombre de personnes` · T1 ✅ inchangé (non-régression).
