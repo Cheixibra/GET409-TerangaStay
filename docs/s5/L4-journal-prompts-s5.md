@@ -218,3 +218,20 @@ par son message USER. Rejeu : T6 ✅ type, 28000 / 8400 recopiés, bandeau rouge
 T1 ✅ inchangé. Note : le « Test de récupération » de la base n'affiche que 2 segments — il applique le Top K de la base,
 pas celui du nœud (6) [hypothèse, cohérente avec T6]. Reste en T6 : « Points à confirmer » cite la nuit du 23, qui ne
 fait pas partie du séjour → traité avec C3.
+
+**Itération 4 — batterie T1–T6 via l'API (01/10/2026, après C2, C3 à confirmer dans Dify)**
+
+| # | Obtenu | Réussi ? |
+|---|--------|----------|
+| T1 | 🟡 C7 · 28000 / 8400 · détail des nuits : C7 / C7 | ✅ |
+| T2 | ⚠ CONFLIT · 24 Complet · 35000 / 10500 · étranger ; cite encore C3 | ⚠ partiel |
+| T3 | INSUFFISANT : date d'arrivée, date de départ, nombre de personnes | ✅ |
+| T4 | INSUFFISANT : date d'arrivée, date de départ | ✅ |
+| T5 | ⚠ CONFLIT, jamais « confirmée » ; mais « Chambre proposée : C13 » alors que la nuit du 24 est complète | ⚠ partiel |
+| T6 | 🟡 **DEMANDE REÇUE · C7** alors que C7 n'est pas libre le 22 — **3 exécutions sur 3** (une invente « nuit du 22 : C7 ») | ❌ critique |
+
+**Analyse** — Régression critique : depuis que le catalogue arrive au Chercheur (C2), Gemini 3.5 Flash-Lite annonce une
+chambre disponible qu'il n'a pas vérifiée nuit par nuit. C'est la double réservation que le HMW veut éviter.
+Cause : le croisement « même numéro libre chaque nuit » est un calcul d'ensembles demandé à un petit modèle, de façon
+non déterministe. Correction minimale testée d'abord : CHERCHEUR sur un modèle plus fort (Gemini 3.5 Flash).
+Si T6 n'est pas correct 3 fois sur 3 : sortir le calcul du LLM (nœud Code Dify qui croise numéros × nuits).

@@ -35,8 +35,7 @@ INSUFFISANT : <liste des éléments manquants, séparés par des virgules>
   et l'indiquer dans POINTS À CONFIRMER.
 - Disponibilité : UNIQUEMENT dans le bloc DISPONIBILITÉS. Les nuits du séjour vont de la nuit de la date
   d'arrivée incluse à la nuit de la veille du départ incluse (départ le 22 = dernière nuit le 21).
-  Pour chaque nuit, chercher la phrase « nuit du [jour] [mois] » (ignorer « le », « du », « au ») et recopier
-  la liste des chambres libres.
+  Pour chaque nuit du séjour, chercher la phrase « nuit du [jour] [mois] » (ignorer « le », « du », « au ») et ne recopier QUE les numéros du type demandé (lus dans la colonne Numéros des chambres du bloc CHAMBRES, ex. Double climatisée = C6 C7 C8) qui figurent dans la liste des chambres libres de cette nuit ; s'il n'y en a aucun, recopier le statut de la nuit (ex. « aucune chambre libre (Complet) » ou « aucune chambre de ce type libre »). Ne jamais citer un numéro d'un autre type ni une nuit hors séjour (la nuit du jour de départ n'en fait pas partie) : la gérante lirait une disponibilité qui ne la concerne pas. En CONFLIT, POINTS À CONFIRMER explique le conflit uniquement avec ces nuits (ex. « C7 libre le 21, C8 libre le 22 : aucune chambre libre les deux nuits »).
 - Une chambre est DISPONIBLE pour le séjour seulement si le même numéro de chambre du bon type figure
   dans la liste des chambres libres de CHAQUE nuit du séjour. Retenir le premier numéro qui remplit cette condition.
 - Si aucun numéro du bon type n'est libre toutes les nuits : Disponibilité = CONFLIT, et indiquer pour chaque
