@@ -125,7 +125,7 @@ Prompt complet : [`L1-prompt-lovable-webhook.md`](L1-prompt-lovable-webhook.md) 
 Effectue un audit qualité de notre pipeline RAG TerangaStay. Évalue chaque dimension et donne une note /5.
 
 NOTRE SYSTÈME :
-- MVP V2 : [URL lovable.app]
+- MVP V2 : https://elegant-builds-studio.lovable.app
 - Workflow Dify : E-Tourism RAG S5 (RAG à deux recherches)
 - Bases : TERANGASTAY_CHAMBRES (CSV 6 types) + TERANGASTAY_DISPO (instantané daté du 30/09/2026)
 

@@ -5,7 +5,7 @@
 | Workflow Dify | **E-Tourism RAG S5** (publié) |
 | URL API | `https://api.dify.ai/v1/workflows/run` |
 | Clé | `app-…` du workflow → secret Lovable `DIFY_API_KEY` (jamais dans le code ni sur GitHub) |
-| MVP | `[NOM-PROJET].lovable.app` — à renseigner |
+| MVP | https://elegant-builds-studio.lovable.app (assistant intégré via fonction serveur TanStack, clé côté serveur) |
 
 ## Le prompt à coller dans Lovable
 
