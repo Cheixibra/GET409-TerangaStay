@@ -17,6 +17,14 @@ version: 0.7.0
 workflow:
   conversation_variables: []
   environment_variables:
+  - description: Requête fixe faite des en-têtes du CSV pour remonter tout le catalogue CHAMBRES
+    id: 3b6f0c1e-2a54-4d8e-9f17-6c2d4a8b9e01
+    name: requete_chambres
+    selector:
+    - env
+    - requete_chambres
+    value: Type de chambre Numéros des chambres Capacité Prix par nuit haute saison FCFA Acompte par nuit haute saison
+    value_type: string
   - description: Requête fixe et courte pour remonter la base DISPONIBILITÉS en entier
     id: e7d22312-e908-4f9f-97e2-b49f6e381b85
     name: requete_dispo
@@ -209,8 +217,8 @@ workflow:
           top_k: 6
           score_threshold: null
         query_variable_selector:
-        - '1790195963789'
-        - query
+        - env
+        - requete_chambres
         retrieval_mode: multiple
         selected: false
         title: RECUP_CHAMBRES

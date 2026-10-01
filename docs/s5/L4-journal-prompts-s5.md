@@ -211,3 +211,10 @@ C3 filtrage par type dans le détail des nuits (T1, T2) → T1–T6 complets.
 **C1 (01/10/2026)** — ÉTAPE 2 du Chercheur : dates relatives = MANQUANTES (avec la raison), type de chambre et profil
 de paiement OPTIONNELS, aucune conversion de devise. Rejeu : T4 ✅ `INSUFFISANT : date d'arrivée, date de départ` ·
 T3 ✅ `INSUFFISANT : date d'arrivée, date de départ, nombre de personnes` · T1 ✅ inchangé (non-régression).
+
+**C2 (01/10/2026)** — RECUP_CHAMBRES ne cherche plus avec la demande du voyageur mais avec une variable ENV
+`requete_chambres` = en-têtes du CSV (présents dans chaque segment), Top K 6 ; le CHERCHEUR reçoit toujours la demande
+par son message USER. Rejeu : T6 ✅ type, 28000 / 8400 recopiés, bandeau rouge (plus de « Non trouvé dans la base ») ·
+T1 ✅ inchangé. Note : le « Test de récupération » de la base n'affiche que 2 segments — il applique le Top K de la base,
+pas celui du nœud (6) [hypothèse, cohérente avec T6]. Reste en T6 : « Points à confirmer » cite la nuit du 23, qui ne
+fait pas partie du séjour → traité avec C3.
