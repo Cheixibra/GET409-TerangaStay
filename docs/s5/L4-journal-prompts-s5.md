@@ -252,3 +252,9 @@ sur Gemini 3.5 Flash-Lite). Batterie rejouée via l'API :
 fort, sans nouveau prompt. Nouveau risque : **disponibilité de l'API** — 3 appels sur 11 en échec (`503 UNAVAILABLE —
 model is currently experiencing high demand`, côté Google), et temps de réponse passé de 4–6 s à 14–20 s.
 Garde-fou suivant : « Réessayer en cas d'échec » sur les nœuds LLM ; Plan B prêt pour la démo S6.
+
+**Itération 6 (02/10/2026)** — « Réessayer en cas d'échec » activé (2 tentatives, 2 000 ms) sur CHERCHEUR et REDACTEUR.
+Contenu : 7/7 réponses abouties correctes (T6 en CONFLIT 3/3, jamais « confirmée »). Disponibilité : T3 encore en échec
+(`503 high demand`, malgré les tentatives) ; T2 en `partial-succeeded`. **Latence : 15–32 s** (T2 = 32,4 s), au-delà
+du délai de 30 s de l'application → risque de « Service temporairement indisponible » sur le MVP.
+Prochaine correction : réduire la réflexion du CHERCHEUR (niveau de réflexion bas) ou modèle moins sollicité.
