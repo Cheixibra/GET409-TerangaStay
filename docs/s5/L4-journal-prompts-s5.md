@@ -273,3 +273,8 @@ quota gratuit est vite épuisé. **Décision : sortir le croisement chambre × n
 catalogue et le calendrier, et calcule DISPONIBLE / CONFLIT, la chambre et le détail des nuits. Le Rédacteur recopie ce
 bloc. Testé en local sur les données réelles : T1 C7 DISPONIBLE · T2 CONFLIT (C13 / Complet) · T6 CONFLIT (C7 / C8) ·
 type inconnu ou nuit hors calendrier → CONFLIT « la gérante doit vérifier ».
+
+**Itération 9 (02/10/2026)** — DSL avec `VERIF_DISPO` importé dans l'app existante (même clé), publié ; les deux LLM
+sur Gemini 3.5 Flash-Lite. Contrôle ciblé : **T6 ✅** ⚠ CONFLIT, C7 le 21 / C8 le 22, « aucune chambre de ce type n'est
+libre toutes les nuits » (9,8 s) · **T1 ✅** 🟡 C7, 28000 / 8400, C7 / C7 (5,6 s). La disponibilité ne dépend plus du
+modèle ; latence revenue sous 10 s ; ≈ 2 appels LLM par demande.
