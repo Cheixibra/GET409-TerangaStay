@@ -278,3 +278,24 @@ type inconnu ou nuit hors calendrier → CONFLIT « la gérante doit vérifier �
 sur Gemini 3.5 Flash-Lite. Contrôle ciblé : **T6 ✅** ⚠ CONFLIT, C7 le 21 / C8 le 22, « aucune chambre de ce type n'est
 libre toutes les nuits » (9,8 s) · **T1 ✅** 🟡 C7, 28000 / 8400, C7 / C7 (5,6 s). La disponibilité ne dépend plus du
 modèle ; latence revenue sous 10 s ; ≈ 2 appels LLM par demande.
+
+---
+
+## Audit qualité du pipeline (prompt P4, étape 2) — 02/10/2026
+
+Audit réalisé par Claude à partir des sorties réelles ci-dessus (itérations 5 et 9), MVP https://elegant-builds-studio.lovable.app,
+workflow https://cloud.dify.ai/app/021babfe-ed51-4d84-b59f-3f2af7b81eb9/workflow.
+
+| Dimension | Constat | Note |
+|-----------|---------|------|
+| 1 — Précision | T1 : C7, 28000 / 8400, nuits du 20 et 21 sur C7 ; T2 : C13 / nuit du 24 Complet, 35000 / 10500 — toutes les valeurs sont recopiées des bases, la disponibilité est calculée par le nœud Code (plus d'erreur de croisement) | 5/5 |
+| 2 — Règles métier | « confirmée » jamais employé comme statut (T1–T6), aucun total, aucune autre chambre proposée au voyageur ; la décision reste à la gérante | 5/5 |
+| 3 — Gestion des limites | T3 et T4 → INSUFFISANT sans rien inventer (date relative refusée, euros non convertis) ; T5 (injection) refusée ; météo hors sujet refusée (testée avec gpt-oss, à rejouer sur Gemini) | 4/5 |
+| 4 — Intégration MVP | bandeau correct, aucune erreur de l'application en console, 5–10 s ; mais dépendance au quota gratuit Gemini (épuisé le 02/10) et message d'erreur générique « Service temporairement indisponible » sans la cause | 3/5 |
+
+**Note globale : 17/20.**
+
+**3 priorités avant S6 (une correction à la fois)**
+1. Rendre l'erreur lisible dans le MVP (module E §6.1) : afficher le code HTTP et le message Dify (jamais la clé) au lieu de « Service temporairement indisponible ».
+2. Sécuriser la démo : vérifier le quota AI Studio le matin de S6, ne rejouer que les tests nécessaires, Plan B ([`plan-b-demo-s6.md`](plan-b-demo-s6.md)) ouvert dans un onglet.
+3. Rejouer la batterie complète T1–T6 + météo une fois le quota rétabli, pour confirmer T2–T5 avec `VERIF_DISPO`.
