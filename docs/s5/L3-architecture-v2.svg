@@ -21,7 +21,7 @@
 
   <rect width="1600" height="900" fill="#ffffff"/>
   <text x="40" y="52" class="t">TerangaStay — Architecture V2 (S5)</text>
-  <text x="40" y="82" class="st">MVP Lovable → Webhook (Edge Function) → Agent Dify « E-Tourism RAG S5 » → RAG à deux recherches → Bases de connaissances</text>
+  <text x="40" y="82" class="st">MVP Lovable → Webhook (fonction serveur) → Agent Dify « E-Tourism RAG S5 » → RAG à deux recherches → Bases de connaissances</text>
 
   <!-- Zones -->
   <rect x="30" y="110" width="330" height="560" rx="14" fill="#f0f9ff" stroke="#bae6fd"/>
@@ -49,8 +49,8 @@
 
   <!-- Edge function -->
   <rect x="400" y="165" width="210" height="190" rx="12" fill="#ffffff" stroke="#8b5cf6" stroke-width="2"/>
-  <text x="418" y="197" class="h">Edge Function</text>
-  <text x="418" y="222" class="s">ask-dify (webhook)</text>
+  <text x="418" y="197" class="h">Fonction serveur</text>
+  <text x="418" y="222" class="s">TanStack createServerFn</text>
   <text x="418" y="248" class="xs">• secret DIFY_API_KEY</text>
   <text x="418" y="270" class="xs">  (jamais dans le navigateur)</text>
   <text x="418" y="292" class="xs">• POST /v1/workflows/run</text>
@@ -65,8 +65,8 @@
 
   <rect x="860" y="165" width="190" height="96" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
   <text x="875" y="195" class="h" style="font-size:16px">RECUP_CHAMBRES</text>
-  <text x="875" y="220" class="xs">requête = query</text>
-  <text x="875" y="240" class="xs">Top K 6 · base recherchée</text>
+  <text x="875" y="220" class="xs">requête = ENV fixe</text>
+  <text x="875" y="240" class="xs">Top K 6 · catalogue entier</text>
 
   <rect x="1075" y="165" width="190" height="96" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
   <text x="1090" y="195" class="h">RECUP_DISPO</text>
@@ -141,9 +141,9 @@
   <!-- Legend -->
   <rect x="30" y="690" width="1540" height="185" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
   <text x="50" y="722" class="h">Parcours d'une demande</text>
-  <text x="50" y="750" class="s">1  Astou colle la demande du voyageur dans le MVP Lovable, qui appelle l'Edge Function ask-dify (pas de clé dans le navigateur).</text>
-  <text x="50" y="775" class="s">2  L'Edge Function ajoute le secret DIFY_API_KEY et appelle POST https://api.dify.ai/v1/workflows/run avec inputs.query.</text>
-  <text x="50" y="800" class="s">3  RECUP_CHAMBRES (base recherchée) et RECUP_DISPO (base fixe via requête ENV) récupèrent les données ; le Modèle Jinja2 convertit la base fixe en texte.</text>
+  <text x="50" y="750" class="s">1  Astou colle la demande du voyageur dans le MVP Lovable, qui appelle sa fonction serveur (pas de clé dans le navigateur).</text>
+  <text x="50" y="775" class="s">2  La fonction serveur ajoute le secret DIFY_API_KEY et appelle POST https://api.dify.ai/v1/workflows/run avec inputs.query.</text>
+  <text x="50" y="800" class="s">3  RECUP_CHAMBRES et RECUP_DISPO récupèrent chacune leur base entière via une requête ENV fixe ; le Modèle Jinja2 convertit la base fixe en texte.</text>
   <text x="50" y="825" class="s">4  Le CHERCHEUR croise chambre + nuits ; SI/SINON oriente vers INSUFFISANT ou vers le RÉDACTEUR (fiche + message, statut jamais « confirmée »).</text>
   <text x="50" y="850" class="s">5  outputs.text ou outputs.message_erreur revient au MVP, qui affiche le bandeau Demande reçue / Conflit / Informations manquantes.</text>
   <line x1="1180" y1="716" x2="1225" y2="716" class="flow"/>
