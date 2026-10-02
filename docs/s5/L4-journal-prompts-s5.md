@@ -265,3 +265,11 @@ volume de tests (≈ 30 exécutions × 2–4 appels LLM avec les tentatives). **
 coût en quota ; la rejouer à l'unité près (T6 ×3 seulement pour le croisement) et répartir les modèles par quota.
 Piste : CHERCHEUR sur **Gemini 3.5 Flash-Lite** (quota gratuit le plus large) — jamais testé avec C3 (l'échec T6 de
 l'itération 4 a eu lieu sans C3).
+
+**Itération 8 (02/10/2026)** — CHERCHEUR sur Gemini 3.5 Flash-Lite (avec C3) : T6 faux 1 fois sur 3 (« DEMANDE REÇUE C7 »
+alors que C7 est pris le 22) et un détail de nuit inventé. Gemini 3.5 Flash était juste mais lent (15–32 s) et son
+quota gratuit est vite épuisé. **Décision : sortir le croisement chambre × nuits du LLM.** Nœud Code Dify `VERIF_DISPO`
+([`../dify-s5/verif_dispo.py`](../dify-s5/verif_dispo.py)) : lit le type et les dates extraits par le Chercheur, le
+catalogue et le calendrier, et calcule DISPONIBLE / CONFLIT, la chambre et le détail des nuits. Le Rédacteur recopie ce
+bloc. Testé en local sur les données réelles : T1 C7 DISPONIBLE · T2 CONFLIT (C13 / Complet) · T6 CONFLIT (C7 / C8) ·
+type inconnu ou nuit hors calendrier → CONFLIT « la gérante doit vérifier ».
