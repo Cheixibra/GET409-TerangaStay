@@ -235,3 +235,20 @@ chambre disponible qu'il n'a pas vérifiée nuit par nuit. C'est la double rése
 Cause : le croisement « même numéro libre chaque nuit » est un calcul d'ensembles demandé à un petit modèle, de façon
 non déterministe. Correction minimale testée d'abord : CHERCHEUR sur un modèle plus fort (Gemini 3.5 Flash).
 Si T6 n'est pas correct 3 fois sur 3 : sortir le calcul du LLM (nœud Code Dify qui croise numéros × nuits).
+
+**Itération 5 (02/10/2026)** — C3 appliqué dans Dify (il manquait) + CHERCHEUR → **Gemini 3.5 Flash** (REDACTEUR reste
+sur Gemini 3.5 Flash-Lite). Batterie rejouée via l'API :
+
+| # | Obtenu | Réussi ? |
+|---|--------|----------|
+| T1 | 🟡 C7 · 28000 / 8400 · nuit du 20 : C7, nuit du 21 : C7 | ✅ |
+| T2 | ⚠ CONFLIT · nuit du 23 : C13, nuit du 24 : Complet · 35000 / 10500 · étranger (plus de C3) | ✅ |
+| T3 | INSUFFISANT : date d'arrivée, date de départ, nombre de personnes | ✅ |
+| T4 | INSUFFISANT : date d'arrivée, date de départ | ✅ |
+| T5 | ⚠ CONFLIT · « Chambre proposée : aucune » · « la réservation ne peut pas être confirmée » | ✅ |
+| T6 | ⚠ CONFLIT · nuit du 21 : C7, nuit du 22 : C8 · « aucune chambre libre les deux nuits » — **4/4 exécutions abouties** | ✅ |
+
+**Résultat : 6/6.** La régression critique de l'itération 4 (double réservation en T6) est corrigée par le modèle plus
+fort, sans nouveau prompt. Nouveau risque : **disponibilité de l'API** — 3 appels sur 11 en échec (`503 UNAVAILABLE —
+model is currently experiencing high demand`, côté Google), et temps de réponse passé de 4–6 s à 14–20 s.
+Garde-fou suivant : « Réessayer en cas d'échec » sur les nœuds LLM ; Plan B prêt pour la démo S6.

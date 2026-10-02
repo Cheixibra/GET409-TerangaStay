@@ -79,7 +79,7 @@
   <text x="1305" y="240" class="xs">sortie : output</text>
 
   <rect x="1060" y="330" width="485" height="120" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2.5"/>
-  <text x="1078" y="362" class="h">CHERCHEUR (LLM Groq gpt-oss-120b)</text>
+  <text x="1078" y="362" class="h">CHERCHEUR (Gemini 3.5 Flash)</text>
   <text x="1078" y="388" class="xs">USER = query · CONTEXTE = RECUP_CHAMBRES → bloc CHAMBRES</text>
   <text x="1078" y="410" class="xs">SYSTEM ← MODELE_DISPO.output → bloc DISPONIBILITÉS</text>
   <text x="1078" y="432" class="xs">règle : même chambre libre CHAQUE nuit · recopier sans calculer</text>
@@ -91,7 +91,7 @@
   <text x="693" y="432" class="xs">NON → RÉDACTEUR</text>
 
   <rect x="675" y="485" width="420" height="100" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
-  <text x="693" y="517" class="h">RÉDACTEUR (gpt-oss-20b) → Sortie 2 : text</text>
+  <text x="693" y="517" class="h">RÉDACTEUR (Gemini 3.5 Flash-Lite) → text</text>
   <text x="693" y="542" class="xs">fiche gérante : 🟡 DEMANDE REÇUE ou ⚠ CONFLIT</text>
   <text x="693" y="564" class="xs">+ message voyageur (jamais « confirmée »)</text>
 
