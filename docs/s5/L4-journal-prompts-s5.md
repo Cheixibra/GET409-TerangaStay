@@ -324,3 +324,26 @@ composant qui affiche le résultat). Ne change rien d'autre : ni le style, ni le
 ce qui supprime le double appel observé à 07:11:48 (itération 3). Le chemin d'erreur sera vérifié à la prochaine panne
 réelle (on ne casse pas volontairement la clé). Note /5 : 4 (chemin d'erreur non encore observé).
 **Risque éthique** : afficher un détail technique sensible → garde-fou : messages fixes, jamais la clé ni la trace.
+
+---
+
+## I1 — Alerte de conflit entre demandes en attente (module D, 02/10/2026)
+
+Spécification : [`I1-spec-alerte-conflit.md`](I1-spec-alerte-conflit.md). Dify : sortie `reservation` (JSON) calculée par
+`VERIF_DISPO`. Application codée en local avec Claude Code (module C : clone GitHub, Bun, `.env.local` ignoré par Git,
+branche dédiée, puis fusion dans `main` → Lovable synchronisé) : `src/lib/pending-requests.ts`, `agent-search.tsx`,
+`ask-dify.functions.ts`, `teranga-agent.ts`.
+
+| # | Obtenu sur localhost | Réussi ? |
+|---|----------------------|----------|
+| T7 | T1 (C7, nuits du 20 et 21) puis demande du 21 au 22 → bandeau rouge « ⚠ C7 déjà demandée pour la nuit du 21 décembre par une demande en attente (analysée à 19:01) — ne pas confirmer les deux » ; 2e ligne marquée ⚠ | ✅ |
+| T8 | twin climatisée → C9 sans alerte ; T2 (CONFLIT) non ajouté à la liste ; liste vide après rechargement | ✅ |
+| T2 (rejeu MVP) | ⚠ CONFLIT · C13 le 23 / nuit du 24 Complet · 35000 / 10500 · modalité étrangère | ✅ |
+| P5 (rejeu) | panne réelle observée : « Service temporairement indisponible (Délai dépassé (30 s), réessayez) » → délai porté à 45 s | ✅ |
+
+Note /5 : 5 (critères d'acceptation 1–3 vérifiés). **Note d'éthique S6** : mémoire de session sans nom ni texte du
+voyageur ; l'alerte ne bloque rien, la gérante décide.
+
+**Aussi livré** : refonte du design (typographie éditoriale, palette sable/encre/terre cuite, section de chiffres
+fictifs supprimée), carte des hébergements (Leaflet + OpenStreetMap, position à la localité seulement), filtres
+Sine-Saloum et Nord corrigés, 2 photos distinctes générées dans Lovable.
