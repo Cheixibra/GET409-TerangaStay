@@ -258,3 +258,10 @@ Contenu : 7/7 réponses abouties correctes (T6 en CONFLIT 3/3, jamais « confirm
 (`503 high demand`, malgré les tentatives) ; T2 en `partial-succeeded`. **Latence : 15–32 s** (T2 = 32,4 s), au-delà
 du délai de 30 s de l'application → risque de « Service temporairement indisponible » sur le MVP.
 Prochaine correction : réduire la réflexion du CHERCHEUR (niveau de réflexion bas) ou modèle moins sollicité.
+
+**Itération 7 (02/10/2026)** — CHERCHEUR : Thinking level = Low. Rejeu : T1 ✅ (26 s), T3 ✅, puis 6 appels en échec
+`You exceeded your current quota` (offre gratuite AI Studio, limite journalière du modèle Gemini 3.5 Flash). Cause :
+volume de tests (≈ 30 exécutions × 2–4 appels LLM avec les tentatives). **Leçon** : la batterie de non-régression a un
+coût en quota ; la rejouer à l'unité près (T6 ×3 seulement pour le croisement) et répartir les modèles par quota.
+Piste : CHERCHEUR sur **Gemini 3.5 Flash-Lite** (quota gratuit le plus large) — jamais testé avec C3 (l'échec T6 de
+l'itération 4 a eu lieu sans C3).
