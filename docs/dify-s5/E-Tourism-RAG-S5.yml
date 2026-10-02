@@ -10,21 +10,13 @@ dependencies:
 - current_identifier: null
   type: marketplace
   value:
-    marketplace_plugin_unique_identifier: langgenius/groq:0.0.19@17734754952001d7c9aa0b733bff44a28e03311d1ce011a9888a7604a922cf36
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.9.10@4979b8843fa46c3c2143d339f5868f04d9d77166616c00dd9f811a4adfce03ab
     version: null
 kind: app
 version: 0.7.0
 workflow:
   conversation_variables: []
   environment_variables:
-  - description: Requête fixe faite des en-têtes du CSV pour remonter tout le catalogue CHAMBRES
-    id: 3b6f0c1e-2a54-4d8e-9f17-6c2d4a8b9e01
-    name: requete_chambres
-    selector:
-    - env
-    - requete_chambres
-    value: Type de chambre Numéros des chambres Capacité Prix par nuit haute saison FCFA Acompte par nuit haute saison
-    value_type: string
   - description: Requête fixe et courte pour remonter la base DISPONIBILITÉS en entier
     id: e7d22312-e908-4f9f-97e2-b49f6e381b85
     name: requete_dispo
@@ -32,6 +24,16 @@ workflow:
     - env
     - requete_dispo
     value: disponibilités chambres nuit décembre
+    value_type: string
+  - description: ''
+    id: 4837ffd9-c3d4-4294-8804-db63ae2e839a
+    name: requete_chambres
+    selector:
+    - env
+    - requete_chambres
+    value: 'Type de chambre Numéros des chambres Capacité Prix par nuit haute saison FCFA Acompte par nuit haute saison
+
+      '
     value_type: string
   features:
     file_upload:
@@ -160,11 +162,11 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: if-else
-        targetType: llm
-      id: 1790196063285-false-1790599280777-target
+        targetType: code
+      id: 1790196063285-false-1790700000004-target
       source: '1790196063285'
       sourceHandle: 'false'
-      target: '1790599280777'
+      target: '1790700000004'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -177,6 +179,18 @@ workflow:
       source: '1790599280777'
       sourceHandle: source
       target: '1790621450167'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1790700000004-source-1790599280777-target
+      source: '1790700000004'
+      sourceHandle: source
+      target: '1790599280777'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -210,12 +224,12 @@ workflow:
       zIndex: 0
     - data:
         dataset_ids:
-        - 7ee714a4-245f-44da-ab46-165285bd2b95
+        - Kuqz23Q0ORFnNchiuIGhXybCEmyPVHrw8lgVaXv3eOVAruv7x6S0Nf0o4m5/kS6Y
         desc: ''
         multiple_retrieval_config:
           reranking_enable: false
-          top_k: 6
           score_threshold: null
+          top_k: 6
         query_variable_selector:
         - env
         - requete_chambres
@@ -223,7 +237,7 @@ workflow:
         selected: false
         title: RECUP_CHAMBRES
         type: knowledge-retrieval
-      height: 92
+      height: 90
       id: '1790700000001'
       position:
         x: 250
@@ -239,12 +253,12 @@ workflow:
       zIndex: 0
     - data:
         dataset_ids:
-        - 7099916a-38f2-4734-9826-31e83ad26ef9
+        - 7E1Hzkhj55wPLGNvO9QWSu+HjGRNmq4QJVc2NMCYlW6Unz5mxZWC04aYxx3dxVKv
         desc: ''
         multiple_retrieval_config:
           reranking_enable: false
-          top_k: 3
           score_threshold: null
+          top_k: 3
         query_variable_selector:
         - env
         - requete_dispo
@@ -252,7 +266,7 @@ workflow:
         selected: false
         title: RECUP_DISPO
         type: knowledge-retrieval
-      height: 92
+      height: 90
       id: '1790700000002'
       position:
         x: 550
@@ -279,7 +293,7 @@ workflow:
           - '1790700000002'
           - result
           variable: donnees
-      height: 92
+      height: 52
       id: '1790700000003'
       position:
         x: 850
@@ -301,10 +315,10 @@ workflow:
           - result
         model:
           completion_params:
-            temperature: 0.3
+            thinking_level: Low
           mode: chat
-          name: llama-3.1-8b-instant
-          provider: langgenius/groq/groq
+          name: gemini-3.5-flash-lite
+          provider: langgenius/gemini/google
         prompt_template:
         - id: bf55b0fa-b299-4b47-b9ea-53a82c26c7e1
           role: system
@@ -345,6 +359,7 @@ workflow:
 
             - Un prix cité dans une autre devise (euros, dollars) ne se convertit jamais : on recopie seulement le prix en FCFA du bloc CHAMBRES.
 
+
             Dans ce cas, réponds UNIQUEMENT :
 
             INSUFFISANT : <liste des éléments manquants, séparés par des virgules>
@@ -357,6 +372,7 @@ workflow:
             - Si le type n''est pas précisé, choisir le type le moins cher dont la capacité couvre le nombre de personnes, et l''indiquer dans POINTS À CONFIRMER.
 
             - Disponibilité : UNIQUEMENT dans le bloc DISPONIBILITÉS. Les nuits du séjour vont de la nuit de la date d''arrivée incluse à la nuit de la veille du départ incluse (départ le 22 = dernière nuit le 21). Pour chaque nuit du séjour, chercher la phrase « nuit du [jour] [mois] » (ignorer « le », « du », « au ») et ne recopier QUE les numéros du type demandé (lus dans la colonne Numéros des chambres du bloc CHAMBRES, ex. Double climatisée = C6 C7 C8) qui figurent dans la liste des chambres libres de cette nuit ; s''il n''y en a aucun, recopier le statut de la nuit (ex. « aucune chambre libre (Complet) » ou « aucune chambre de ce type libre »). Ne jamais citer un numéro d''un autre type ni une nuit hors séjour (la nuit du jour de départ n''en fait pas partie) : la gérante lirait une disponibilité qui ne la concerne pas. En CONFLIT, POINTS À CONFIRMER explique le conflit uniquement avec ces nuits (ex. « C7 libre le 21, C8 libre le 22 : aucune chambre libre les deux nuits »).
+
 
             - Une chambre est DISPONIBLE pour le séjour seulement si le même numéro de chambre du bon type figure dans la liste des chambres libres de CHAQUE nuit du séjour. Retenir le premier numéro qui remplit cette condition.
 
@@ -425,12 +441,16 @@ workflow:
           id: 68ce8313-1dae-42b0-9119-cf83d7413428
           role: user
           text: '{{#1790195963789.query#}}'
-        selected: false
+        retry_config:
+          max_retries: 2
+          retry_enabled: true
+          retry_interval: 2000
+        selected: true
         title: CHERCHEUR
         type: llm
         vision:
           enabled: false
-      height: 88
+      height: 135
       id: '1790196003784'
       position:
         x: 1150
@@ -438,7 +458,7 @@ workflow:
       positionAbsolute:
         x: 1150
         y: 540
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -483,7 +503,7 @@ workflow:
         selected: false
         title: Sortie
         type: end
-      height: 88
+      height: 89
       id: '1790599250075'
       position:
         x: 1750
@@ -502,30 +522,40 @@ workflow:
           enabled: false
           variable_selector: []
         model:
-          completion_params:
-            temperature: 0.7
+          completion_params: {}
           mode: chat
-          name: llama-3.1-8b-instant
-          provider: langgenius/groq/groq
+          name: gemini-3.5-flash-lite
+          provider: langgenius/gemini/google
         prompt_template:
         - id: bd09c0ce-ac99-4ed5-9b09-4ea7ac82ac74
           role: system
-          text: "Tu es le rédacteur de TerangaStay, une application qui aide les petites auberges indépendantes du Sénégal à recevoir des réservations directes avec un calendrier fiable, afin d'éviter les doubles réservations.\n\nTu rédiges, à partir de la fiche reçue du nœud CHERCHEUR, deux textes courts en français.\n\nSi les données reçues commencent par « INSUFFISANT : », transmettre exactement cette ligne, sans rapport ni reformulation.\n\n────────────────────────────────────────\n1) FICHE POUR LA GÉRANTE\n────────────────────────────────────────\n- Première ligne selon la Disponibilité :\n  - DISPONIBLE → « \U0001F7E1 DEMANDE REÇUE — en attente de votre validation »\n  - CONFLIT → « ⚠ CONFLIT DE CHAMBRE — ne pas confirmer sans vérifier le calendrier »\n- Puis, une ligne chacun : chambre proposée, type, arrivée, départ, nombre de nuits, nombre de personnes, prix par nuit, acompte par nuit, détail des nuits, profil de paiement, date de mise à jour des disponibilités, points à confirmer.\n- Recopier les valeurs de la fiche sans les recalculer. Ne jamais afficher de total.\n\n────────────────────────────────────────\n2) MESSAGE POUR LE VOYAGEUR (à envoyer par la gérante, 80 mots maximum, vouvoiement)\n────────────────────────────────────────\n- DISPONIBLE : remercier, rappeler chambre, dates, prix par nuit et acompte par nuit, et écrire : « Votre demande est bien reçue ; elle sera confirmée par l'auberge après réception de l'acompte. »\n- CONFLIT : remercier, dire que la chambre demandée n'est pas libre toutes les nuits, sans proposer d'autre chambre ni d'autres dates (la gérante décide), et annoncer une réponse de l'auberge.\n- Paiement de l'acompte :\n  - Sénégal → « Acompte possible par Wave ou Orange Money ; l'auberge vous envoie le numéro. »\n  - étranger / diaspora → « L'auberge vous indiquera une autre modalité de paiement de l'acompte. »\n  - non précisé → les deux phrases.\n\nRÈGLES :\n- Utiliser uniquement les données reçues du nœud CHERCHEUR. Si une donnée manque, écrire exactement : Non disponible.\n- Ne jamais écrire que la réservation est confirmée, ni que TerangaStay a effectué une réservation ou un paiement.\n- Ne jamais inventer un numéro de téléphone, un lien de paiement, un prix ou une disponibilité.\n- Pas de jargon technique.\n"
+          text: "Tu es le rédacteur de TerangaStay, une application qui aide les petites auberges indépendantes du Sénégal à recevoir des réservations directes avec un calendrier fiable, afin d'éviter les doubles réservations.\n\nTu rédiges, à partir de la fiche reçue du nœud CHERCHEUR, deux textes courts en français.\n\nSi les données reçues commencent par « INSUFFISANT : », transmettre exactement cette ligne, sans rapport ni reformulation.\n\n────────────────────────────────────────\n1) FICHE POUR LA GÉRANTE\n────────────────────────────────────────\n- Première ligne selon la Disponibilité :\n  - DISPONIBLE → « \U0001F7E1 DEMANDE REÇUE — en attente de votre validation »\n  - CONFLIT → « ⚠ CONFLIT DE CHAMBRE — ne pas confirmer sans vérifier le calendrier »\n- Puis, une ligne chacun : chambre proposée, type, arrivée, départ, nombre de nuits, nombre de personnes, prix par nuit, acompte par nuit, détail des nuits, profil de paiement, date de mise à jour des disponibilités, points à confirmer.\n\
+            - Recopier les valeurs de la fiche sans les recalculer. Ne jamais afficher de total.\n- PRIORITÉ AU CALCUL : les données reçues contiennent un bloc « VÉRIFICATION AUTOMATIQUE DU CALENDRIER ». La Disponibilité (et donc la première ligne), la chambre proposée, le nombre de nuits et le détail des nuits viennent UNIQUEMENT de ce bloc, même si la fiche du Chercheur dit autre chose : ce bloc est calculé exactement à partir du calendrier, alors que la fiche du Chercheur peut se tromper, et une erreur ici crée une double réservation. En CONFLIT, « points à confirmer » reprend l'Explication du bloc. Le type, les dates, le nombre de personnes, les prix, les acomptes et le profil de paiement restent ceux de la fiche du Chercheur.\n\n────────────────────────────────────────\n2) MESSAGE POUR LE VOYAGEUR (à envoyer par la gérante, 80 mots maximum, vouvoiement)\n────────────────────────────────────────\n- DISPONIBLE : remercier, rappeler chambre, dates, prix par nuit et acompte par nuit, et\
+            \ écrire : « Votre demande est bien reçue ; elle sera confirmée par l'auberge après réception de l'acompte. »\n- CONFLIT : remercier, dire que la chambre demandée n'est pas libre toutes les nuits, sans proposer d'autre chambre ni d'autres dates (la gérante décide), et annoncer une réponse de l'auberge.\n- Paiement de l'acompte :\n  - Sénégal → « Acompte possible par Wave ou Orange Money ; l'auberge vous envoie le numéro. »\n  - étranger / diaspora → « L'auberge vous indiquera une autre modalité de paiement de l'acompte. »\n  - non précisé → les deux phrases.\n\nRÈGLES :\n- Utiliser uniquement les données reçues (fiche du CHERCHEUR et bloc de vérification). Si une donnée manque, écrire exactement : Non disponible.\n- Ne jamais écrire que la réservation est confirmée, ni que TerangaStay a effectué une réservation ou un paiement.\n- Ne jamais inventer un numéro de téléphone, un lien de paiement, un prix ou une disponibilité.\n- Pas de jargon technique.\n"
         - id: 5fef9d80-c825-4990-93be-85d8e2c01a15
           role: user
-          text: '{{#1790196003784.text#}}'
+          text: 'FICHE DU CHERCHEUR :
+
+            {{#1790196003784.text#}}
+
+
+            {{#1790700000004.verification#}}'
+        retry_config:
+          max_retries: 2
+          retry_enabled: true
+          retry_interval: 2000
         selected: false
         title: Redacteur
         type: llm
         vision:
           enabled: false
-      height: 88
+      height: 135
       id: '1790599280777'
       position:
-        x: 1750
+        x: 2050
         y: 800
       positionAbsolute:
-        x: 1750
+        x: 2050
         y: 800
       selected: false
       sourcePosition: right
@@ -543,13 +573,13 @@ workflow:
         selected: false
         title: Sortie 2
         type: end
-      height: 88
+      height: 89
       id: '1790621450167'
       position:
-        x: 2050
+        x: 2350
         y: 850
       positionAbsolute:
-        x: 2050
+        x: 2350
         y: 850
       selected: false
       sourcePosition: right
@@ -557,8 +587,54 @@ workflow:
       type: custom
       width: 242
       zIndex: 0
+    - data:
+        code: "import re\nimport unicodedata\nfrom datetime import date, timedelta\n\n# Dify Code node VERIF_DISPO: deterministic room x night check.\n# The LLM extracts the request; this code decides availability, so no model ever \"computes\" it.\n\nMONTHS = {\n    \"janvier\": 1, \"fevrier\": 2, \"mars\": 3, \"avril\": 4, \"mai\": 5, \"juin\": 6, \"juillet\": 7,\n    \"aout\": 8, \"septembre\": 9, \"octobre\": 10, \"novembre\": 11, \"decembre\": 12,\n}\nMONTH_NAMES = {v: k.replace(\"decembre\", \"décembre\").replace(\"fevrier\", \"février\").replace(\"aout\", \"août\")\n               for k, v in MONTHS.items()}\nYEAR = 2026\n\n\ndef _norm(text):\n    text = unicodedata.normalize(\"NFD\", text or \"\").encode(\"ascii\", \"ignore\").decode().lower()\n    return \" \".join(re.sub(r\"[^a-z0-9]+\", \" \", text).split())\n\n\ndef _field(fiche, label):\n    m = re.search(label + r\"[^:\\n]*:\\s*([^\\n]+)\", fiche, re.IGNORECASE)\n    return m.group(1).strip() if m else \"\"\n\n\ndef _parse_date(text):\n\
+          \    t = _norm(text)\n    m = re.search(r\"\\b(\\d{1,2})(?: er)? ([a-z]+)\", t)\n    if m and m.group(2) in MONTHS:\n        return date(YEAR, MONTHS[m.group(2)], int(m.group(1)))\n    m = re.search(r\"\\b(\\d{1,2}) (\\d{1,2})\\b\", t)  # 21/12 becomes \"21 12\" after _norm\n    if m and 1 <= int(m.group(2)) <= 12:\n        return date(YEAR, int(m.group(2)), int(m.group(1)))\n    return None\n\n\ndef _catalogue(chambres):\n    types = {}\n    for seg in chambres or []:\n        content = seg.get(\"content\", \"\") if isinstance(seg, dict) else str(seg)\n        t = re.search(r\"Type de chambre\\s*:\\s*([^;\\n]+)\", content)\n        n = re.search(r\"Num\\S*ros des chambres\\s*:\\s*([^;\\n]+)\", content)\n        if t and n:\n            types[t.group(1).strip()] = re.findall(r\"C\\d+\", n.group(1))\n    return types\n\n\ndef _calendar(dispo):\n    nights = {}\n    for m in re.finditer(r\"nuit du (\\d{1,2}) (\\S+) : (.*?)\\((Disponible|Complet)\\)\", dispo or \"\"):\n        month\
+          \ = MONTHS.get(_norm(m.group(2)))\n        if month:\n            nights[date(YEAR, month, int(m.group(1)))] = re.findall(r\"C\\d+\", m.group(3))\n    return nights\n\n\ndef _match_type(requested, types):\n    req = _norm(requested)\n    if not req:\n        return None\n    for name in types:\n        if _norm(name) == req:\n            return name\n    words = set(req.split()) - {\"chambre\", \"de\", \"la\", \"le\", \"cote\"}\n    scored = sorted(((len(words & set(_norm(n).split())), n) for n in types), reverse=True)\n    return scored[0][1] if scored and scored[0][0] > 0 else None\n\n\ndef _label(d):\n    return f\"nuit du {d.day} {MONTH_NAMES[d.month]}\"\n\n\ndef main(fiche: str, dispo: str, chambres: list) -> dict:\n    head = \"VÉRIFICATION AUTOMATIQUE DU CALENDRIER (calcul exact, prioritaire sur la fiche du Chercheur)\"\n    types = _catalogue(chambres)\n    calendar = _calendar(dispo)\n    room_type = _match_type(_field(fiche, \"Type de chambre\") or _field(fiche, \"Type\"\
+          ), types)\n    arrival = _parse_date(_field(fiche, \"Arriv\"))\n    departure = _parse_date(_field(fiche, \"D[ée]part\"))\n\n    if not room_type:\n        return {\"verification\": f\"{head}\\nDisponibilité : CONFLIT\\nChambre proposée : aucune\\n\"\n                                \"Explication : type de chambre non reconnu dans le catalogue, la gérante doit vérifier.\"}\n    if not arrival or not departure or departure <= arrival:\n        return {\"verification\": f\"{head}\\nDisponibilité : CONFLIT\\nChambre proposée : aucune\\n\"\n                                \"Explication : dates d'arrivée et de départ illisibles, la gérante doit vérifier.\"}\n\n    stay = [arrival + timedelta(days=i) for i in range((departure - arrival).days)]\n    rooms = types[room_type]\n    missing = [d for d in stay if d not in calendar]\n    free_all = [r for r in rooms if not missing and all(r in calendar[d] for d in stay)]\n\n    details = []\n    for d in stay:\n        if d not in calendar:\n\
+          \            details.append(f\"{_label(d)} : hors calendrier\")\n            continue\n        free = [r for r in rooms if r in calendar[d]]\n        if free:\n            details.append(f\"{_label(d)} : {', '.join(free)}\")\n        elif not calendar[d]:\n            details.append(f\"{_label(d)} : aucune chambre libre (Complet)\")\n        else:\n            details.append(f\"{_label(d)} : aucune chambre de ce type libre\")\n\n    if free_all:\n        status, room = \"DISPONIBLE\", free_all[0]\n        why = f\"{room} est libre chaque nuit du séjour.\"\n    else:\n        status, room = \"CONFLIT\", \"aucune\"\n        why = (\"une ou plusieurs nuits sont hors du calendrier, la gérante doit vérifier.\" if missing\n               else \"aucune chambre de ce type n'est libre toutes les nuits du séjour.\")\n\n    return {\"verification\": \"\\n\".join([\n        head,\n        f\"Disponibilité : {status}\",\n        f\"Type de chambre : {room_type}\",\n        f\"Chambre proposée\
+          \ : {room}\",\n        f\"Nombre de nuits : {len(stay)}\",\n        f\"Détail des nuits : {' ; '.join(details)}\",\n        f\"Explication : {why}\",\n    ])}\n"
+        code_language: python3
+        desc: Calcul exact chambre × nuits (aucun LLM)
+        outputs:
+          verification:
+            children: null
+            type: string
+        selected: false
+        title: VERIF_DISPO
+        type: code
+        variables:
+        - value_selector:
+          - '1790196003784'
+          - text
+          value_type: string
+          variable: fiche
+        - value_selector:
+          - '1790700000003'
+          - output
+          value_type: string
+          variable: dispo
+        - value_selector:
+          - '1790700000001'
+          - result
+          value_type: array[object]
+          variable: chambres
+      height: 54
+      id: '1790700000004'
+      position:
+        x: 1750
+        y: 800
+      positionAbsolute:
+        x: 1750
+        y: 800
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
     viewport:
-      x: 60
-      y: -40
-      zoom: 0.42
+      x: -332.36453924588966
+      y: 54.85890413254447
+      zoom: 0.58659889580094
   rag_pipeline_variables: []
