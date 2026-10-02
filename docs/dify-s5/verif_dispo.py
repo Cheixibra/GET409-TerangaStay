@@ -1,3 +1,4 @@
+import json
 import re
 import unicodedata
 from datetime import date, timedelta
@@ -71,6 +72,12 @@ def _label(d):
     return f"nuit du {d.day} {MONTH_NAMES[d.month]}"
 
 
+def _result(text, status, room=None, room_type=None, stay=()):
+    # Second output for the app: same values as the exact check, never produced by an LLM.
+    reservation = {"statut": status, "chambre": room, "type": room_type, "nuits": [d.isoformat() for d in stay]}
+    return {"verification": text, "reservation": json.dumps(reservation, ensure_ascii=False)}
+
+
 def main(fiche: str, dispo: str, chambres: list) -> dict:
     head = "VÉRIFICATION AUTOMATIQUE DU CALENDRIER (calcul exact, prioritaire sur la fiche du Chercheur)"
     types = _catalogue(chambres)
@@ -80,11 +87,11 @@ def main(fiche: str, dispo: str, chambres: list) -> dict:
     departure = _parse_date(_field(fiche, "D[ée]part"))
 
     if not room_type:
-        return {"verification": f"{head}\nDisponibilité : CONFLIT\nChambre proposée : aucune\n"
-                                "Explication : type de chambre non reconnu dans le catalogue, la gérante doit vérifier."}
+        return _result(f"{head}\nDisponibilité : CONFLIT\nChambre proposée : aucune\n"
+                       "Explication : type de chambre non reconnu dans le catalogue, la gérante doit vérifier.", "CONFLIT")
     if not arrival or not departure or departure <= arrival:
-        return {"verification": f"{head}\nDisponibilité : CONFLIT\nChambre proposée : aucune\n"
-                                "Explication : dates d'arrivée et de départ illisibles, la gérante doit vérifier."}
+        return _result(f"{head}\nDisponibilité : CONFLIT\nChambre proposée : aucune\n"
+                       "Explication : dates d'arrivée et de départ illisibles, la gérante doit vérifier.", "CONFLIT", None, room_type)
 
     stay = [arrival + timedelta(days=i) for i in range((departure - arrival).days)]
     rooms = types[room_type]
@@ -112,7 +119,7 @@ def main(fiche: str, dispo: str, chambres: list) -> dict:
         why = ("une ou plusieurs nuits sont hors du calendrier, la gérante doit vérifier." if missing
                else "aucune chambre de ce type n'est libre toutes les nuits du séjour.")
 
-    return {"verification": "\n".join([
+    return _result("\n".join([
         head,
         f"Disponibilité : {status}",
         f"Type de chambre : {room_type}",
@@ -120,4 +127,4 @@ def main(fiche: str, dispo: str, chambres: list) -> dict:
         f"Nombre de nuits : {len(stay)}",
         f"Détail des nuits : {' ; '.join(details)}",
         f"Explication : {why}",
-    ])}
+    ]), status, room if status == "DISPONIBLE" else None, room_type, stay)
