@@ -10,6 +10,7 @@ Les résultats marqués ✅ ont été constatés ; ceux marqués ⏳ sont à com
 | P2 | Prompt SYSTEM du Chercheur (RAG à deux recherches) | Dify — nœud LLM | Prompt structuré + règles (Tutoriel RAG à deux recherches) | ✅ workflow publié · ✅ T1–T4 (4/4) |
 | P3 | Connecter le MVP Lovable au webhook Dify | Lovable | Prompt d'intégration (E3, adapté Lovable) | ⏳ à envoyer dans Lovable |
 | P4 | Test de cohérence du pipeline RAG | Dify « Exécuter test » + Claude | Zero-shot (S2) puis CoT (E5) | ✅ récupération · ✅ bout en bout (API) |
+| P5 | Rendre l'erreur lisible dans le MVP (priorité 1 de l'audit) | Lovable | Prompt d'intégration « 1 prompt = 1 modification » (tutoriel S5+ §6.1) | ✅ T1 inchangé · bouton bloqué pendant l'appel |
 
 ---
 
@@ -296,6 +297,30 @@ workflow https://cloud.dify.ai/app/021babfe-ed51-4d84-b59f-3f2af7b81eb9/workflow
 **Note globale : 17/20.**
 
 **3 priorités avant S6 (une correction à la fois)**
-1. Rendre l'erreur lisible dans le MVP (module E §6.1) : afficher le code HTTP et le message Dify (jamais la clé) au lieu de « Service temporairement indisponible ».
+1. ✅ (P5) Rendre l'erreur lisible dans le MVP (module E §6.1) : afficher le code HTTP et le message Dify (jamais la clé) au lieu de « Service temporairement indisponible ».
 2. Sécuriser la démo : vérifier le quota AI Studio le matin de S6, ne rejouer que les tests nécessaires, Plan B ([`plan-b-demo-s6.md`](plan-b-demo-s6.md)) ouvert dans un onglet.
 3. Rejouer la batterie complète T1–T6 + météo une fois le quota rétabli, pour confirmer T2–T5 avec `VERIF_DISPO`.
+
+---
+
+## P5 — Rendre l'erreur lisible dans le MVP (02/10/2026)
+
+**Objectif** : remplacer « Service temporairement indisponible » par la cause (quota, surcharge, clé, délai), sans jamais
+afficher la clé — priorité n° 1 de l'audit. Envoyé dans Lovable (1 prompt = 1 modification) :
+
+```
+Modifie uniquement la gestion des erreurs de l'Assistant de réservation (la fonction serveur qui appelle Dify et le
+composant qui affiche le résultat). Ne change rien d'autre : ni le style, ni les bandeaux, ni les autres pages.
+1. Fonction serveur : en cas d'échec, renvoyer { ok: false, error: "<message court>" } : secret absent → « Clé API absente
+   du serveur » ; HTTP non 2xx → « Dify <code> : <message> » ; HTTP 200 + data.status = "failed" → quota → « Quota du
+   modèle IA épuisé pour aujourd'hui », 503 / high demand → « Modèle IA surchargé, réessayez dans 1 minute », 429 → « Trop
+   de demandes rapprochées, attendez 1 minute », sinon les 150 premiers caractères de data.error ; délai 30 s → « Délai
+   dépassé (30 s), réessayez » ; réseau → « Dify injoignable (réseau) ». Jamais la clé, les en-têtes ni la trace.
+2. Composant : « Service temporairement indisponible (<message>) » en rouge.
+3. Bouton « Analyser la demande » désactivé pendant l'appel (pas de double envoi).
+```
+
+**Résultat** ✅ T1 sur le MVP inchangé (🟡 C7 · 28000 / 8400) ; bouton grisé + « Analyse en cours… » pendant l'appel,
+ce qui supprime le double appel observé à 07:11:48 (itération 3). Le chemin d'erreur sera vérifié à la prochaine panne
+réelle (on ne casse pas volontairement la clé). Note /5 : 4 (chemin d'erreur non encore observé).
+**Risque éthique** : afficher un détail technique sensible → garde-fou : messages fixes, jamais la clé ni la trace.
