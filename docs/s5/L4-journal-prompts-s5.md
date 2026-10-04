@@ -367,3 +367,22 @@ https://teranga-stay.lovable.app depuis un smartphone (check-list §8 : lien tes
 | T8 | C9 sans alerte · CONFLIT non ajouté · liste vide après rechargement | ✅ |
 
 **8/8.** Note : l'URL publique a changé (`teranga-stay.lovable.app`) ; l'ancienne renvoie 404.
+
+---
+
+## Module F — Mise en ligne hors Lovable sur Cloudflare Workers (04/10/2026)
+
+Demandé par l'instructeur. Piste 1 du tutoriel (projet TanStack Start, preset Nitro `cloudflare-module`, aucune
+modification du code). Fait manuellement par l'étudiant, guidé étape par étape :
+
+| Étape | Commande | Résultat |
+|-------|----------|----------|
+| F1 Compiler | `git pull && npm install && npm run build` | ✅ `.output/server/wrangler.json` généré |
+| F2 Se connecter | `npx -y wrangler@4 login` puis `whoami` | ✅ permission `workers (write)` |
+| F3 Déployer | `npx -y wrangler@4 deploy --name terangastay` | ✅ https://terangastay.sdiengdk.workers.dev |
+| F4 Secret | clé lue dans `.env.local` et transmise par l'entrée standard à `wrangler secret put DIFY_API_KEY` (aucun copier-coller) ; `secret list` | ✅ l'assistant répond |
+
+**Pièges** : avertissement « macOS 12.6 non supporté » → concerne seulement le runtime local (`wrangler dev`), pas le
+déploiement. Le dossier local était resté sur une ancienne branche → revenu sur `main`, branches fusionnées supprimées.
+**Mise à jour** : les modifications faites dans Lovable ne sont pas redéployées automatiquement sur Cloudflare —
+`git pull && npm run build && npx -y wrangler@4 deploy --name terangastay` (le secret est conservé).

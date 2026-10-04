@@ -15,7 +15,7 @@ sur https://teranga-stay.lovable.app.
 | Texte envoyé à l'IA | données personnelles transmises à Dify et à Google (offre gratuite pouvant réutiliser les requêtes) | rappel « n'y collez ni nom ni numéro de téléphone » ; données de test fictives ; page Confidentialité | contrôle visuel du MVP |
 | Formulaire « Demander » | faire croire qu'une demande est envoyée ; collecte inutile | plus de faux « Demande envoyée » : message préparé à copier, avertissement « non transmise, pas une réservation » ; ni e-mail ni téléphone demandés | parcours testé le 04/10 |
 | Carte des hébergements | révéler l'adresse d'un établissement ; IP envoyée à un tiers | position à la localité seulement ; tuiles OpenStreetMap mentionnées dans la page Confidentialité | contrôle visuel |
-| Clé API Dify | fuite de la clé | appel côté serveur uniquement (`createServerFn`), secret Lovable / `.env.local` ignoré par Git ; erreurs affichées sans clé ni trace | aucune clé dans le code public (vérifié), P5 ✅ |
+| Clé API Dify | fuite de la clé | appel côté serveur uniquement (`createServerFn`), secret Lovable et secret Cloudflare (`wrangler secret`, transmis sans copier-coller) / `.env.local` ignoré par Git ; erreurs affichées sans clé ni trace | aucune clé dans le code public (vérifié), P5 ✅ |
 | Dépendance aux API gratuites | panne pendant l'usage ou la démo (Groq retiré, quota Gemini épuisé, 503) | modèle avec notre propre clé, 2 nouvelles tentatives, erreur lisible, délai 45 s, Plan B | itérations 1, 6, 7 ; [`plan-b-demo-s6.md`](plan-b-demo-s6.md) |
 | Langue | exclusion des voyageurs non francophones ou wolophones | limite assumée : français uniquement, aucune traduction automatique non vérifiée par un locuteur | — (limite connue) |
 
