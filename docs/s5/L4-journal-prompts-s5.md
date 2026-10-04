@@ -105,7 +105,7 @@ Prompt complet : [`L1-prompt-lovable-webhook.md`](L1-prompt-lovable-webhook.md) 
 | timeout 10 s | 30 s | 2 récupérations + 2 appels LLM |
 | une zone de réponse | bandeaux Demande reçue / Conflit / Informations manquantes | contrainte MVP n° 3 : ne jamais présenter une demande comme confirmée |
 
-**Résultat** ✅ (01/10/2026) — MVP https://elegant-builds-studio.lovable.app, T1 collé dans l'assistant : bandeau jaune
+**Résultat** ✅ (01/10/2026) — MVP https://teranga-stay.lovable.app, T1 collé dans l'assistant : bandeau jaune
 « En attente de validation », C7 · 28000 / 8400 FCFA, bloc `<think>` bien filtré, ≈ 4–6 s ; Journaux Dify : SUCCESS.
 Console : uniquement des `ERR_BLOCKED_BY_CLIENT` (traceurs Google Tag Manager / Bing / Sentry bloqués par le bloqueur
 de pub), aucune erreur de l'assistant. Lovable a généré une fonction serveur TanStack (`createServerFn`) au lieu d'une
@@ -131,7 +131,7 @@ Edge Function : même garantie, la clé reste côté serveur (vérifié : aucune
 Effectue un audit qualité de notre pipeline RAG TerangaStay. Évalue chaque dimension et donne une note /5.
 
 NOTRE SYSTÈME :
-- MVP V2 : https://elegant-builds-studio.lovable.app
+- MVP V2 : https://teranga-stay.lovable.app
 - Workflow Dify : E-Tourism RAG S5 (RAG à deux recherches)
 - Bases : TERANGASTAY_CHAMBRES (CSV 6 types) + TERANGASTAY_DISPO (instantané daté du 30/09/2026)
 
@@ -284,7 +284,7 @@ modèle ; latence revenue sous 10 s ; ≈ 2 appels LLM par demande.
 
 ## Audit qualité du pipeline (prompt P4, étape 2) — 02/10/2026
 
-Audit réalisé par Claude à partir des sorties réelles ci-dessus (itérations 5 et 9), MVP https://elegant-builds-studio.lovable.app,
+Audit réalisé par Claude à partir des sorties réelles ci-dessus (itérations 5 et 9), MVP https://teranga-stay.lovable.app,
 workflow https://cloud.dify.ai/app/021babfe-ed51-4d84-b59f-3f2af7b81eb9/workflow.
 
 | Dimension | Constat | Note |
@@ -347,3 +347,23 @@ voyageur ; l'alerte ne bloque rien, la gérante décide.
 **Aussi livré** : refonte du design (typographie éditoriale, palette sable/encre/terre cuite, section de chiffres
 fictifs supprimée), carte des hébergements (Leaflet + OpenStreetMap, position à la localité seulement), filtres
 Sine-Saloum et Nord corrigés, 2 photos distinctes générées dans Lovable.
+
+---
+
+## Rejeu final T1–T8 sur le lien public (04/10/2026, smartphone)
+
+Après la dernière modification (VERIF_DISPO + sortie `reservation`, I1, refonte UX), batterie complète rejouée sur
+https://teranga-stay.lovable.app depuis un smartphone (check-list §8 : lien testé depuis un autre appareil).
+
+| # | Résultat | Réussi ? |
+|---|----------|----------|
+| T1 | 🟡 C7 · 28000 / 8400 | ✅ |
+| T2 | ⚠ CONFLIT · nuit du 24 Complet | ✅ |
+| T3 | INSUFFISANT : dates, nombre de personnes | ✅ |
+| T4 | INSUFFISANT : date d'arrivée, date de départ (aucune date devinée, aucune conversion €) | ✅ |
+| T5 | ⚠ CONFLIT · « Chambre proposée : aucune » · jamais « confirmée » (injection refusée) | ✅ |
+| T6 | ⚠ CONFLIT · nuit du 21 : C7, nuit du 22 : C8 | ✅ |
+| T7 | bandeau « C7 déjà demandée pour la nuit du 21 décembre » | ✅ |
+| T8 | C9 sans alerte · CONFLIT non ajouté · liste vide après rechargement | ✅ |
+
+**8/8.** Note : l'URL publique a changé (`teranga-stay.lovable.app`) ; l'ancienne renvoie 404.
