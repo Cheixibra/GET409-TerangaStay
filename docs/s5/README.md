@@ -9,6 +9,7 @@ Séance 5 (GET 409) : connecter le MVP Lovable à l'agent Dify et ancrer ses ré
 | **L2** — Pipeline RAG opérationnel (30 pts) | Bases `TERANGASTAY_CHAMBRES` + `TERANGASTAY_DISPO` indexées ; workflow « E-Tourism RAG S5 » (RAG à deux recherches) | [`../dify-s5/`](../dify-s5/README.md) · [`E-Tourism-RAG-S5.yml`](../dify-s5/E-Tourism-RAG-S5.yml) | ✅ bases indexées (captures « Disponible » : 385 et 83 récupérations) · ✅ workflow publié : https://cloud.dify.ai/app/021babfe-ed51-4d84-b59f-3f2af7b81eb9/workflow (Gemini Flash-Lite + nœud Code VERIF_DISPO) · ✅ T1–T6 validés · ✅ capture du canvas |
 | **L3** — Schéma d'architecture V2 (20 pts) | MVP Lovable → Edge Function (webhook) → Agent Dify → RAG → bases de connaissances | [`L3-architecture-v2.png`](L3-architecture-v2.png) · [`L3-architecture-v2.svg`](L3-architecture-v2.svg) | ✅ |
 | **L4** — Journal de prompts S5 (20 pts) | 4 prompts documentés : base RAG, Chercheur, webhook Lovable, test de cohérence | [`L4-journal-prompts-s5.md`](L4-journal-prompts-s5.md) | ✅ batterie T1–T6, 9 itérations, audit 17/20 |
+| Note d'éthique S6 | Risque, garde-fou et test par fonctionnalité | [`note-ethique-s6.md`](note-ethique-s6.md) | ✅ |
 | Bonus S6 — Plan B | Réponses simulées cohérentes avec les bases, en cas de panne API | [`plan-b-demo-s6.md`](plan-b-demo-s6.md) | ✅ |
 
 ![Architecture V2](L3-architecture-v2.png)
