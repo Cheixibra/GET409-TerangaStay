@@ -43,13 +43,25 @@ Le HMW S2 affine celui de S1 autour du problème prioritaire identifié avec Ast
 
 ## Livrables S5
 
-- [ ] L1 — MVP V2 Lovable connecté à l'agent Dify ([prompt d'intégration](./docs/s5/L1-prompt-lovable-webhook.md))
+- [x] L1 — MVP V2 Lovable connecté à l'agent Dify ([prompt d'intégration](./docs/s5/L1-prompt-lovable-webhook.md)) : https://teranga-stay.lovable.app
 - [x] L2 — Bases RAG indexées + workflow « RAG à deux recherches » ([kit Dify](./docs/dify-s5/README.md))
 - [x] L3 — [Schéma d'architecture V2](./docs/s5/L3-architecture-v2.png)
 - [x] L4 — [Journal de prompts S5](./docs/s5/L4-journal-prompts-s5.md)
 - [x] Plan B démo S6 ([réponses simulées](./docs/s5/plan-b-demo-s6.md))
 
 Détail et statut : [`docs/s5/`](./docs/s5/README.md).
+
+## Livrables S5+ (application mise à jour)
+
+- [x] Application en ligne : https://teranga-stay.lovable.app · hors Lovable (Cloudflare Workers) : https://terangastay.sdiengdk.workers.dev
+- [x] Vérification de disponibilité chambre × nuits par un nœud Code (`VERIF_DISPO`), sans LLM
+- [x] Fonctionnalité innovante I1 — alerte de conflit entre demandes ([spec](./docs/s5/I1-spec-alerte-conflit.md))
+- [x] Batterie de tests T1–T8 : 8/8 sur smartphone ([journal L4](./docs/s5/L4-journal-prompts-s5.md))
+- [x] [Note d'éthique](./docs/s5/note-ethique-s6.md) : une ligne par fonctionnalité (risque, garde-fou, preuve)
+
+## Atelier Claude Code
+
+Épisodes E00 à E13 (+ E14 en bonus) : [`atelier-claude-code/`](./atelier-claude-code/README.md) — un dossier et un commit par épisode.
 
 ## Dossier S2
 
