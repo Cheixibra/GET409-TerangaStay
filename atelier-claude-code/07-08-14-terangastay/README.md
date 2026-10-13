@@ -20,7 +20,7 @@ Dépôt : `elegant-builds-studio`, branche `chore/claude-code-setup`.
 | E08 | `.claude/settings.json` (nouveau) | `9f6f097` |
 | E07 | `CLAUDE.md` (nouveau, 110 lignes) | `50c26f7` |
 | — | `package.json` : script `typecheck` | `2ce0a23` |
-| E14 | `.claude/agents/terangastay-reviewer.md` | *à venir, phase 6* |
+| E14 | `.claude/agents/terangastay-reviewer.md` (nouveau, 30 lignes) | `216b20b` |
 
 ## Instantanés gelés
 
@@ -33,6 +33,7 @@ la vérifier. La source de vérité est le dépôt applicatif ; **ne pas éditer
 | `snapshot-CLAUDE.md` | `elegant-builds-studio/CLAUDE.md` |
 | `snapshot-claude-settings.json` | `elegant-builds-studio/.claude/settings.json` |
 | `snapshot-env.example` | `elegant-builds-studio/.env.example` |
+| `snapshot-terangastay-reviewer.md` | `elegant-builds-studio/.claude/agents/terangastay-reviewer.md` |
 
 Vérification par un correcteur qui a les deux dépôts :
 
@@ -41,9 +42,11 @@ cd ~/claude-lab/elegant-builds-studio
 diff CLAUDE.md                ../GET409-TerangaStay/atelier-claude-code/07-08-14-terangastay/snapshot-CLAUDE.md
 diff .claude/settings.json     ../GET409-TerangaStay/atelier-claude-code/07-08-14-terangastay/snapshot-claude-settings.json
 diff .env.example              ../GET409-TerangaStay/atelier-claude-code/07-08-14-terangastay/snapshot-env.example
+diff .claude/agents/terangastay-reviewer.md \
+     ../GET409-TerangaStay/atelier-claude-code/07-08-14-terangastay/snapshot-terangastay-reviewer.md
 ```
 
-Trois sorties vides = les copies sont à jour.
+Quatre sorties vides = les copies sont à jour.
 
 ## E08 — ce qui était réellement troué
 
@@ -114,12 +117,48 @@ récupéré la branche — les règles `deny` d'un projet sont lues au démarrag
 - [ ] `captures/deny-env-local.png` — demander la lecture de `.env.local` et photographier le refus
       de permission. C'est la preuve que `.claude/settings.json` agit.
 - [ ] `captures/check-ignore.png` — la sortie de `git check-ignore -v .env` dans le terminal.
-- [ ] `captures/sous-agent-audit.png` — le sous-agent E14 en train de rendre son rapport *(phase 6)*.
+- [ ] `captures/sous-agent-audit.png` — le sous-agent `terangastay-reviewer` en train de rendre son rapport.
 
-## E14 — à venir
+## E14 — sous-agent de sécurité
 
 Le sous-agent de la passe 1, `promptlens/.claude/agents/firebase-reviewer.md`, **ne transfère pas** :
 TerangaStay n'utilise pas Firebase mais Dify, une fonction serveur et Cloudflare Workers. Il reste
 en place, intact, et redevient utile le jour où un projet Firebase revient.
 
-Le remplaçant, `terangastay-reviewer.md`, et son rapport `security-audit.md` arrivent en phase 6.
+Le remplaçant, `terangastay-reviewer`, garde la forme de la passe 1 — `tools: Read, Grep, Glob`,
+`model: sonnet`, « Never edit files. » — avec six contrôles re-pointés sur ce produit :
+
+1. frontière du secret `DIFY_API_KEY` (jamais en `VITE_*`, jamais dans `.output/`)
+2. validation Zod et plafond de longueur sur chaque `createServerFn`
+3. surfaces d'erreur : ni clé, ni en-tête, ni trace renvoyés au client (`extractErrorMessage`)
+4. invariants d'honnêteté : aucun statut « confirmée », aucun total côté client, l'objet
+   `reservation` issu uniquement de la sortie `VERIF_DISPO` validée
+5. données personnelles : rien de persisté, `pending-requests.ts` en mémoire d'onglet
+6. surface de déploiement : secret par `wrangler secret`, aucune clé versionnée
+
+Les contrôles 4 et 5 sont ce qui rend cet agent spécifique au projet et pas seulement générique :
+il audite les règles de la note d'éthique, pas uniquement des fuites de secret.
+
+### Lancer l'audit — à faire de ton côté
+
+Un agent défini dans `.claude/agents/` est chargé au **démarrage** de la session. Il n'était donc
+pas disponible dans la session qui l'a écrit : l'audit doit être lancé dans une session neuve,
+ouverte sur `elegant-builds-studio`, après avoir récupéré la branche.
+
+```bash
+cd ~/claude-lab/elegant-builds-studio
+git checkout chore/claude-code-setup
+claude            # nouvelle session
+```
+
+Puis, dans la session : `/agents` doit lister `terangastay-reviewer`. Demande-lui l'audit, et
+colle son rapport dans `security-audit.md` à côté de ce fichier.
+
+- [ ] `security-audit.md` — le rapport, avec sévérité, `fichier:ligne`, cause et correctif
+- [ ] vérifier qu'il n'a rien modifié : `git status` doit rester propre après son passage
+
+Ce que le rapport devrait relever, si l'agent fait son travail : le bandeau de
+`src/components/agent-search.tsx` est décidé par `getBanner(text)`, qui cherche une
+sous-chaîne dans la prose du Rédacteur, alors que le verdict déterministe est disponible dans
+`reservation.statut`. C'est le contrôle 4. Ne pas corriger avant que l'agent l'ait signalé :
+le rapport est la preuve notée de l'épisode.
