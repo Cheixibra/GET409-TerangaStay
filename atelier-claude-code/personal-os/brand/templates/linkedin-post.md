@@ -4,4 +4,5 @@
 <Ce qu'on a fait, verbes concrets.>
 <Ce que ça dit du métier, une phrase.>
 <Formule de clôture de la charte>
-#Dakar #<thème> #<thème>
+#<lieu> #<thème> #<thème>
+<!-- Hashtag rules (how many, which one is mandatory) come from the active brand skill. -->

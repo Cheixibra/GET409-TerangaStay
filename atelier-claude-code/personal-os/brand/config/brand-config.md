@@ -1,66 +1,19 @@
-<!-- Brand kit used by every output meant for others (CLAUDE.md § 4). Mirrors ~/.claude/skills/ata-brand. -->
+<!-- Pointer only. Brand values live in the installed skills, never here (CLAUDE.md § 4). -->
 
-# ATA suarl — brand identity
+# Brand kit — where the values live
 
-Apply to every output meant for others: emails, social posts, HTML pages, documents, UI copy.
+This file used to duplicate `~/.claude/skills/ata-brand/SKILL.md` in full (66 lines).
+Two copies of a palette drift; one of them is then wrong without anyone noticing.
+So this is a pointer, and the skills are the single source of truth.
 
-> Values marked (proposé) were proposed during the workshop and must be validated by the founder.
-
-## Identity
-- ATA suarl — creative technology studio, Dakar, Sénégal
-- Crafts: 3D animation, XR experiences, video games, generative AI
-- Clients: brands and cultural institutions
-- Tagline: « Des mondes réels et imaginaires, fabriqués à Dakar »
-
-## Palette (proposé — inspired by Dakar's painted "car rapide" buses)
-| Role       | Name         | Hex      |
-|------------|--------------|----------|
-| Primary    | Route blue   | #15307A  |
-| Accent     | Car yellow   | #F4C21B  |
-| Background | Chalk        | #F5F6F1  |
-| Text       | Ink          | #0F1A3D  |
-| Support    | Signal red   | #CF3B2B (small doses: shadows, highlights) |
-| Support    | Ocean        | #2C82C9  |
+| Context | Skill to invoke | Source of its values |
+|---------|-----------------|----------------------|
+| TerangaStay — the real project (auberges, direct booking requests) | `/terangastay-brand` | harvested from production code and project docs |
+| ATA suarl — the fictional studio used by the Claude Code workshop (pass 1, 30/09/2026) | `/ata-brand` | proposed during the workshop, never validated |
 
 Rules:
-- Text on primary: Chalk. Text on accent: Ink. Never yellow text on chalk (contrast).
-- Accent is for one call to action per piece, not decoration.
-- Hard offset shadows (4px 4px 0 Signal red) instead of blurred shadows.
-
-## Typography (proposé)
-- Headings: Barlow Condensed ExtraBold, uppercase for display headlines only
-  (fallback: "Avenir Next Condensed", "Arial Narrow", sans-serif)
-- Body: Source Sans 3 Regular (fallback: "Gill Sans", "Trebuchet MS", sans-serif)
-- Emails: body in the fallback stacks only (no web fonts in email clients)
-
-## Voice
-- Chaleureux, inventif, exigeant — precise, never salesy
-- French by default; vouvoiement with clients, tutoiement never in first contact
-- Short sentences. Concrete verbs. One idea per paragraph.
-- Talk about what we make and how, not about how great we are
-
-## Words
-Use:
-- fabriquer, imaginer, prototype, atelier, sur mesure, immersif, en temps réel,
-  à Dakar, ensemble, cadrer, la suite
-
-Avoid (banned):
-- révolutionnaire, disruptif, leader, n°1, incroyable, unique en son genre,
-  synergie, game-changer, clé en main, booster, solution innovante
-- any invented client name, figure, award or testimonial
-
-## Formatting
-- Emojis: none in client emails; at most 1 in social posts
-- Hashtags: max 3, always including #Dakar
-- Dates: « 12 octobre 2026 » style, 24h times
-
-## Sign-offs (pick one, verbatim)
-- « Au plaisir de fabriquer la suite ensemble. »
-- « À très vite, depuis l'atelier de Dakar. »
-- « L'équipe ATA suarl »
-
-## Self-check before sending any output
-1. No banned word
-2. Palette respected (only the hex values above)
-3. Ends with one sign-off from the list
-4. No invented facts
+- Invoke the skill at the start of the conversation; do not paste its values into other files.
+- Anything written for TerangaStay uses `/terangastay-brand`. ATA is course fiction and stays
+  available only so the pass-1 workshop evidence remains reproducible.
+- The templates in `../templates/` are brand-neutral scaffolds: the voice, the palette,
+  the sign-off and the hashtags all come from whichever skill is active.

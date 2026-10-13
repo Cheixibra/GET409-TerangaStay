@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Réservez en direct — Auberge de Toubab Dialaw</title>
+<!--
+  A4 counter flyer, generated with the /terangastay-brand skill.
+  Colours: oklch is the source of truth. Each token declares a derived sRGB value FIRST,
+  so an older browser that cannot parse oklch keeps the hex and the flyer still prints.
+  Fonts: fallback stacks only — the page must open offline, with no remote font file.
+  Photograph: terangastay-coast.jpg, copied from elegant-builds-studio/src/assets/.
+  No invented phone number, email or price: see the bracketed placeholders.
+-->
+<style>
+  :root {
+    --sable: #fbf7f0;        --sable: oklch(0.978 0.011 85);
+    --sable-chaud: #f5eddf;  --sable-chaud: oklch(0.948 0.02 80);
+    --encre: #0e222a;        --encre: oklch(0.24 0.03 225);
+    --encre-douce: #4f6168;  --encre-douce: oklch(0.48 0.025 225);
+    --terre: #bf623d;        --terre: oklch(0.6 0.13 42);
+    --terre-forte: #a84d2b;  --terre-forte: oklch(0.53 0.13 40);
+    --teal: #005b63;         --teal: oklch(0.43 0.075 205);
+    --bordure: #ded6c9;      --bordure: oklch(0.88 0.02 80);
+    --blanc-chaud: #fcfcf9;  --blanc-chaud: oklch(0.99 0.003 96);
+    --jaune-doux: #fff2b5;   --jaune-doux: oklch(0.96 0.08 95);
+    --jaune-texte: #6e5000;  --jaune-texte: oklch(0.45 0.1 85);
+    --serif: ui-serif, Georgia, serif;
+    --sans: ui-sans-serif, "Helvetica Neue", Arial, sans-serif;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--sable-chaud); font-family: var(--sans); color: var(--encre); }
+  .sheet {
+    width: 210mm; height: 297mm; margin: 0 auto; background: var(--sable);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .hero { position: relative; height: 92mm; flex: none; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-veil {
+    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 12mm 14mm;
+    background: linear-gradient(to top, rgba(14, 34, 42, 0.78), rgba(14, 34, 42, 0.15));
+    background: linear-gradient(to top, oklch(0.24 0.03 225 / 0.78), oklch(0.24 0.03 225 / 0.15));
+    color: var(--blanc-chaud);
+  }
+  .eyebrow { font-family: var(--serif); font-style: italic; font-size: 5mm; margin: 0 0 2mm; }
+  .hero-veil .eyebrow { color: var(--blanc-chaud); }
+  h1 {
+    font-family: var(--serif); font-weight: 500; font-size: 13mm; line-height: 1.05;
+    letter-spacing: -0.015em; margin: 0; text-wrap: balance;
+  }
+  .body { padding: 12mm 14mm; display: flex; flex-direction: column; gap: 8mm; flex: 1; }
+  .lead { font-size: 4.6mm; line-height: 1.55; margin: 0; max-width: 62ch; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 6.5mm; margin: 0 0 4mm; letter-spacing: -0.01em; }
+  ol { margin: 0; padding-left: 7mm; display: flex; flex-direction: column; gap: 3mm; }
+  li { font-size: 4.2mm; line-height: 1.5; }
+  li strong { color: var(--terre-forte); }
+  .note {
+    background: var(--jaune-doux); border: 0.4mm solid var(--bordure); border-radius: 2mm;
+    padding: 5mm 6mm; font-size: 4mm; line-height: 1.5; color: var(--jaune-texte);
+  }
+  .note strong { display: block; margin-bottom: 1.5mm; }
+  .contact {
+    margin-top: auto; border-top: 0.4mm solid var(--bordure); padding-top: 6mm;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 8mm;
+  }
+  .contact-lines { font-size: 4.2mm; line-height: 1.6; }
+  .contact-lines .name { font-family: var(--serif); font-size: 5.5mm; display: block; margin-bottom: 1.5mm; }
+  .cta {
+    background: var(--teal); color: var(--blanc-chaud); border-radius: 2mm;
+    padding: 4mm 7mm; font-size: 4.4mm; font-weight: 700; text-align: center; white-space: nowrap;
+  }
+  .sign { font-family: var(--serif); font-style: italic; color: var(--terre-forte); font-size: 4.4mm; margin: 0; }
+  .src { font-size: 3.2mm; color: var(--encre-douce); margin: 0; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="hero">
+      <img src="terangastay-coast.jpg" alt="Terrasse d'une auberge sur la côte sénégalaise" />
+      <div class="hero-veil">
+        <p class="eyebrow">Auberge de Toubab Dialaw</p>
+        <h1>La prochaine fois, réservez en direct.</h1>
+      </div>
+    </div>
+
+    <div class="body">
+      <p class="lead">
+        Vous avez réservé par une plateforme. La prochaine fois, écrivez-nous directement :
+        vous parlez à la personne qui vous accueille, et ce que vous payez reste à l'auberge.
+      </p>
+
+      <div>
+        <h2>Comment ça se passe</h2>
+        <ol>
+          <li><strong>Vous écrivez</strong> par WhatsApp ou par téléphone : vos dates, le nombre
+            de personnes, le type de chambre.</li>
+          <li><strong>Nous vérifions le calendrier</strong> nuit par nuit et nous vous répondons
+            avec la chambre, le tarif et l'acompte.</li>
+          <li><strong>Nous confirmons</strong> votre séjour dès réception de l'acompte, par Wave
+            ou Orange Money.</li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <strong>Une demande n'est pas encore une réservation.</strong>
+        Tant que l'acompte n'est pas reçu, la chambre reste en attente et nous vous le disons
+        clairement. C'est l'auberge, et personne d'autre, qui confirme votre séjour.
+      </div>
+
+      <div class="contact">
+        <div class="contact-lines">
+          <span class="name">Astou Sarr</span>
+          Téléphone et WhatsApp : [téléphone de l'auberge]<br />
+          E-mail : [e-mail de l'auberge]<br />
+          <span class="src">Chambres doubles à partir de 18 000 FCFA la nuit —
+            catalogue du 30 septembre 2026, à confirmer avec l'auberge.</span>
+        </div>
+        <div class="cta">Réservez en direct</div>
+      </div>
+
+      <p class="sign">Au plaisir de vous accueillir en direct.</p>
+    </div>
+  </div>
+</body>
+</html>

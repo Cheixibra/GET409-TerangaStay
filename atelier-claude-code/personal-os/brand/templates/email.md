@@ -8,4 +8,5 @@ Bonjour <Prénom>,
 <La demande, une seule, formulée comme une question.>
 
 <Formule de clôture de la charte>
-<Prénom Nom> — ATA suarl, Dakar
+<Prénom Nom> — <organisation>, <ville>
+<!-- Sign-off and voice come from the active brand skill, not from this template. -->
