@@ -1,0 +1,10 @@
+# Server-side secrets. Copy to .env.local and fill in. Never commit the filled file.
+#
+# DIFY_API_KEY is read only inside a createServerFn handler (src/lib/ask-dify.functions.ts).
+# It must NEVER become a VITE_* variable: anything prefixed VITE_ is inlined into the
+# client bundle and shipped to every visitor.
+#
+# Deployment:
+#   Lovable     -> project secret, same name
+#   Cloudflare  -> npx wrangler@4 secret put DIFY_API_KEY   (pipe it in, do not paste)
+DIFY_API_KEY=
