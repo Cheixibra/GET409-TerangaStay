@@ -124,9 +124,13 @@ Use:
 Avoid (banned):
 - révolutionnaire, disruptif, leader, n°1, incroyable, unique en son genre, synergie,
   game-changer, clé en main, booster, solution innovante
+  — banned **about ourselves**. Stating a competitor's market position as an observed fact is
+  not puffery; prefer a neutral phrase anyway, so a grep over our own copy stays clean.
 - **« confirmée », « réservée », « réservation confirmée », « garanti », « disponibilité garantie »,
   « place garantie »** — as a status produced by the product. A request is never a booking.
-  The words may appear only to say that the manager, a human, will confirm.
+  The words may appear only to say that the manager, a human, will confirm — or in an unrelated
+  sense, such as a figure confirmed by a source. What is banned is a *booking status* presented
+  as settled by software.
 - any invented price, phone number, payment link, availability, client name, figure, award
   or testimonial
 - any computed total: prices and deposits are copied from the catalogue, never summed or
