@@ -24,7 +24,10 @@ Workers. There is no Firebase here. Check, in order:
    `src/lib/pending-requests.ts` stays in-tab memory. Map `coords` resolve to a locality,
    never a street address.
 6. **Deploy surface.** The secret is set via `wrangler secret`, no key sits in a tracked
-   file, and `.output/` is ignored.
+   file, and `.output/` is ignored. `.env.example` exists and is tracked, but the deny rule
+   on `./.env.*` hides it from you on purpose: do not report it missing. Cloudflare config
+   is generated at build time by the Nitro preset (`.output/server/wrangler.json`), so its
+   absence from the repo is expected.
 
 Report: severity, `file:line`, why it matters, suggested fix. Say "no finding" for a clean
 check rather than padding. Never edit files.

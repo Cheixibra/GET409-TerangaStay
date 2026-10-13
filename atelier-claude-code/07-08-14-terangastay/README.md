@@ -21,6 +21,7 @@ Dépôt : `elegant-builds-studio`, branche `chore/claude-code-setup`.
 | E07 | `CLAUDE.md` (nouveau, 110 lignes) | `50c26f7` |
 | — | `package.json` : script `typecheck` | `2ce0a23` |
 | E14 | `.claude/agents/terangastay-reviewer.md` (nouveau, 30 lignes) | `216b20b` |
+| E07/E14 | `CLAUDE.md` et agent : règle `deny` documentée après l'audit | `7bff1c7` |
 
 ## Instantanés gelés
 

@@ -108,3 +108,13 @@ src/
 - Never rewrite published history — no force-push, rebase or amend on pushed commits.
   Lovable syncs this branch and the user would lose their project history.
 - Never deploy without asking.
+
+## Secret files are unreadable on purpose
+
+`.claude/settings.json` denies Read and Edit on `./.env` and `./.env.*`. The glob also covers
+`.env.example`, so Claude cannot open it — **the file exists and is tracked**; check with
+`git ls-files`, never conclude from a blocked read that it is missing. This is a deliberate
+fail-closed choice: a new variant such as `.env.staging` is protected without anyone thinking
+of it. Enumerating files instead would expose any variant someone forgets. An `allow` rule
+cannot carve out an exception — `deny` always wins. What `.env.example` documents is restated
+here: `DIFY_API_KEY`, server-side only, never a `VITE_*` variable.

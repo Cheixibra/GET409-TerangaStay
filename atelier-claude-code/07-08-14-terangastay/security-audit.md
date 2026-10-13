@@ -103,6 +103,9 @@ trancher, pas une erreur à corriger en silence :
 
 Une règle `allow` ne suffirait pas : dans Claude Code, `deny` l'emporte sur `allow`.
 
+**Décision (13/10/2026)** : la règle large est gardée, et documentée dans le `CLAUDE.md` et
+dans la définition de l'agent — commit `7bff1c7` du dépôt applicatif.
+
 ### Constats réels, non corrigés à ce stade
 
 Les corrections relèvent du produit, sur un dépôt synchronisé avec Lovable : elles sont laissées
