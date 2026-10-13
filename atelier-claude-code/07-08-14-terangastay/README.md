@@ -154,8 +154,8 @@ claude            # nouvelle session
 Puis, dans la session : `/agents` doit lister `terangastay-reviewer`. Demande-lui l'audit, et
 colle son rapport dans `security-audit.md` à côté de ce fichier.
 
-- [ ] `security-audit.md` — le rapport, avec sévérité, `fichier:ligne`, cause et correctif
-- [ ] vérifier qu'il n'a rien modifié : `git status` doit rester propre après son passage
+- [x] `security-audit.md` — le rapport, avec sévérité, `fichier:ligne`, cause et correctif (13/10/2026)
+- [x] vérifier qu'il n'a rien modifié : `git status` doit rester propre après son passage
 
 Ce que le rapport devrait relever, si l'agent fait son travail : le bandeau de
 `src/components/agent-search.tsx` est décidé par `getBanner(text)`, qui cherche une
