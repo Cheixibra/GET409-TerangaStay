@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TerangaStay — Plan marketing issu de l'analyse concurrentielle</title>
+<!--
+  Pass 2, E06. Generated with the /terangastay-brand skill.
+  No inline base64 image: the pass-1 version weighed 543 KB and was unreadable in a diff.
+  Colours: oklch is the source of truth; the derived sRGB value is declared first so an
+  older browser still renders. Fonts: fallback stacks only, the page opens offline.
+  Every claim here traces to competitive-analysis.md; nothing is added.
+-->
+<style>
+  :root {
+    --sable: #fbf7f0;       --sable: oklch(0.978 0.011 85);
+    --sable-chaud: #f5eddf; --sable-chaud: oklch(0.948 0.02 80);
+    --carte: #ffffff;       --carte: oklch(1 0 0);
+    --encre: #0e222a;       --encre: oklch(0.24 0.03 225);
+    --douce: #4f6168;       --douce: oklch(0.48 0.025 225);
+    --terre: #a84d2b;       --terre: oklch(0.53 0.13 40);
+    --teal: #005b63;        --teal: oklch(0.43 0.075 205);
+    --bordure: #ded6c9;     --bordure: oklch(0.88 0.02 80);
+    --jaune: #fff2b5;       --jaune: oklch(0.96 0.08 95);
+    --jaune-t: #6e5000;     --jaune-t: oklch(0.45 0.1 85);
+    --serif: ui-serif, Georgia, serif;
+    --sans: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 20px; background: var(--sable-chaud);
+    font-family: var(--sans); color: var(--encre); line-height: 1.6;
+  }
+  main { max-width: 68ch; margin: 0 auto; background: var(--carte);
+         border: 1px solid var(--bordure); border-radius: 6px; padding: 44px 40px; }
+  .eyebrow { font-family: var(--serif); font-style: italic; color: var(--terre); margin: 0 0 6px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 2.1rem; line-height: 1.08;
+       letter-spacing: -0.015em; margin: 0 0 10px; text-wrap: balance; }
+  .sub { color: var(--douce); margin: 0 0 32px; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; letter-spacing: -0.01em;
+       margin: 34px 0 10px; padding-top: 22px; border-top: 1px solid var(--bordure); }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+  h3 { font-size: 1rem; margin: 20px 0 4px; }
+  h3 .n { color: var(--terre); font-family: var(--serif); margin-right: 8px; }
+  p, li { margin: 0 0 10px; }
+  ul, ol { padding-left: 1.3rem; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 18px; font-size: .94rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--bordure); vertical-align: top; }
+  th { font-weight: 700; color: var(--douce); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+  .note { background: var(--jaune); color: var(--jaune-t); border: 1px solid var(--bordure);
+          border-radius: 6px; padding: 14px 18px; margin: 20px 0; font-size: .94rem; }
+  .note strong { display: block; margin-bottom: 4px; }
+  .src { color: var(--douce); font-size: .85rem; }
+  footer { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--bordure); }
+  footer p { font-family: var(--serif); font-style: italic; color: var(--terre); margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Plan marketing — séance 6</p>
+  <h1>Se positionner sur ce qui est vérifiable</h1>
+  <p class="sub">Déduit de l'analyse concurrentielle du 13 octobre 2026 — cinq acteurs,
+     sept dimensions, et une règle : rien qui n'ait été lu sur une page.</p>
+
+  <div class="note">
+    <strong>Le constat qui change le positionnement</strong>
+    Le taux de commission de Booking.com n'est pas public : la page d'aide aux partenaires renvoie
+    403. En revanche, l'absence de Wave et d'Orange Money est écrite noir sur blanc sur les pages
+    officielles de Beds24 et de Smoobu. Nous construisons donc le discours sur le paiement, pas
+    sur la commission — un argument vérifiable vaut mieux qu'un argument plus frappant mais non sourcé.
+  </div>
+
+  <h2>Le marché tel qu'il a été observé</h2>
+  <table>
+    <tr><th>Acteur</th><th>Ce qu'il coûte</th><th>Mobile money</th></tr>
+    <tr><td>Booking.com</td><td>non observé — page partenaire en 403</td><td>non observé</td></tr>
+    <tr><td>Airbnb</td><td>3 % (frais partagés) ou 15,5 % (hôte seul)</td><td>non observé</td></tr>
+    <tr><td>Jumia Travel</td><td>service arrêté en décembre 2019</td><td>—</td></tr>
+    <tr><td>Beds24</td><td>à partir de 15,50 €/mois, sans commission</td><td>aucun des huit</td></tr>
+    <tr><td>Smoobu</td><td>29 à 55 €/mois, 0 % ou 0,9 %</td><td>Stripe et PayPal seulement</td></tr>
+  </table>
+  <p class="src">Détail, citations verbatim et statuts HTTP :
+     <a href="competitive-analysis.md">competitive-analysis.md</a> ·
+     données brutes : <a href="observations.json">observations.json</a></p>
+
+  <h2>Trois messages, dans cet ordre</h2>
+
+  <h3><span class="n">01</span>Vous encaissez par Wave ou Orange Money</h3>
+  <p>Aucun acteur du panel ne l'intègre. Beds24 nomme huit passerelles, aucune de mobile money, et
+     renvoie les pays non couverts vers un développement sur mesure — c'est-à-dire vers un
+     développeur à payer. C'est le message d'ouverture parce que c'est le plus facile à prouver.</p>
+
+  <h3><span class="n">02</span>Rien à payer quand l'auberge est vide</h3>
+  <p>L'abonnement le moins cher du panel, 15,50 €, représente environ 10 200 FCFA par mois à la
+     parité fixe du franc CFA, qu'il y ait eu des clients ou non. Le plan haut de gamme dépasse le
+     prix d'une nuit en case vue mer. Et la facturation est en euros : le risque de change est porté
+     par l'établissement. La basse saison est précisément le moment où une petite structure n'a pas
+     de trésorerie.</p>
+
+  <h3><span class="n">03</span>Une demande n'est pas une réservation</h3>
+  <p>Nous disons à la voyageuse que sa chambre est en attente tant que l'acompte n'est pas reçu, et
+     c'est la gérante qui confirme. À vérifier en séance 7 : aucun parcours de réservation concurrent
+     n'a été effectué, donc leur silence sur ce point est un <em>non observé</em>, pas une preuve.</p>
+
+  <h2>Ce que nous ne dirons pas</h2>
+  <ul>
+    <li><strong>« Sans commission »</strong> comme différenciateur : Beds24 et Smoobu l'écrivent déjà,
+        mot pour mot. Le différenciateur est la combinaison, pas cet élément seul.</li>
+    <li><strong>Un taux de commission chiffré pour Booking.com.</strong> Nous n'avons pas de source.
+        Les fourchettes qui circulent viennent de guides d'éditeurs concurrents.</li>
+    <li><strong>« Nous supprimons les commissions »</strong> : le HMW l'exclut explicitement de nos
+        non-objectifs, au même titre que la synchronisation automatique avec toutes les plateformes.</li>
+    <li><strong>Le wolof</strong>, tant que nous ne le proposons pas. Limite assumée, pas argument.</li>
+  </ul>
+
+  <h2>L'argument de contexte</h2>
+  <p>Jumia Travel avait un bureau à Dakar. Le service a fermé en décembre 2019 et ses opérations sont
+     passées à Travelstart. La couche régionale, celle qui connaissait le marché, a disparu il y a
+     sept ans et personne ne l'a remplacée : ce qui reste est mondial ou européen.</p>
+  <p>Le discours n'est donc pas « nous faisons mieux que Booking ». Il est : <em>il n'y a plus
+     personne entre les plateformes mondiales et une auberge de quatorze chambres à Toubab Dialaw.</em></p>
+
+  <footer>
+    <p>Au plaisir de vous accueillir en direct.</p>
+  </footer>
+</main>
+</body>
+</html>

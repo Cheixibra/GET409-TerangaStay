@@ -1,0 +1,108 @@
+{
+  "collecte": {
+    "date": "2026-10-13",
+    "passe": 2,
+    "outils": ["WebSearch (standard)", "WebFetch"],
+    "limites": [
+      "Aucun navigateur : pas de capture d'écran, pas de topColors calculés. Le plugin Playwright est activé pour le dépôt GET409 mais pas pour la session de collecte, et aucun navigateur n'est en cache. L'atelier avait par ailleurs épinglé Playwright 1.48 pour compatibilité macOS 12 ; le Chromium du 1.64 exige macOS 13+.",
+      "WebSearch est indexé sur les États-Unis : les tarifs et la disponibilité affichés peuvent différer de ce que verrait une gérante au Sénégal.",
+      "Aucun parcours de réservation effectué : le vocabulaire de statut en fin de tunnel n'a pas pu être observé."
+    ],
+    "regle_de_preuve": "Chaque valeur est accompagnée de son URL et de son statut HTTP. Tout ce qui n'a pas été lu sur une page est marque non_observe, y compris quand une source tierce avance un chiffre."
+  },
+  "panel": [
+    {
+      "id": "C1",
+      "nom": "Booking.com",
+      "type": "OTA mondiale",
+      "url_tentee": "https://partner.booking.com/en-gb/help/commission-invoices-tax/commission/how-much-commission-do-i-pay",
+      "http": 403,
+      "taux_de_commission": "non_observe",
+      "note": "La page d'aide aux partenaires refuse l'acces (403 Forbidden). Aucun taux officiel n'a pu etre lu.",
+      "chiffres_tiers_non_retenus": {
+        "fourchette_citee": "10 % a 25 %, moyenne mondiale citee a 15 %",
+        "statut": "sources tierces uniquement (guides d'editeurs de logiciels), non confirme sur une page Booking.com",
+        "decision": "non cite comme un fait dans l'analyse"
+      }
+    },
+    {
+      "id": "C2",
+      "nom": "Airbnb",
+      "type": "OTA mondiale",
+      "url": "https://www.airbnb.com/help/article/1857",
+      "http": 200,
+      "frais_hote_partage": "Most hosts pay a 3% service fee, but some pay more",
+      "frais_hote_unique": "Most hosts pay 15.5%, remaining hosts typically pay 14%-16%",
+      "frais_voyageur": "Guests pay a service fee ranging from 14.1% to 16.5% of the booking subtotal",
+      "exceptions": "Hosts pay a 4% fee for listings in Brazil and Mexico (partage) ; 16% (unique)",
+      "moyens_de_paiement_senegal": "non_observe",
+      "langues": "non_observe"
+    },
+    {
+      "id": "C3",
+      "nom": "Jumia Travel",
+      "type": "OTA panafricaine",
+      "statut": "arrete",
+      "date": "decembre 2019",
+      "faits": [
+        "Operations transferees a Travelstart ; sites et applications Hotels et Flights arretes",
+        "Avait des bureaux a Lagos, Abidjan, Dakar, Yaounde, Dar es Salaam, Nairobi et Kampala",
+        "Fonde sous le nom Jovago en 2013, renomme Jumia Travel en 2016"
+      ],
+      "sources": [
+        "https://techcabal.com/2019/12/09/jumia-travel-to-be-taken-over-by-travelstart-part-of-drastic-company-changes",
+        "https://technext.ng/2019/12/10/jumia-shuts-down-jumia-travel-in-nigeria-closes-rwanda-operations-in-ongoing-restructuring-drive/",
+        "https://atcnews.org/jumia-travel-shuts-down/"
+      ],
+      "successeur_travelstart": {
+        "url": "https://www.travelstart.com/",
+        "http": 200,
+        "contenu_recupere": "titre seul : Search and Book Cheap Flights",
+        "frais_partenaires_hebergement": "non_observe"
+      }
+    },
+    {
+      "id": "C4",
+      "nom": "Beds24",
+      "type": "moteur de reservation directe / channel manager",
+      "url_prix": "https://beds24.com/",
+      "http": 200,
+      "prix": "From 15.50 EUR/month",
+      "commission": "Pay as you go, no contract, no set up fees, no commission, no hidden costs",
+      "moteur_direct": "Commission free bookings from your web site",
+      "url_paiement": "https://beds24.com/payment-gateway.html",
+      "passerelles_nommees": ["Zettle", "Google", "Apple", "PayPal", "Stripe", "Authorize.Net", "AsiaPay", "Agoda"],
+      "mobile_money": "aucun : ni Wave, ni Orange Money, ni M-Pesa, ni MTN MoMo, ni Free Money",
+      "pays_non_couverts": "We can give you the option to connect a gateway which operates in your country yourself. Contact us for details.",
+      "frais_de_traitement": "No. You only pay a fee to your payment provider.",
+      "langues": "non_observe"
+    },
+    {
+      "id": "C5",
+      "nom": "Smoobu",
+      "type": "moteur de reservation directe / channel manager",
+      "url": "https://www.smoobu.com/en/prices/",
+      "http": 200,
+      "plans": [
+        { "nom": "Professional Flex", "prix": "29 EUR/month (32.50 USD, 24.58 GBP)", "frais_par_reservation": "0.9% booking fee" },
+        { "nom": "Professional Prepaid", "prix": "35 EUR/month, 31.50 EUR avec -10%", "frais_par_reservation": "0% booking fee" },
+        { "nom": "Teams Pro+", "prix": "55 EUR/month, 49.50 EUR avec -10%", "frais_par_reservation": "0% booking fee" }
+      ],
+      "commission": "Our Professional Flex plan offers all the benefits of Professional Prepaid with a 0.9% commission fee per booking. All our other plans are commission-free.",
+      "facturation": "All subscriptions are billed in EUR ; les prix GBP/USD are estimates for reference purposes only",
+      "prix_variable": "Price based on number of units selected",
+      "moyens_de_paiement": ["Stripe", "PayPal"],
+      "mobile_money": "aucun observe",
+      "langues": ["Portugues", "Polski", "Nederlands", "Italiano", "Ellinika", "Francais", "Deutsch", "Espanol", "English"],
+      "wolof": "absent"
+    }
+  ],
+  "non_observe_transversal": [
+    "Taux de commission officiel de Booking.com (page partenaire en 403)",
+    "Moyens de versement aux hotes au Senegal chez Booking.com et Airbnb",
+    "Langues proposees par Booking.com et Airbnb (non lues sur une page recuperee)",
+    "Promesse explicite sur la double reservation : aucune citation verbatim obtenue chez les cinq",
+    "Vocabulaire de statut en fin de tunnel de reservation : aucun parcours effectue",
+    "Inventaire senegalais reel de chaque plateforme"
+  ]
+}
