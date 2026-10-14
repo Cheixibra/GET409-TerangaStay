@@ -23,7 +23,8 @@ direct bookings with a reliable calendar, to avoid double bookings and protect t
 - React 19.2, TypeScript 5.8 (strict), Vite 8.1
 - Tailwind CSS 4.2 — design tokens in `src/styles.css`, no config file
 - Zod 3.25 for every boundary; Leaflet 1.9 for the map; Radix + shadcn/ui in `src/components/ui/`
-- Bun for installs (`bun.lock` is committed). `bunfig.toml` holds a 24h supply-chain guard —
+- Lovable installs with Bun (`bun.lock` is committed); locally, npm works too and its
+  `package-lock.json` is git-ignored. `bunfig.toml` holds a 24h supply-chain guard —
   ask before adding a package to `minimumReleaseAgeExcludes`.
 - Hosted twice: Lovable (`teranga-stay.lovable.app`) and Cloudflare Workers
   (`terangastay.sdiengdk.workers.dev`), from the same repo.
@@ -31,7 +32,7 @@ direct bookings with a reliable calendar, to avoid double bookings and protect t
 ## Commands
 
 ```bash
-bun dev                                   # dev server
+npm run dev                               # dev server -> http://localhost:8080
 npm run build                             # production build -> .output/
 npx tsc --noEmit                          # the real type gate; currently passes
 npm run format                            # prettier --write .
