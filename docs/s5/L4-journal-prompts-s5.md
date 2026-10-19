@@ -386,3 +386,54 @@ modification du code). Fait manuellement par l'étudiant, guidé étape par éta
 déploiement. Le dossier local était resté sur une ancienne branche → revenu sur `main`, branches fusionnées supprimées.
 **Mise à jour** : les modifications faites dans Lovable ne sont pas redéployées automatiquement sur Cloudflare —
 `git pull && npm run build && npx -y wrangler@4 deploy --name terangastay` (le secret est conservé).
+
+---
+
+## Itération 10 — Retour du professeur : latence et message (19/10/2026)
+
+**Constat** (retour du professeur) : « l'agent est lent : 30 à 45 s par réponse, et le premier essai a
+dépassé le délai de 45 s » ; « quand le pays du voyageur n'est pas précisé, le message se contredit :
+"acompte possible par Wave ou Orange Money" puis "l'auberge vous indiquera une autre modalité". La
+signature varie aussi entre "TerangaStay" et "L'auberge". »
+
+**Causes**
+1. Le Chercheur rédigeait encore tout le croisement chambre × nuit (ancienne étape 3), que `VERIF_DISPO`
+   recalculait puis remplaçait. Des tokens de sortie générés pour rien : c'est la longueur de sortie qui
+   coûte le plus en latence.
+2. Le Rédacteur produisait deux textes, la fiche complète et le message, et devait arbitrer entre la fiche
+   du Chercheur et le bloc de vérification (« PRIORITÉ AU CALCUL »).
+3. La contradiction était **écrite dans la consigne** du Rédacteur : « non précisé → les deux phrases ».
+4. Aucune signature n'était imposée : le modèle improvisait.
+
+**Correctif**
+- **Chercheur** : extraction seule — type, dates, personnes, profil de paiement, points à confirmer. Il ne
+  lit plus le bloc DISPONIBILITÉS et ne recopie plus aucun prix.
+- **`VERIF_DISPO`** construit la fiche complète de la gérante : chambre, nuits, prix et acompte lus dans le
+  catalogue, date de mise à jour lue dans le calendrier. Il choisit **une seule** phrase de paiement selon
+  le profil, et aucune en cas de conflit (on ne demande pas d'acompte pour une chambre non libre).
+- **Rédacteur** : le corps du message seulement, 60 mots au plus, sans paiement ni signature.
+- **Nouveau nœud `ASSEMBLAGE`** (gabarit) : fiche + message + phrase de paiement + signature fixe
+  « L'auberge de Toubab Dialaw ». La contradiction et la signature variable deviennent impossibles.
+- Deux défauts de `VERIF_DISPO` corrigés au passage : une nuit « (Complet) » dont le texte citait des
+  numéros de chambre était lue comme libre — l'ancien code renvoyait **DISPONIBLE C6** sur ce cas ; et une
+  égalité entre deux types de chambre était tranchée par ordre alphabétique au lieu d'être signalée.
+- **Tests** : `docs/dify-s5/test_verif_dispo.py`, 21/21 sur les fichiers réels de la base (T1, T2, T6,
+  les trois profils de paiement, les garde-fous, l'absence de mot interdit et de total).
+
+**Écarté** : exécuter les deux recherches RAG en parallèle. Le gain serait faible (index économique), et la
+synchronisation d'une branche parallèle avec un SI/SINON dont une sortie n'est pas prise n'a pas pu être
+vérifiée : mal réglée, elle ferait tourner `VERIF_DISPO` sur une demande INSUFFISANTE.
+
+**Preuve** ⏳ à compléter après import dans Dify :
+
+| Mesure | Avant | Après |
+|--------|-------|-------|
+| Temps de réponse T1 (API) | 30–45 s (relevé du professeur) | ⏳ |
+| Temps du nœud CHERCHEUR (trace Dify) | ⏳ | ⏳ |
+| Temps du nœud Rédacteur (trace Dify) | ⏳ | ⏳ |
+| T1–T8 sur le lien public | 8/8 (04/10) | ⏳ |
+| Profil non précisé : une seule phrase de paiement | ❌ deux phrases contradictoires | ⏳ |
+
+Si une exécution reste au-delà de 30 s, la trace par nœud dira si le temps vient de la génération ou
+d'une nouvelle tentative après une erreur 503 de Gemini (deux tentatives, 2 s d'attente chacune).
+
