@@ -445,12 +445,15 @@ vérifiée : mal réglée, elle ferait tourner `VERIF_DISPO` sur une demande INS
 | Recherches dans les bases | ≈ 0,3 s | ≈ 0,3 s — négligeable, ce qui confirme qu'une parallélisation n'aurait rien apporté |
 | T1 dans l'éditeur Dify | C7 · 28 000 / 8 400 (04/10) | ✅ C7 · 28 000 / 8 400 · une phrase de paiement · signature fixe |
 | Les trois exemples du site | ancien format | ✅ nouveau format, en local et sur Lovable |
-| Profil non précisé : une seule phrase de paiement | ❌ deux phrases contradictoires | ✅ test unitaire · ⏳ à observer en conditions réelles |
-| T4 à T8 | 8/8 (04/10) | ⏳ à rejouer |
+| Profil non précisé : une seule phrase de paiement | ❌ deux phrases contradictoires | ✅ test unitaire · ✅ en conditions réelles (T8, demande « twin » sans pays) |
+| T4 à T8 sur le lien public | 8/8 (04/10) | ✅ 5/5 (20/10) |
+| Exécutions depuis l'application web (journal Dify, 20/10) | 30–45 s (relevé du professeur) | **13/13 en succès · 3,0 à 7,0 s · médiane 4,3 s** |
+| Cloudflare Workers | code du 04/10, ancienne app | ✅ redéployé (version `e39d7f4b`), répond avec la S5 |
 
 Deux réserves. La mesure « avant » a été prise **bases désactivées**, donc avec un contexte vide : le
 Chercheur lisait moins de tokens qu'en temps normal, et le gain réel est plutôt supérieur. Et il n'y a
 qu'une exécution par cas : Gemini varie d'un appel à l'autre (CHERCHEUR à 4,0 s puis 2,0 s pour une taille
 de demande comparable). Le temps ressenti par le professeur (30–45 s) incluait aussi le trajet entre le
-site et Dify ; il reste à le mesurer côté navigateur sur le lien public.
+site et Dify. Les 13 temps ci-dessus sont ceux que Dify mesure pour l'exécution du workflow ; le temps
+affiché dans le navigateur y ajoute le trajet réseau, de l'ordre d'une à deux secondes dans les captures.
 
