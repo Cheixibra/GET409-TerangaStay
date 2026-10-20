@@ -1,3 +1,9 @@
+> **Version S5, conservée comme trace.** Depuis l'itération 10 (19/10/2026), le Chercheur ne fait plus
+> qu'extraire, le Rédacteur n'écrit plus que le corps du message, et la fiche, la phrase de paiement et la
+> signature sont produites par le code. Les prompts en vigueur sont dans
+> [`E-Tourism-RAG-S5.yml`](E-Tourism-RAG-S5.yml) ; le changement est expliqué dans le
+> [journal L4, itération 10](../s5/L4-journal-prompts-s5.md#itération-10--retour-du-professeur--latence-et-message-19102026).
+
 # Prompts Dify — TerangaStay S5 (RAG à deux recherches)
 
 Deux prompts à coller dans le SYSTEM des nœuds **CHERCHEUR** et **RÉDACTEUR**.

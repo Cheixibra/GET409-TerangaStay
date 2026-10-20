@@ -386,3 +386,71 @@ modification du code). Fait manuellement par l'étudiant, guidé étape par éta
 déploiement. Le dossier local était resté sur une ancienne branche → revenu sur `main`, branches fusionnées supprimées.
 **Mise à jour** : les modifications faites dans Lovable ne sont pas redéployées automatiquement sur Cloudflare —
 `git pull && npm run build && npx -y wrangler@4 deploy --name terangastay` (le secret est conservé).
+
+---
+
+## Itération 10 — Retour du professeur : latence et message (19/10/2026)
+
+**Constat** (retour du professeur) : « l'agent est lent : 30 à 45 s par réponse, et le premier essai a
+dépassé le délai de 45 s » ; « quand le pays du voyageur n'est pas précisé, le message se contredit :
+"acompte possible par Wave ou Orange Money" puis "l'auberge vous indiquera une autre modalité". La
+signature varie aussi entre "TerangaStay" et "L'auberge". »
+
+**Causes**
+1. Le Chercheur rédigeait encore tout le croisement chambre × nuit (ancienne étape 3), que `VERIF_DISPO`
+   recalculait puis remplaçait. Des tokens de sortie générés pour rien : c'est la longueur de sortie qui
+   coûte le plus en latence.
+2. Le Rédacteur produisait deux textes, la fiche complète et le message, et devait arbitrer entre la fiche
+   du Chercheur et le bloc de vérification (« PRIORITÉ AU CALCUL »).
+3. La contradiction était **écrite dans la consigne** du Rédacteur : « non précisé → les deux phrases ».
+4. Aucune signature n'était imposée : le modèle improvisait.
+
+**Correctif**
+- **Chercheur** : extraction seule — type, dates, personnes, profil de paiement, points à confirmer. Il ne
+  lit plus le bloc DISPONIBILITÉS et ne recopie plus aucun prix.
+- **`VERIF_DISPO`** construit la fiche complète de la gérante : chambre, nuits, prix et acompte lus dans le
+  catalogue, date de mise à jour lue dans le calendrier. Il choisit **une seule** phrase de paiement selon
+  le profil, et aucune en cas de conflit (on ne demande pas d'acompte pour une chambre non libre).
+- **Rédacteur** : le corps du message seulement, 60 mots au plus, sans paiement ni signature.
+- **Nouveau nœud `ASSEMBLAGE`** (gabarit) : fiche + message + phrase de paiement + signature fixe
+  « L'auberge de Toubab Dialaw ». La contradiction et la signature variable deviennent impossibles.
+- Deux défauts de `VERIF_DISPO` corrigés au passage : une nuit « (Complet) » dont le texte citait des
+  numéros de chambre était lue comme libre — l'ancien code renvoyait **DISPONIBLE C6** sur ce cas ; et une
+  égalité entre deux types de chambre était tranchée par ordre alphabétique au lieu d'être signalée.
+- **Tests** : `docs/dify-s5/test_verif_dispo.py`, 21/21 sur les fichiers réels de la base (T1, T2, T6,
+  les trois profils de paiement, les garde-fous, l'absence de mot interdit et de total).
+
+**Écarté** : exécuter les deux recherches RAG en parallèle. Le gain serait faible (index économique), et la
+synchronisation d'une branche parallèle avec un SI/SINON dont une sortie n'est pas prise n'a pas pu être
+vérifiée : mal réglée, elle ferait tourner `VERIF_DISPO` sur une demande INSUFFISANTE.
+
+**Mise en service (19–20/10/2026)**
+- L'import dans l'app existante a été refusé : l'ancienne app a été renommée « E-Tourism RAG S4 » et le
+  fichier importé comme nouvelle app « S5 ». Une clé API a été créée pour la S5 et remplacée aux trois
+  endroits : `.env.local`, secret Lovable, `wrangler secret put DIFY_API_KEY --name terangastay`.
+  **La S4 est conservée comme retour arrière** : remettre son ancienne clé suffit.
+- **Incident trouvé en chemin** : les deux bases de connaissances étaient **désactivées** dans Dify. Une
+  base désactivée ne renvoie rien et ne signale aucune erreur : le catalogue arrivait vide, d'où « type
+  de chambre non reconnu » et des prix « Non disponible » — alors que la même demande donnait C7 à
+  28 000 FCFA le 04/10. Bases réactivées. **À vérifier avant chaque démo.**
+
+**Preuve** — traces Dify, une exécution par cas :
+
+| Mesure | Avant (S4, 19/10) | Après (S5, 20/10) |
+|--------|-------------------|-------------------|
+| Somme des étapes, demande complète | ≈ 17,5 s | **≈ 6,4 s** |
+| CHERCHEUR | 3 449 tokens · 5,6 s | 1 531 tokens · 4,0 s (2,0 s sur l'essai « nuit complète ») |
+| Rédacteur | 1 320 tokens · 10,9 s | 670 tokens · **1,4 s** (3,4 s sur l'essai « nuit complète ») |
+| Demande incomplète (un seul appel au modèle) | 16,9 s côté navigateur | ≈ 2,7 s d'étapes (CHERCHEUR 2,1 s) |
+| Recherches dans les bases | ≈ 0,3 s | ≈ 0,3 s — négligeable, ce qui confirme qu'une parallélisation n'aurait rien apporté |
+| T1 dans l'éditeur Dify | C7 · 28 000 / 8 400 (04/10) | ✅ C7 · 28 000 / 8 400 · une phrase de paiement · signature fixe |
+| Les trois exemples du site | ancien format | ✅ nouveau format, en local et sur Lovable |
+| Profil non précisé : une seule phrase de paiement | ❌ deux phrases contradictoires | ✅ test unitaire · ⏳ à observer en conditions réelles |
+| T4 à T8 | 8/8 (04/10) | ⏳ à rejouer |
+
+Deux réserves. La mesure « avant » a été prise **bases désactivées**, donc avec un contexte vide : le
+Chercheur lisait moins de tokens qu'en temps normal, et le gain réel est plutôt supérieur. Et il n'y a
+qu'une exécution par cas : Gemini varie d'un appel à l'autre (CHERCHEUR à 4,0 s puis 2,0 s pour une taille
+de demande comparable). Le temps ressenti par le professeur (30–45 s) incluait aussi le trajet entre le
+site et Dify ; il reste à le mesurer côté navigateur sur le lien public.
+
