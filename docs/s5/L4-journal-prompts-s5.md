@@ -424,16 +424,33 @@ signature varie aussi entre "TerangaStay" et "L'auberge". »
 synchronisation d'une branche parallèle avec un SI/SINON dont une sortie n'est pas prise n'a pas pu être
 vérifiée : mal réglée, elle ferait tourner `VERIF_DISPO` sur une demande INSUFFISANTE.
 
-**Preuve** ⏳ à compléter après import dans Dify :
+**Mise en service (19–20/10/2026)**
+- L'import dans l'app existante a été refusé : l'ancienne app a été renommée « E-Tourism RAG S4 » et le
+  fichier importé comme nouvelle app « S5 ». Une clé API a été créée pour la S5 et remplacée aux trois
+  endroits : `.env.local`, secret Lovable, `wrangler secret put DIFY_API_KEY --name terangastay`.
+  **La S4 est conservée comme retour arrière** : remettre son ancienne clé suffit.
+- **Incident trouvé en chemin** : les deux bases de connaissances étaient **désactivées** dans Dify. Une
+  base désactivée ne renvoie rien et ne signale aucune erreur : le catalogue arrivait vide, d'où « type
+  de chambre non reconnu » et des prix « Non disponible » — alors que la même demande donnait C7 à
+  28 000 FCFA le 04/10. Bases réactivées. **À vérifier avant chaque démo.**
 
-| Mesure | Avant | Après |
-|--------|-------|-------|
-| Temps de réponse T1 (API) | 30–45 s (relevé du professeur) | ⏳ |
-| Temps du nœud CHERCHEUR (trace Dify) | ⏳ | ⏳ |
-| Temps du nœud Rédacteur (trace Dify) | ⏳ | ⏳ |
-| T1–T8 sur le lien public | 8/8 (04/10) | ⏳ |
-| Profil non précisé : une seule phrase de paiement | ❌ deux phrases contradictoires | ⏳ |
+**Preuve** — traces Dify, une exécution par cas :
 
-Si une exécution reste au-delà de 30 s, la trace par nœud dira si le temps vient de la génération ou
-d'une nouvelle tentative après une erreur 503 de Gemini (deux tentatives, 2 s d'attente chacune).
+| Mesure | Avant (S4, 19/10) | Après (S5, 20/10) |
+|--------|-------------------|-------------------|
+| Somme des étapes, demande complète | ≈ 17,5 s | **≈ 6,4 s** |
+| CHERCHEUR | 3 449 tokens · 5,6 s | 1 531 tokens · 4,0 s (2,0 s sur l'essai « nuit complète ») |
+| Rédacteur | 1 320 tokens · 10,9 s | 670 tokens · **1,4 s** (3,4 s sur l'essai « nuit complète ») |
+| Demande incomplète (un seul appel au modèle) | 16,9 s côté navigateur | ≈ 2,7 s d'étapes (CHERCHEUR 2,1 s) |
+| Recherches dans les bases | ≈ 0,3 s | ≈ 0,3 s — négligeable, ce qui confirme qu'une parallélisation n'aurait rien apporté |
+| T1 dans l'éditeur Dify | C7 · 28 000 / 8 400 (04/10) | ✅ C7 · 28 000 / 8 400 · une phrase de paiement · signature fixe |
+| Les trois exemples du site | ancien format | ✅ nouveau format, en local et sur Lovable |
+| Profil non précisé : une seule phrase de paiement | ❌ deux phrases contradictoires | ✅ test unitaire · ⏳ à observer en conditions réelles |
+| T4 à T8 | 8/8 (04/10) | ⏳ à rejouer |
+
+Deux réserves. La mesure « avant » a été prise **bases désactivées**, donc avec un contexte vide : le
+Chercheur lisait moins de tokens qu'en temps normal, et le gain réel est plutôt supérieur. Et il n'y a
+qu'une exécution par cas : Gemini varie d'un appel à l'autre (CHERCHEUR à 4,0 s puis 2,0 s pour une taille
+de demande comparable). Le temps ressenti par le professeur (30–45 s) incluait aussi le trajet entre le
+site et Dify ; il reste à le mesurer côté navigateur sur le lien public.
 
